@@ -102,13 +102,20 @@
 
         <section id="confirmation">
             <h2>Confirm Your Choices</h2>
-            <form action="https://formspree.io/f/mzzbqwjb" method="POST">
+            <form action="https://formspree.io/f/mzzbqwjb" method="POST" onsubmit="prepareEmail(event)">
                 <p><strong>Date:</strong> <span id="selectedDate"></span></p>
                 <p><strong>Restaurant:</strong> <span id="selectedRestaurant"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
                 <input type="hidden" name="restaurant" id="hiddenRestaurant">
+                <input type="hidden" name="_subject" value="New Date Submission!">
                 <button type="submit">Submit</button>
             </form>
+        </section>
+
+
+        <section id="thankYou">
+            <h2>Thank You! ❤️</h2>
+            <p>We’ll see each other on <span id="finalDate"></span> at <span id="finalRestaurant"></span>.</p>
         </section>
     </main>
 
@@ -144,6 +151,19 @@
 
             document.getElementById('step2').classList.remove('active');
             document.getElementById('confirmation').classList.add('active');
+        }
+
+        function showThankYouPage(event) {
+            event.preventDefault();
+
+            const date = document.getElementById('hiddenDate').value;
+            const restaurant = document.getElementById('hiddenRestaurant').value;
+
+            document.getElementById('finalDate').textContent = date;
+            document.getElementById('finalRestaurant').textContent = restaurant;
+
+            document.getElementById('confirmation').classList.remove('active');
+            document.getElementById('thankYou').classList.add('active');
         }
     </script>
 </body>
