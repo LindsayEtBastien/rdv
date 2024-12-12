@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Our Date</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #fbeae7, #f77f7f);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f44141;
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        main {
+            padding: 20px;
+        }
+        form {
+            margin: 20px auto;
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #f44141;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #d93737;
+        }
+        section {
+            display: none;
+        }
+        section.active {
+            display: block;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plan Our Date ❤️</h1>
+    </header>
+    <main>
+        <section id="step1" class="active">
+            <h2>Select a Date</h2>
+            <form id="dateForm">
+                <label for="date">Choose a date:</label>
+                <input type="date" id="date" name="date" required>
+                <button type="button" onclick="goToStep2()">Next</button>
+            </form>
+        </section>
+
+        <section id="step2">
+            <h2>Choose a Restaurant</h2>
+            <form id="restaurantForm">
+                <label for="restaurant">Pick your favorite:</label>
+                <select id="restaurant" name="restaurant" required>
+                    <option value="">-- Select a restaurant --</option>
+                    <option value="Italian Bistro">Italian Bistro</option>
+                    <option value="Sushi Palace">Sushi Palace</option>
+                    <option value="French Café">French Café</option>
+                    <option value="Steakhouse Deluxe">Steakhouse Deluxe</option>
+                </select>
+                <button type="button" onclick="goToConfirmation()">Next</button>
+            </form>
+        </section>
+
+        <section id="confirmation">
+            <h2>Confirm Your Choices</h2>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <p><strong>Date:</strong> <span id="selectedDate"></span></p>
+                <p><strong>Restaurant:</strong> <span id="selectedRestaurant"></span></p>
+                <input type="hidden" name="date" id="hiddenDate">
+                <input type="hidden" name="restaurant" id="hiddenRestaurant">
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ for someone special</p>
+    </footer>
+
+    <script>
+        function goToStep2() {
+            const date = document.getElementById('date').value;
+            if (!date) {
+                alert('Please select a date!');
+                return;
+            }
+
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
+
+        function goToConfirmation() {
+            const restaurant = document.getElementById('restaurant').value;
+            if (!restaurant) {
+                alert('Please select a restaurant!');
+                return;
+            }
+
+            const date = document.getElementById('date').value;
+
+            document.getElementById('selectedDate').textContent = date;
+            document.getElementById('selectedRestaurant').textContent = restaurant;
+            document.getElementById('hiddenDate').value = date;
+            document.getElementById('hiddenRestaurant').value = restaurant;
+
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('confirmation').classList.add('active');
+        }
+    </script>
+</body>
+</html>
