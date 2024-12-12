@@ -69,6 +69,30 @@
             background-color: #333;
             color: white;
         }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: left;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .card h3 {
+            margin: 10px 0;
+        }
+        .card.selected {
+            border-color: #f44141;
+        }
     </style>
 </head>
 <body>
@@ -86,34 +110,42 @@
         </section>
 
         <section id="step2">
-            <h2>Choose a Restaurant</h2>
-            <form id="restaurantForm">
-                <label for="restaurant">Pick your favorite:</label>
-                <select id="restaurant" name="restaurant" required>
-                    <option value="">-- Select a restaurant --</option>
-                    <option value="Italian Bistro">Italian Bistro</option>
-                    <option value="Sushi Palace">Sushi Palace</option>
-                    <option value="French Café">French Café</option>
-                    <option value="Steakhouse Deluxe">Steakhouse Deluxe</option>
-                </select>
-                <button type="button" onclick="goToConfirmation()">Next</button>
-            </form>
+            <h2>Choose Restaurants</h2>
+            <div id="restaurantCards">
+                <div class="card" onclick="toggleSelection(this, 'Italian Bistro')">
+                    <img src="imgs/italien.png" alt="Italian Bistro">
+                    <h3>Italian Bistro</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Sushi Palace')">
+                    <img src="imgs/sushi_palace.jpg" alt="Sushi Palace">
+                    <h3>Sushi Palace</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'French Café')">
+                    <img src="imgs/french_cafe.jpg" alt="French Café">
+                    <h3>French Café</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Steakhouse Deluxe')">
+                    <img src="imgs/steakhouse_deluxe.jpg" alt="Steakhouse Deluxe">
+                    <h3>Steakhouse Deluxe</h3>
+                </div>
+            </div>
+            <button type="button" onclick="goToConfirmation()">Next</button>
         </section>
 
         <section id="confirmation">
             <h2>Confirm Your Choices</h2>
             <form id="finalForm">
                 <p><strong>Date:</strong> <span id="selectedDate"></span></p>
-                <p><strong>Restaurant:</strong> <span id="selectedRestaurant"></span></p>
+                <p><strong>Restaurants (in order of priority):</strong> <span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
-                <input type="hidden" name="restaurant" id="hiddenRestaurant">
+                <input type="hidden" name="restaurants" id="hiddenRestaurants">
                 <button type="button" onclick="submitForm()">Submit</button>
             </form>
         </section>
 
         <section id="thankYou">
             <h2>Thank You! ❤️</h2>
-            <p>We’ll see each other on <span id="finalDate"></span> at <span id="finalRestaurant"></span>.</p>
+            <p>We’ll see each other on <span id="finalDate"></span> at <span id="finalRestaurants"></span>.</p>
         </section>
     </main>
 
@@ -122,6 +154,8 @@
     </footer>
 
     <script>
+        let selectedRestaurants = [];
+
         function goToStep2() {
             const date = document.getElementById('date').value;
             if (!date) {
@@ -133,19 +167,27 @@
             document.getElementById('step2').classList.add('active');
         }
 
+        function toggleSelection(card, restaurant) {
+            card.classList.toggle('selected');
+            if (card.classList.contains('selected')) {
+                selectedRestaurants.push(restaurant);
+            } else {
+                selectedRestaurants = selectedRestaurants.filter(r => r !== restaurant);
+            }
+        }
+
         function goToConfirmation() {
-            const restaurant = document.getElementById('restaurant').value;
-            if (!restaurant) {
-                alert('Please select a restaurant!');
+            if (selectedRestaurants.length === 0) {
+                alert('Please select at least one restaurant!');
                 return;
             }
 
             const date = document.getElementById('date').value;
 
             document.getElementById('selectedDate').textContent = date;
-            document.getElementById('selectedRestaurant').textContent = restaurant;
+            document.getElementById('selectedRestaurants').textContent = selectedRestaurants.join(', ');
             document.getElementById('hiddenDate').value = date;
-            document.getElementById('hiddenRestaurant').value = restaurant;
+            document.getElementById('hiddenRestaurants').value = selectedRestaurants.join(', ');
 
             document.getElementById('step2').classList.remove('active');
             document.getElementById('confirmation').classList.add('active');
@@ -153,16 +195,16 @@
 
         async function submitForm() {
             const date = document.getElementById('hiddenDate').value;
-            const restaurant = document.getElementById('hiddenRestaurant').value;
+            const restaurants = document.getElementById('hiddenRestaurants').value;
 
-            if (!date || !restaurant) {
+            if (!date || !restaurants) {
                 alert('Missing data. Please complete all steps.');
                 return;
             }
 
             const formData = new FormData();
             formData.append('date', date);
-            formData.append('restaurant', restaurant);
+            formData.append('restaurants', restaurants);
             formData.append('_subject', 'New Date Submission!');
 
             try {
@@ -176,7 +218,7 @@
 
                 if (response.ok) {
                     document.getElementById('finalDate').textContent = date;
-                    document.getElementById('finalRestaurant').textContent = restaurant;
+                    document.getElementById('finalRestaurants').textContent = restaurants;
 
                     document.getElementById('confirmation').classList.remove('active');
                     document.getElementById('thankYou').classList.add('active');
