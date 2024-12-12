@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Our Date</title>
+    <title>Notre date</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -69,6 +69,12 @@
             background-color: #333;
             color: white;
         }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
         .card {
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -78,7 +84,9 @@
             background: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            flex: 1 1 calc(50% - 40px); /* Adjust the width to fit two cards per row */
+            max-width: calc(50% - 40px); /* Adjust the width to fit two cards per row */
         }
         .card:hover {
             transform: scale(1.05);
@@ -92,40 +100,41 @@
         }
         .card.selected {
             border-color: #f44141;
+            background-color: #ffe6e6;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Plan Our Date ❤️</h1>
+        <h1>Planifier notre date ❤️</h1>
     </header>
     <main>
         <section id="step1" class="active">
-            <h2>Select a Date</h2>
+            <h2>Choix de la date</h2>
             <form id="dateForm">
-                <label for="date">Choose a date:</label>
+                <label for="date">Choisie une date : </label>
                 <input type="date" id="date" name="date" required>
-                <button type="button" onclick="goToStep2()">Next</button>
+                <button type="button" onclick="goToStep2()">Suivant</button>
             </form>
         </section>
 
         <section id="step2">
-            <h2>Choose Restaurants</h2>
-            <div id="restaurantCards">
-                <div class="card" onclick="toggleSelection(this, 'Italian Bistro')">
-                    <img src="imgs/italien.png" alt="Italian Bistro">
+            <h2>Choix du restaurant</h2>
+            <div class="card-container" id="restaurantCards">
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Italien')">
+                    <img src="imgs/italien.jpg" alt="Restaurant Italien">
                     <h3>Restaurant Italien</h3>
                 </div>
-                <div class="card" onclick="toggleSelection(this, 'Sushi Palace')">
-                    <img src="imgs/sushis.jpg" alt="Sushi Palace">
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Japonnais')">
+                    <img src="imgs/sushis.jpg" alt="Restaurant Japonnais">
                     <h3>Restaurant Japonnais</h3>
                 </div>
-                <div class="card" onclick="toggleSelection(this, 'French Café')">
-                    <img src="imgs/coreen.jpg" alt="French Café">
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Coréen')">
+                    <img src="imgs/coreen.jpg" alt="Restaurant Coréen">
                     <h3>Restaurant Coréen</h3>
                 </div>
-                <div class="card" onclick="toggleSelection(this, 'Steakhouse Deluxe')">
-                    <img src="imgs/americain.jpg" alt="Steakhouse Deluxe">
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Américain')">
+                    <img src="imgs/americain.jpg" alt="Restaurant Américain">
                     <h3>Restaurant Américain</h3>
                 </div>
             </div>
@@ -133,24 +142,24 @@
         </section>
 
         <section id="confirmation">
-            <h2>Confirm Your Choices</h2>
+            <h2>Confirmation</h2>
             <form id="finalForm">
-                <p><strong>Date:</strong> <span id="selectedDate"></span></p>
-                <p><strong>Restaurants (in order of priority):</strong> <span id="selectedRestaurants"></span></p>
+                <p><strong>Date :</strong> <span id="selectedDate"></span></p>
+                <p><strong>Restaurants (dans l'ordre de sélection):</strong> <span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
                 <input type="hidden" name="restaurants" id="hiddenRestaurants">
-                <button type="button" onclick="submitForm()">Submit</button>
+                <button type="button" onclick="submitForm()">Envoyer</button>
             </form>
         </section>
 
         <section id="thankYou">
-            <h2>Thank You! ❤️</h2>
-            <p>We’ll see each other on <span id="finalDate"></span> at <span id="finalRestaurants"></span>.</p>
+            <h2>Merci! ❤️</h2>
+            <p>On se voit le <span id="finalDate"></span> dans un <span id="finalRestaurants"></span> ❤️ </p>
         </section>
     </main>
 
     <footer>
-        <p>Made with ❤️ for someone special</p>
+        <p>Fait avec ❤️</p>
     </footer>
 
     <script>
