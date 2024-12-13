@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swipe App</title>
+    <title>ATClub Swipe</title>
     <style>
+        /* Styles globaux */
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #f77f7f, #fbeae7);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
             overflow: hidden;
         }
 
@@ -23,120 +22,102 @@
             width: 90%;
             max-width: 400px;
             height: 70%;
+            overflow: hidden;
+            background: none; /* Par défaut */
         }
 
         .card {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             transition: transform 0.3s ease, opacity 0.3s ease;
-            will-change: transform, opacity;
-            cursor: grab;
+            will-change: transform;
         }
 
         .card img {
             width: 80%;
-            height: auto;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .card h2 {
-            margin: 10px 0;
             font-size: 1.5em;
-            color: #333;
+            margin: 15px 0;
         }
 
         .card p {
+            color: #777;
             font-size: 1em;
-            color: #555;
         }
 
-        .card:nth-child(2) {
-            transform: translateY(20px) scale(0.95);
-        }
-
-        .card:nth-child(3) {
-            transform: translateY(40px) scale(0.9);
-        }
-
-        .button-container {
+        .feedback {
             position: absolute;
-            bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            width: 80%;
+            top: 50px;
+            font-size: 3em;
+            font-weight: bold;
+            opacity: 0;
+            color: white;
+            pointer-events: none;
+            transform: scale(0.8);
+            transition: opacity 0.3s, transform 0.3s ease;
         }
 
-        .button {
-            background: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.2s ease;
+        .feedback.like {
+            left: 20px;
+            transform: rotate(-20deg);
         }
 
-        .button:hover {
-            transform: scale(1.1);
+        .feedback.nope {
+            right: 20px;
+            transform: rotate(20deg);
         }
 
-        .button i {
-            font-size: 1.5em;
-            color: #f44141;
+        .background-like {
+            background: rgba(102, 255, 102, 0.4); /* Vert clair */
+            transition: background 0.3s ease;
         }
 
-        .button.match i {
-            color: #6bfb6b;
+        .background-nope {
+            background: rgba(255, 102, 102, 0.4); /* Rouge clair */
+            transition: background 0.3s ease;
         }
     </style>
 </head>
 <body>
     <div class="card-container" id="cardContainer">
         <div class="card" data-index="1">
-            <img src="imgs/profile1.jpg" alt="Profile Picture">
+            <div class="feedback like">LIKE</div>
+            <div class="feedback nope">NOPE</div>
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
             <h2>Mel, 25 ans</h2>
             <p>Paris</p>
         </div>
         <div class="card" data-index="2">
-            <img src="imgs/profile2.jpg" alt="Profile Picture">
-            <h2>Alina, 22 ans</h2>
-            <p>Paris</p>
-        </div>
-        <div class="card" data-index="3">
-            <img src="imgs/profile3.jpg" alt="Profile Picture">
+            <div class="feedback like">LIKE</div>
+            <div class="feedback nope">NOPE</div>
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
             <h2>Hina, 20 ans</h2>
             <p>Paris</p>
         </div>
-    </div>
-
-    <div class="button-container">
-        <button class="button reject" onclick="swipe('left')"><i class="fas fa-times"></i></button>
-        <button class="button match" onclick="swipe('right')"><i class="fas fa-heart"></i></button>
+        <!-- Ajouter d'autres cartes ici -->
     </div>
 
     <script>
         const cardContainer = document.getElementById('cardContainer');
         const cards = Array.from(document.querySelectorAll('.card'));
-
-        let startX, currentX, moveX;
         let currentCardIndex = cards.length - 1;
 
-        cards.forEach((card, index) => {
+        cards.forEach((card) => {
+            let startX = null, moveX = null;
+
             card.addEventListener('pointerdown', (e) => {
                 startX = e.clientX;
                 card.style.transition = 'none';
@@ -144,28 +125,45 @@
 
             card.addEventListener('pointermove', (e) => {
                 if (!startX) return;
-                currentX = e.clientX;
-                moveX = currentX - startX;
+
+                moveX = e.clientX - startX;
                 card.style.transform = `translateX(${moveX}px) rotate(${moveX * 0.05}deg)`;
+
+                // Ajouter effet d'arrière-plan et affichage des labels
+                if (moveX > 0) {
+                    cardContainer.classList.add('background-like');
+                    cardContainer.classList.remove('background-nope');
+                    card.querySelector('.like').style.opacity = '1';
+                    card.querySelector('.like').style.transform = 'scale(1)';
+                } else {
+                    cardContainer.classList.add('background-nope');
+                    cardContainer.classList.remove('background-like');
+                    card.querySelector('.nope').style.opacity = '1';
+                    card.querySelector('.nope').style.transform = 'scale(1)';
+                }
             });
 
             card.addEventListener('pointerup', () => {
+                // Déterminer la direction du swipe
                 if (moveX > 150) {
-                    swipe('right');
+                    swipe('right', card);
                 } else if (moveX < -150) {
-                    swipe('left');
+                    swipe('left', card);
                 } else {
-                    card.style.transition = 'transform 0.3s ease';
-                    card.style.transform = 'translateX(0) rotate(0)';
+                    resetCard(card);
                 }
+
+                // Réinitialiser l'arrière-plan et les labels
+                cardContainer.classList.remove('background-like', 'background-nope');
+                card.querySelector('.like').style.opacity = '0';
+                card.querySelector('.nope').style.opacity = '0';
+
                 startX = null;
             });
         });
 
-        function swipe(direction) {
-            if (currentCardIndex < 0) return;
-
-            const card = cards[currentCardIndex];
+        // Fonction pour gérer les swipes
+        function swipe(direction, card) {
             card.style.transition = "transform 0.3s ease, opacity 0.3s ease";
 
             if (direction === 'right') {
@@ -176,25 +174,13 @@
 
             card.style.opacity = "0";
             card.addEventListener('transitionend', () => card.remove());
-
-            currentCardIndex--;
-
-            updateCardStack();
         }
 
-        function updateCardStack() {
-            cards.forEach((card, index) => {
-                if (index === currentCardIndex) {
-                    card.style.transform = 'translateY(0) scale(1)';
-                } else if (index === currentCardIndex - 1) {
-                    card.style.transform = 'translateY(20px) scale(0.95)';
-                } else if (index === currentCardIndex - 2) {
-                    card.style.transform = 'translateY(40px) scale(0.9)';
-                }
-            });
+        // Fonction pour réinitialiser une carte
+        function resetCard(card) {
+            card.style.transition = 'transform 0.3s ease';
+            card.style.transform = 'translateX(0) rotate(0)';
         }
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>
