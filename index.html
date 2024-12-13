@@ -13,6 +13,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         header {
             background-color: #f44141;
@@ -37,6 +38,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .profile-card img {
             border-radius: 50%;
@@ -127,10 +129,10 @@
     <main>
         <section id="profile" class="active">
             <div class="profile-card" id="profileCard">
-                <img src="imgs/henry.jpg" alt="Profile Picture">
-                <h2>Bastien</h2>
-                <p>24 ans</p>
-                <p>Paris</p>
+                <img src="imgs/profile.jpg" alt="Profile Picture">
+                <h2>Prénom Nom</h2>
+                <p>Âge: 25</p>
+                <p>Adresse: 123 Rue Exemple, Ville</p>
             </div>
             <div class="swipe-buttons">
                 <button onclick="swipeLeft()"><i class="fas fa-times"></i> Jeter</button>
@@ -194,6 +196,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script>
         let selectedRestaurants = [];
+        let startX, startY, moveX, moveY, x, y, threshold = 100;
 
         function swipeLeft() {
             document.getElementById('profile').classList.remove('active');
@@ -286,12 +289,31 @@
         const profileCard = document.getElementById('profileCard');
         const mc = new Hammer(profileCard);
 
-        mc.on("swipeleft", function() {
-            swipeLeft();
+        mc.on("panstart", function(ev) {
+            startX = ev.pointers[0].clientX;
+            startY = ev.pointers[0].clientY;
+            profileCard.style.transition = "none";
         });
 
-        mc.on("swiperight", function() {
-            swipeRight();
+        mc.on("panmove", function(ev) {
+            moveX = ev.pointers[0].clientX;
+            moveY = ev.pointers[0].clientY;
+            x = moveX - startX;
+            y = moveY - startY;
+            profileCard.style.transform = `translate(${x}px, ${y}px) rotate(${x / 10}deg)`;
+        });
+
+        mc.on("panend", function(ev) {
+            profileCard.style.transition = "transform 0.3s ease";
+            if (x > threshold) {
+                profileCard.style.transform = `translate(500px, 0) rotate(50deg)`;
+                setTimeout(swipeRight, 300);
+            } else if (x < -threshold) {
+                profileCard.style.transform = `translate(-500px, 0) rotate(-50deg)`;
+                setTimeout(swipeLeft, 300);
+            } else {
+                profileCard.style.transform = `translate(0, 0) rotate(0deg)`;
+            }
         });
     </script>
 </body>
