@@ -177,7 +177,13 @@
         const nopeButton = document.getElementById('nopeButton');
         const superLikeButton = document.getElementById('superLikeButton');
         const controls = document.getElementById('controls');
-        let currentCardIndex = cards.length - 1;
+        let currentCardIndex = 0;
+
+        function showNextCard() {
+            if (currentCardIndex < cards.length) {
+                cards[currentCardIndex].style.display = 'flex';
+            }
+        }
 
         cards.forEach((card, index) => {
             let startX = null, moveX = null;
@@ -188,7 +194,7 @@
             });
 
             card.addEventListener('pointermove', (e) => {
-                if (!startX || index === 2) return;
+                if (!startX) return;
 
                 moveX = e.clientX - startX;
                 card.style.transform = `translateX(${moveX}px) rotate(${moveX * 0.05}deg)`;
@@ -231,9 +237,12 @@
             }
 
             card.style.opacity = "0";
-            card.addEventListener('transitionend', () => card.remove());
-            currentCardIndex--;
-            checkSpecialCase();
+            card.addEventListener('transitionend', () => {
+                card.remove();
+                currentCardIndex++;
+                showNextCard();
+                checkSpecialCase();
+            });
         }
 
         function resetCard(card) {
@@ -244,7 +253,7 @@
         }
 
         function checkSpecialCase() {
-            if (currentCardIndex === 0) {
+            if (currentCardIndex === 2) {
                 controls.style.display = 'none';
                 superLikeButton.style.display = 'flex';
             }
@@ -256,10 +265,13 @@
 
         likeButton.addEventListener('click', () => swipe('right', cards[currentCardIndex]));
         nopeButton.addEventListener('click', () => {
-            if (currentCardIndex !== 0) {
+            if (currentCardIndex !== 2) {
                 swipe('left', cards[currentCardIndex]);
             }
         });
+
+        // Show the first card initially
+        showNextCard();
     </script>
 </body>
 </html>
