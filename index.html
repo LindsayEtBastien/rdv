@@ -255,7 +255,11 @@
         });
 
         likeButton.addEventListener('click', () => swipe('right', cards[currentCardIndex]));
-        nopeButton.addEventListener('click', () => swipe('left', cards[currentCardIndex]));
+        nopeButton.addEventListener('click', () => {
+            if (currentCardIndex !== 0) {
+                swipe('left', cards[currentCardIndex]);
+            }
+        });
     </script>
 </body>
 </html>
