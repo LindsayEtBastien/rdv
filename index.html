@@ -166,7 +166,7 @@
             <h2>Hina, 20 ans</h2>
             <p>Paris</p>
         </div>
-        <div class="card" data-index="3">
+        <div class="card" data-index="3" data-id="special">
             <div class="feedback like">LIKE</div>
             <div class="feedback nope">NOPE</div>
             <img src="https://via.placeholder.com/150" alt="Profile Picture">
@@ -181,7 +181,7 @@
     </div>
 
     <div class="match-screen" id="matchScreen">
-        MATCH!
+        MATCH! Contacte-moi par mail.
     </div>
 
     <div class="heart-explosion" id="heartExplosion"></div>
@@ -251,7 +251,9 @@
             if (direction === 'right') {
                 card.style.transform = "translate(1000px, 0) rotate(30deg)";
                 card.querySelector('.like').style.opacity = '1';
-                if (currentCardIndex === 2) {
+
+                // Vérifier si le profil correspond à celui avec data-id="special"
+                if (card.dataset.id === 'special') {
                     showHeartExplosion();
                 }
             } else {
@@ -284,6 +286,9 @@
 
         function showMatchScreen() {
             matchScreen.style.opacity = '1';
+            setTimeout(() => {
+                window.location.href = "mailto:someone@example.com"; // Redirection vers le mail
+            }, 2000); // Après 2 secondes
         }
 
         likeButton.addEventListener('click', () => swipe('right', cards[currentCardIndex]));
