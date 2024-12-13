@@ -78,11 +78,11 @@
         }
 
         .background-like {
-            background: rgba(102, 255, 102, 0.4); /* Vert clair */
+            background: rgba(102, 255, 102, 0.4);
         }
 
         .background-nope {
-            background: rgba(255, 102, 102, 0.4); /* Rouge clair */
+            background: rgba(255, 102, 102, 0.4);
         }
 
         .controls {
@@ -244,13 +244,11 @@
 
             if (direction === 'right') {
                 card.style.transform = "translate(1000px, 0) rotate(30deg)";
-                card.querySelector('.like').style.opacity = '1';
-                if (currentCardIndex === 2) {
+                if (currentCardIndex === cards.length - 1) {
                     showHeartExplosion();
                 }
             } else {
                 card.style.transform = "translate(-1000px, 0) rotate(-30deg)";
-                card.querySelector('.nope').style.opacity = '1';
             }
 
             card.style.opacity = "0";
@@ -264,8 +262,6 @@
         function resetCard(card) {
             card.style.transition = 'transform 0.3s ease';
             card.style.transform = 'translateX(0) rotate(0)';
-            card.querySelector('.like').style.opacity = '0';
-            card.querySelector('.nope').style.opacity = '0';
         }
 
         function showHeartExplosion() {
