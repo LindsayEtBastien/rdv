@@ -39,6 +39,7 @@
             max-width: 400px;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            touch-action: none; /* Disable default touch actions */
         }
         .profile-card img {
             border-radius: 50%;
@@ -193,7 +194,6 @@
         <p>Fait avec ❤️</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script>
         let selectedRestaurants = [];
         let startX, startY, moveX, moveY, x, y, threshold = 100;
@@ -285,25 +285,53 @@
             }
         }
 
-        // Hammer.js for swipe gestures
+        // JavaScript for swipe gestures
         const profileCard = document.getElementById('profileCard');
-        const mc = new Hammer(profileCard);
 
-        mc.on("panstart", function(ev) {
-            startX = ev.pointers[0].clientX;
-            startY = ev.pointers[0].clientY;
+        profileCard.addEventListener('mousedown', (e) => {
+            startX = e.clientX;
+            startY = e.clientY;
             profileCard.style.transition = "none";
         });
 
-        mc.on("panmove", function(ev) {
-            moveX = ev.pointers[0].clientX;
-            moveY = ev.pointers[0].clientY;
+        profileCard.addEventListener('mousemove', (e) => {
+            moveX = e.clientX;
+            moveY = e.clientY;
             x = moveX - startX;
             y = moveY - startY;
             profileCard.style.transform = `translate(${x}px, ${y}px) rotate(${x / 10}deg)`;
         });
 
-        mc.on("panend", function(ev) {
+        profileCard.addEventListener('mouseup', () => {
+            profileCard.style.transition = "transform 0.3s ease";
+            if (x > threshold) {
+                profileCard.style.transform = `translate(500px, 0) rotate(50deg)`;
+                setTimeout(swipeRight, 300);
+            } else if (x < -threshold) {
+                profileCard.style.transform = `translate(-500px, 0) rotate(-50deg)`;
+                setTimeout(swipeLeft, 300);
+            } else {
+                profileCard.style.transform = `translate(0, 0) rotate(0deg)`;
+            }
+        });
+
+        profileCard.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            profileCard.style.transition = "none";
+        });
+
+        profileCard.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            moveX = touch.clientX;
+            moveY = touch.clientY;
+            x = moveX - startX;
+            y = moveY - startY;
+            profileCard.style.transform = `translate(${x}px, ${y}px) rotate(${x / 10}deg)`;
+        });
+
+        profileCard.addEventListener('touchend', () => {
             profileCard.style.transition = "transform 0.3s ease";
             if (x > threshold) {
                 profileCard.style.transform = `translate(500px, 0) rotate(50deg)`;
