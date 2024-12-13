@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notre date</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -26,36 +27,51 @@
         main {
             padding: 20px;
         }
-        form {
-            margin: 20px auto;
-            max-width: 400px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        input, select, button {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
+        .profile-card {
             border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            text-align: center;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            position: relative;
         }
-        button {
+        .profile-card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .profile-card h2 {
+            margin: 10px 0;
+        }
+        .profile-card p {
+            margin: 5px 0;
+        }
+        .swipe-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .swipe-buttons button {
             background-color: #f44141;
             color: white;
             border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        button:hover {
+        .swipe-buttons button:hover {
             background-color: #d93737;
+        }
+        .swipe-buttons .fa-times {
+            background-color: #ff6b6b;
+        }
+        .swipe-buttons .fa-check {
+            background-color: #6bfb6b;
         }
         section {
             display: none;
@@ -109,7 +125,20 @@
         <h1>Planifier notre date</h1>
     </header>
     <main>
-        <section id="step1" class="active">
+        <section id="profile" class="active">
+            <div class="profile-card" id="profileCard">
+                <img src="imgs/profile.jpg" alt="Profile Picture">
+                <h2>Prénom Nom</h2>
+                <p>Âge: 25</p>
+                <p>Adresse: 123 Rue Exemple, Ville</p>
+            </div>
+            <div class="swipe-buttons">
+                <button onclick="swipeLeft()"><i class="fas fa-times"></i> Jeter</button>
+                <button onclick="swipeRight()"><i class="fas fa-check"></i> Matcher</button>
+            </div>
+        </section>
+
+        <section id="step1">
             <h2>Choix de la date</h2>
             <form id="dateForm">
                 <label for="date">Choisie une date : </label>
@@ -162,8 +191,21 @@
         <p>Fait avec ❤️</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script>
         let selectedRestaurants = [];
+
+        function swipeLeft() {
+            document.getElementById('profile').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            alert('Dommage :(');
+        }
+
+        function swipeRight() {
+            document.getElementById('profile').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            alert('Match!');
+        }
 
         function goToStep2() {
             const date = document.getElementById('date').value;
@@ -239,6 +281,18 @@
                 alert('Une erreur s\'est produite. Veuillez réessayer.');
             }
         }
+
+        // Hammer.js for swipe gestures
+        const profileCard = document.getElementById('profileCard');
+        const mc = new Hammer(profileCard);
+
+        mc.on("swipeleft", function() {
+            swipeLeft();
+        });
+
+        mc.on("swiperight", function() {
+            swipeRight();
+        });
     </script>
 </body>
 </html>
