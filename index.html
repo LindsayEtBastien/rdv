@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATClub Swipe</title>
+    <title>Swipe APP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -195,7 +195,6 @@
         const heartExplosion = document.getElementById('heartExplosion');
         let currentCardIndex = 0;
 
-        // Ensure cards are ordered properly
         cards.reverse();
         cards.forEach((card, index) => {
             card.style.zIndex = cards.length - index;
@@ -217,10 +216,8 @@
 
             card.addEventListener('pointermove', (e) => {
                 if (!startX) return;
-
                 moveX = e.clientX - startX;
                 card.style.transform = `translateX(${moveX}px) rotate(${moveX * 0.05}deg)`;
-
                 if (moveX > 0) {
                     cardContainer.classList.add('background-like');
                     cardContainer.classList.remove('background-nope');
@@ -233,13 +230,9 @@
             });
 
             card.addEventListener('pointerup', () => {
-                if (moveX > 150) {
-                    swipe('right', card);
-                } else if (moveX < -150) {
-                    swipe('left', card);
-                } else {
-                    resetCard(card);
-                }
+                if (moveX > 150) swipe('right', card);
+                else if (moveX < -150) swipe('left', card);
+                else resetCard(card);
 
                 cardContainer.classList.remove('background-like', 'background-nope');
             });
@@ -250,15 +243,9 @@
 
             if (direction === 'right') {
                 card.style.transform = "translate(1000px, 0) rotate(30deg)";
-                card.querySelector('.like').style.opacity = '1';
-
-                // Vérifier si le profil correspond à celui avec data-id="special"
-                if (card.dataset.id === 'special') {
-                    showHeartExplosion();
-                }
+                if (card.dataset.id === 'special') showHeartExplosion();
             } else {
                 card.style.transform = "translate(-1000px, 0) rotate(-30deg)";
-                card.querySelector('.nope').style.opacity = '1';
             }
 
             card.style.opacity = "0";
@@ -272,8 +259,6 @@
         function resetCard(card) {
             card.style.transition = 'transform 0.3s ease';
             card.style.transform = 'translateX(0) rotate(0)';
-            card.querySelector('.like').style.opacity = '0';
-            card.querySelector('.nope').style.opacity = '0';
         }
 
         function showHeartExplosion() {
@@ -287,14 +272,13 @@
         function showMatchScreen() {
             matchScreen.style.opacity = '1';
             setTimeout(() => {
-                window.location.href = "mailto:someone@example.com"; // Redirection vers le mail
-            }, 2000); // Après 2 secondes
+                window.location.href = "mailto:test@gmail.com";
+            }, 2000);
         }
 
         likeButton.addEventListener('click', () => swipe('right', cards[currentCardIndex]));
         nopeButton.addEventListener('click', () => swipe('left', cards[currentCardIndex]));
 
-        // Show the first card initially
         showNextCard();
     </script>
 </body>
