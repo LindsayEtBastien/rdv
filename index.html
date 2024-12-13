@@ -14,12 +14,20 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         header {
             background-color: #f44141;
             color: white;
             padding: 30px 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            width: 100%;
         }
         header h1 {
             font-size: 2.5em;
@@ -27,6 +35,24 @@
         }
         main {
             padding: 20px;
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 100px); /* Adjust for header height */
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #fbeae7, #f77f7f);
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            z-index: 0;
         }
         .profile-card {
             border: 1px solid #ccc;
@@ -40,6 +66,7 @@
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             touch-action: none; /* Disable default touch actions */
+            z-index: 1;
         }
         .profile-card img {
             border-radius: 50%;
@@ -52,29 +79,6 @@
         }
         .profile-card p {
             margin: 5px 0;
-        }
-        .swipe-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-        .swipe-buttons button {
-            background-color: #f44141;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .swipe-buttons button:hover {
-            background-color: #d93737;
-        }
-        .swipe-buttons .fa-times {
-            background-color: #ff6b6b;
-        }
-        .swipe-buttons .fa-check {
-            background-color: #6bfb6b;
         }
         section {
             display: none;
@@ -128,16 +132,25 @@
         <h1>Planifier notre date</h1>
     </header>
     <main>
+        <div class="background" id="background">Swipe!</div>
         <section id="profile" class="active">
-            <div class="profile-card" id="profileCard">
-                <img src="imgs/profile.jpg" alt="Profile Picture">
-                <h2>Prénom Nom</h2>
+            <div class="profile-card" id="profileCard1">
+                <img src="imgs/profile1.jpg" alt="Profile Picture 1">
+                <h2>Prénom Nom 1</h2>
                 <p>Âge: 25</p>
                 <p>Adresse: 123 Rue Exemple, Ville</p>
             </div>
-            <div class="swipe-buttons">
-                <button onclick="swipeLeft()"><i class="fas fa-times"></i> Jeter</button>
-                <button onclick="swipeRight()"><i class="fas fa-check"></i> Matcher</button>
+            <div class="profile-card" id="profileCard2">
+                <img src="imgs/profile2.jpg" alt="Profile Picture 2">
+                <h2>Prénom Nom 2</h2>
+                <p>Âge: 28</p>
+                <p>Adresse: 456 Rue Autre, Ville</p>
+            </div>
+            <div class="profile-card" id="profileCard3">
+                <img src="imgs/profile3.jpg" alt="Profile Picture 3">
+                <h2>Prénom Nom 3</h2>
+                <p>Âge: 30</p>
+                <p>Adresse: 789 Rue Autre, Ville</p>
             </div>
         </section>
 
@@ -197,17 +210,46 @@
     <script>
         let selectedRestaurants = [];
         let startX, startY, moveX, moveY, x, y, threshold = 100;
+        let currentCardIndex = 0;
+        const profileCards = [
+            document.getElementById('profileCard1'),
+            document.getElementById('profileCard2'),
+            document.getElementById('profileCard3')
+        ];
+        const background = document.getElementById('background');
 
         function swipeLeft() {
-            document.getElementById('profile').classList.remove('active');
-            document.getElementById('step1').classList.add('active');
-            alert('Dommage :(');
+            background.style.background = 'linear-gradient(to bottom, #ff6b6b, #ff0000)';
+            background.textContent = 'JETER!';
+            setTimeout(() => {
+                currentCardIndex++;
+                if (currentCardIndex < profileCards.length) {
+                    profileCards[currentCardIndex].style.display = 'block';
+                    profileCards[currentCardIndex].style.transform = 'translate(0, 0) rotate(0deg)';
+                    background.style.background = 'linear-gradient(to bottom, #fbeae7, #f77f7f)';
+                    background.textContent = 'Swipe!';
+                } else {
+                    document.getElementById('profile').classList.remove('active');
+                    document.getElementById('step1').classList.add('active');
+                }
+            }, 300);
         }
 
         function swipeRight() {
-            document.getElementById('profile').classList.remove('active');
-            document.getElementById('step1').classList.add('active');
-            alert('Match!');
+            background.style.background = 'linear-gradient(to bottom, #6bfb6b, #00ff00)';
+            background.textContent = 'MATCH!';
+            setTimeout(() => {
+                currentCardIndex++;
+                if (currentCardIndex < profileCards.length) {
+                    profileCards[currentCardIndex].style.display = 'block';
+                    profileCards[currentCardIndex].style.transform = 'translate(0, 0) rotate(0deg)';
+                    background.style.background = 'linear-gradient(to bottom, #fbeae7, #f77f7f)';
+                    background.textContent = 'Swipe!';
+                } else {
+                    document.getElementById('profile').classList.remove('active');
+                    document.getElementById('step1').classList.add('active');
+                }
+            }, 300);
         }
 
         function goToStep2() {
@@ -286,62 +328,62 @@
         }
 
         // JavaScript for swipe gestures
-        const profileCard = document.getElementById('profileCard');
+        profileCards.forEach(card => {
+            card.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                startY = e.clientY;
+                card.style.transition = "none";
+            });
 
-        profileCard.addEventListener('mousedown', (e) => {
-            startX = e.clientX;
-            startY = e.clientY;
-            profileCard.style.transition = "none";
-        });
+            card.addEventListener('mousemove', (e) => {
+                moveX = e.clientX;
+                moveY = e.clientY;
+                x = moveX - startX;
+                y = moveY - startY;
+                card.style.transform = `translate(${x}px, ${y}px) rotate(${x / 10}deg)`;
+            });
 
-        profileCard.addEventListener('mousemove', (e) => {
-            moveX = e.clientX;
-            moveY = e.clientY;
-            x = moveX - startX;
-            y = moveY - startY;
-            profileCard.style.transform = `translate(${x}px, ${y}px) rotate(${x / 10}deg)`;
-        });
+            card.addEventListener('mouseup', () => {
+                card.style.transition = "transform 0.3s ease";
+                if (x > threshold) {
+                    card.style.transform = `translate(500px, 0) rotate(50deg)`;
+                    setTimeout(swipeRight, 300);
+                } else if (x < -threshold) {
+                    card.style.transform = `translate(-500px, 0) rotate(-50deg)`;
+                    setTimeout(swipeLeft, 300);
+                } else {
+                    card.style.transform = `translate(0, 0) rotate(0deg)`;
+                }
+            });
 
-        profileCard.addEventListener('mouseup', () => {
-            profileCard.style.transition = "transform 0.3s ease";
-            if (x > threshold) {
-                profileCard.style.transform = `translate(500px, 0) rotate(50deg)`;
-                setTimeout(swipeRight, 300);
-            } else if (x < -threshold) {
-                profileCard.style.transform = `translate(-500px, 0) rotate(-50deg)`;
-                setTimeout(swipeLeft, 300);
-            } else {
-                profileCard.style.transform = `translate(0, 0) rotate(0deg)`;
-            }
-        });
+            card.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                startX = touch.clientX;
+                startY = touch.clientY;
+                card.style.transition = "none";
+            });
 
-        profileCard.addEventListener('touchstart', (e) => {
-            const touch = e.touches[0];
-            startX = touch.clientX;
-            startY = touch.clientY;
-            profileCard.style.transition = "none";
-        });
+            card.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                moveX = touch.clientX;
+                moveY = touch.clientY;
+                x = moveX - startX;
+                y = moveY - startY;
+                card.style.transform = `translate(${x}px, ${y}px) rotate(${x / 10}deg)`;
+            });
 
-        profileCard.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            moveX = touch.clientX;
-            moveY = touch.clientY;
-            x = moveX - startX;
-            y = moveY - startY;
-            profileCard.style.transform = `translate(${x}px, ${y}px) rotate(${x / 10}deg)`;
-        });
-
-        profileCard.addEventListener('touchend', () => {
-            profileCard.style.transition = "transform 0.3s ease";
-            if (x > threshold) {
-                profileCard.style.transform = `translate(500px, 0) rotate(50deg)`;
-                setTimeout(swipeRight, 300);
-            } else if (x < -threshold) {
-                profileCard.style.transform = `translate(-500px, 0) rotate(-50deg)`;
-                setTimeout(swipeLeft, 300);
-            } else {
-                profileCard.style.transform = `translate(0, 0) rotate(0deg)`;
-            }
+            card.addEventListener('touchend', () => {
+                card.style.transition = "transform 0.3s ease";
+                if (x > threshold) {
+                    card.style.transform = `translate(500px, 0) rotate(50deg)`;
+                    setTimeout(swipeRight, 300);
+                } else if (x < -threshold) {
+                    card.style.transform = `translate(-500px, 0) rotate(-50deg)`;
+                    setTimeout(swipeLeft, 300);
+                } else {
+                    card.style.transform = `translate(0, 0) rotate(0deg)`;
+                }
+            });
         });
     </script>
 </body>
