@@ -1,4 +1,6 @@
-document.getElementById('start-button').addEventListener('click', startChat);
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('start-button').addEventListener('click', startChat);
+});
 
 function startChat() {
     const chatBox = document.getElementById('chat-box');
