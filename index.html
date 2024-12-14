@@ -4,40 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chatbot-container">
-        <div class="chatbot-header">
-            <h2>Chatbot</h2>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="message bot">Bonjour! Je suis votre assistant virtuel. Comment puis-je vous aider aujourd'hui?</div>
         </div>
-        <div class="chatbot-body" id="chatbot-body">
-            <div class="chatbot-message bot">
-                <p>Bonjour Anaïs, je m'appelle Aloha et je suis votre guide de l'emploi !</p>
-            </div>
-            <div class="chatbot-message bot">
-                <p>Donnez-moi un métier, une ville/région et un type de contrat et je cherche pour vous l'offre qui vous convient le mieux !</p>
-            </div>
-            <div class="chatbot-message bot">
-                <p>C'est parti pour la recherche guidée 😊</p>
-                <p>Je vais vous aider à trouver une offre d'emploi en vous posant quelques questions !</p>
-                <p>N'hésitez pas à taper "Annuler" pour quitter ce mode à tout moment !</p>
-            </div>
-            <div class="chatbot-message bot">
-                <p>Dans quel secteur cherchez-vous un emploi ?</p>
-                <p>Vous pouvez accéder à tous nos secteurs en appuyant sur le bouton ci-dessous 😊</p>
-            </div>
-            <div class="chatbot-message bot">
-                <button onclick="showSectors()">Accéder formulaire</button>
-            </div>
-            <div class="chatbot-message user" id="sectors" style="display: none;">
-                <button onclick="handleResponse('N’importe')">N’importe</button>
-                <button onclick="handleResponse('Marketing')">Marketing</button>
-                <button onclick="handleResponse('Secrétariat')">Secrétariat</button>
-                <button onclick="handleResponse('Informatique')">Informatique</button>
-                <button onclick="handleResponse('Bâtiment')">Bâtiment</button>
-                <button onclick="handleResponse('Tourisme')">Tourisme</button>
-            </div>
+        <div class="input-box">
+            <button onclick="askQuestion()">Poser une question</button>
         </div>
     </div>
     <script src="script.js"></script>
