@@ -1,70 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-button');
-    startButton.addEventListener('click', startChat);
-});
-
-function startChat() {
     const chatBox = document.getElementById('chat-box');
     const inputBox = document.getElementById('input-box');
 
-    // Clear the chatbox and remove the start button
-    chatBox.innerHTML = '';
-    inputBox.innerHTML = '';
+    startButton.addEventListener('click', startConversation);
 
-    const conversationFlow = [
-        {
-            question: 'Bonjour ! Je suis votre assistant virtuel. Comment puis-je vous aider ?',
-            options: ['Informations', 'Assistance technique', 'Autre']
-        },
-        {
-            question: 'Pouvez-vous préciser votre demande ?',
-            options: ['Problème de connexion', 'Problème de paiement', 'Retour produit']
-        },
-        {
-            question: 'Merci pour les détails ! Un agent vous contactera bientôt.',
-            options: []
-        }
-    ];
+    function startConversation() {
+        // Effacer le bouton de départ
+        inputBox.innerHTML = '';
 
-    let step = 0;
+        // Ajouter le premier message
+        displayMessage('Bienvenue ! 👋 Avez-vous besoin d\'aide concernant un produit ou une commande ?', 'bot');
 
-    function showMessage(message, sender = 'bot') {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${sender}`;
-        messageDiv.innerText = message;
-        chatBox.appendChild(messageDiv);
-        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        setTimeout(() => {
+            displayOptions(['Infos de paiement 💳', 'Expédition 🚚', 'Retour & Réclamations 🔙', 'Guide d\'achat 🔍', 'Statut de commande ✅']);
+        }, 1000);
     }
 
-    function showOptions(options) {
-        inputBox.innerHTML = ''; // Clear old options
+    function displayMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.textContent = text;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function displayOptions(options) {
+        inputBox.innerHTML = ''; // Réinitialiser les options
         options.forEach(option => {
             const button = document.createElement('button');
-            button.innerText = option;
-            button.onclick = () => handleUserResponse(option);
+            button.textContent = option;
+            button.addEventListener('click', () => handleUserChoice(option));
             inputBox.appendChild(button);
         });
     }
 
-    function handleUserResponse(userResponse) {
-        showMessage(userResponse, 'user');
+    function handleUserChoice(choice) {
+        displayMessage(choice, 'user'); // Afficher le choix de l'utilisateur
+        inputBox.innerHTML = ''; // Effacer les boutons
+
         setTimeout(() => {
-            step++;
-            if (step < conversationFlow.length) {
-                const nextStep = conversationFlow[step];
-                showMessage(nextStep.question);
-                if (nextStep.options.length > 0) {
-                    showOptions(nextStep.options);
-                }
-            } else {
-                showMessage('La conversation est terminée. Merci de nous avoir contactés !');
-                inputBox.innerHTML = ''; // Clear options
+            if (choice.includes('Paiement')) {
+                displayMessage('Les informations de paiement incluent les cartes VISA, Mastercard et PayPal.', 'bot');
+            } else if (choice.includes('Expédition')) {
+                displayMessage('Nos délais de livraison sont de 3 à 5 jours ouvrés.', 'bot');
+            } else if (choice.includes('Retour')) {
+                displayMessage('Vous pouvez effectuer un retour sous 30 jours après réception.', 'bot');
+            } else if (choice.includes('Guide')) {
+                displayMessage('Le guide d\'achat vous aide à choisir les meilleurs produits pour vos besoins.', 'bot');
+            } else if (choice.includes('Statut')) {
+                displayMessage('Veuillez entrer votre numéro de commande pour suivre votre statut.', 'bot');
             }
+
+            setTimeout(() => {
+                displayOptions(['Retourner au menu 🔄']);
+            }, 1500);
         }, 1000);
     }
-
-    // Start the conversation
-    const firstStep = conversationFlow[step];
-    showMessage(firstStep.question);
-    showOptions(firstStep.options);
-}
+});
