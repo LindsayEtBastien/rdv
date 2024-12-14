@@ -1,61 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('start-button').addEventListener('click', startChat);
+    const startButton = document.getElementById('start-button');
+    startButton.addEventListener('click', startChat);
 });
 
 function startChat() {
     const chatBox = document.getElementById('chat-box');
-    chatBox.innerHTML = ''; // Clear previous messages
+    const inputBox = document.getElementById('input-box');
 
-    const messages = [
-        'Bonjour! Je suis votre assistant virtuel.',
-        'Comment puis-je vous aider aujourd\'hui?'
+    // Clear the chatbox and remove the start button
+    chatBox.innerHTML = '';
+    inputBox.innerHTML = '';
+
+    const conversationFlow = [
+        {
+            question: 'Bonjour ! Je suis votre assistant virtuel. Comment puis-je vous aider ?',
+            options: ['Informations', 'Assistance technique', 'Autre']
+        },
+        {
+            question: 'Pouvez-vous préciser votre demande ?',
+            options: ['Problème de connexion', 'Problème de paiement', 'Retour produit']
+        },
+        {
+            question: 'Merci pour les détails ! Un agent vous contactera bientôt.',
+            options: []
+        }
     ];
 
-    let index = 0;
+    let step = 0;
 
-    function displayNextMessage() {
-        if (index < messages.length) {
-            const message = document.createElement('div');
-            message.className = 'message bot';
-            message.innerText = messages[index];
-            chatBox.appendChild(message);
-            index++;
-            setTimeout(displayNextMessage, 1000); // Delay for next message
-        } else {
-            askQuestion();
-        }
+    function showMessage(message, sender = 'bot') {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.innerText = message;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
     }
 
-    displayNextMessage();
-}
+    function showOptions(options) {
+        inputBox.innerHTML = ''; // Clear old options
+        options.forEach(option => {
+            const button = document.createElement('button');
+            button.innerText = option;
+            button.onclick = () => handleUserResponse(option);
+            inputBox.appendChild(button);
+        });
+    }
 
-function askQuestion() {
-    const chatBox = document.getElementById('chat-box');
-    const question = document.createElement('div');
-    question.className = 'message bot';
-    question.innerText = 'Quelle est votre couleur préférée?';
-    chatBox.appendChild(question);
+    function handleUserResponse(userResponse) {
+        showMessage(userResponse, 'user');
+        setTimeout(() => {
+            step++;
+            if (step < conversationFlow.length) {
+                const nextStep = conversationFlow[step];
+                showMessage(nextStep.question);
+                if (nextStep.options.length > 0) {
+                    showOptions(nextStep.options);
+                }
+            } else {
+                showMessage('La conversation est terminée. Merci de nous avoir contactés !');
+                inputBox.innerHTML = ''; // Clear options
+            }
+        }, 1000);
+    }
 
-    const options = ['Rouge', 'Bleu', 'Vert'];
-    options.forEach(option => {
-        const button = document.createElement('button');
-        button.innerText = option;
-        button.onclick = () => respond(option);
-        chatBox.appendChild(button);
-    });
-}
-
-function respond(answer) {
-    const chatBox = document.getElementById('chat-box');
-    const userResponse = document.createElement('div');
-    userResponse.className = 'message user';
-    userResponse.innerText = answer;
-    chatBox.appendChild(userResponse);
-
-    setTimeout(() => {
-        const botResponse = document.createElement('div');
-        botResponse.className = 'message bot';
-        botResponse.innerText = 'Merci pour votre réponse!';
-        chatBox.appendChild(botResponse);
-    }, 1000);
+    // Start the conversation
+    const firstStep = conversationFlow[step];
+    showMessage(firstStep.question);
+    showOptions(firstStep.options);
 }
