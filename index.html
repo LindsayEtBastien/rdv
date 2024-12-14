@@ -3,223 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATClub Swipe</title>
+    <title>Notre date</title>
     <style>
-        /* Styles globaux */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #fbeae7, #f77f7f);
+            color: #333;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f5f5f5;
-            overflow: hidden;
+            padding: 0;
         }
-
-        .card-container {
-            position: relative;
-            width: 90%;
+        header {
+            background-color: #f44141;
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        main {
+            padding: 20px;
+        }
+        form {
+            margin: 20px auto;
             max-width: 400px;
-            height: 70%;
-            overflow: hidden;
-            background: none;
-        }
-
-        .card {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             background: white;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            will-change: transform;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .card img {
-            width: 80%;
-            border-radius: 10px;
-            margin-top: 20px;
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
-
-        .card h2 {
-            font-size: 1.5em;
-            margin: 15px 0;
-        }
-
-        .card p {
-            color: #777;
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             font-size: 1em;
         }
-
-        .feedback {
-            position: absolute;
-            top: 50px;
-            font-size: 3em;
-            font-weight: bold;
-            opacity: 0;
+        button {
+            background-color: #f44141;
             color: white;
-            pointer-events: none;
-            transform: scale(0.8);
-            transition: opacity 0.3s, transform 0.3s ease;
-        }
-
-        .feedback.like {
-            left: 20px;
-            transform: rotate(-20deg);
-        }
-
-        .feedback.nope {
-            right: 20px;
-            transform: rotate(20deg);
-        }
-
-        .background-like {
-            background: rgba(102, 255, 102, 0.4); /* Vert clair */
-            transition: background 0.3s ease;
-        }
-
-        .background-nope {
-            background: rgba(255, 102, 102, 0.4); /* Rouge clair */
-            transition: background 0.3s ease;
-        }
-
-        .controls {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
             cursor: pointer;
-            font-size: 1.5em;
-            color: gray;
-            transition: transform 0.2s ease;
+            transition: background-color 0.3s ease;
         }
-
-        .button:hover {
-            transform: scale(1.1);
+        button:hover {
+            background-color: #d93737;
         }
-
-        .button.like {
-            color: green;
+        section {
+            display: none;
         }
-
-        .button.nope {
-            color: red;
+        section.active {
+            display: block;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            flex: 1 1 calc(45% - 40px); /* Adjust the width to fit two cards per row */
+            max-width: calc(45% - 40px); /* Adjust the width to fit two cards per row */
+            flex: 1 1 45%; /* Adjust the width to fit two cards per row */
+            max-width: 45%; /* Adjust the width to fit two cards per row */
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .card h3 {
+            margin: 10px 0;
+        }
+        .card.selected {
+            border: 4px solid #f44141; /* Bordure plus épaisse */
+            background-color: #ffe6e6;
         }
     </style>
 </head>
 <body>
-    <div class="card-container" id="cardContainer">
-        <div class="card" data-index="1">
-            <div class="feedback like">LIKE</div>
-            <div class="feedback nope">NOPE</div>
-            <img src="https://via.placeholder.com/150" alt="Profile Picture">
-            <h2>Mel, 25 ans</h2>
-            <p>Paris</p>
-        </div>
-        <div class="card" data-index="2">
-            <div class="feedback like">LIKE</div>
-            <div class="feedback nope">NOPE</div>
-            <img src="https://via.placeholder.com/150" alt="Profile Picture">
-            <h2>Hina, 20 ans</h2>
-            <p>Paris</p>
-        </div>
-    </div>
+    <header>
+        <h1>Planifier notre date</h1>
+    </header>
+    <main>
+        <section id="step1" class="active">
+            <h2>Choix de la date</h2>
+            <form id="dateForm">
+                <label for="date">Choisie une date : </label>
+                <input type="date" id="date" name="date" required>
+                <button type="button" onclick="goToStep2()">Suivant</button>
+            </form>
+        </section>
 
-    <div class="controls">
-        <div class="button nope" id="nopeButton">✖</div>
-        <div class="button like" id="likeButton">❤</div>
-    </div>
+        <section id="step2">
+            <h2>Choix du restaurant</h2>
+            <div class="card-container" id="restaurantCards">
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Italien')">
+                    <img src="imgs/italien.png" alt="Restaurant Italien">
+                    <h3>Restaurant Italien</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Japonnais')">
+                    <img src="imgs/sushis.jpg" alt="Restaurant Japonnais">
+                    <h3>Restaurant Japonnais</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Coréen')">
+                    <img src="imgs/coreen.jpg" alt="Restaurant Coréen">
+                    <h3>Restaurant Coréen</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Américain')">
+                    <img src="imgs/americain.jpg" alt="Restaurant Américain">
+                    <h3>Restaurant Américain</h3>
+                </div>
+            </div>
+            <button type="button" onclick="goToConfirmation()">Suivant</button>
+        </section>
+
+        <section id="confirmation">
+            <h2>Confirmation</h2>
+            <form id="finalForm">
+                <p><strong>Date :</strong> <span id="selectedDate"></span></p>
+                <p><strong>Restaurants (dans l'ordre de sélection):</strong> <span id="selectedRestaurants"></span></p>
+                <input type="hidden" name="date" id="hiddenDate">
+                <input type="hidden" name="restaurants" id="hiddenRestaurants">
+                <button type="button" onclick="submitForm()">Envoyer</button>
+            </form>
+        </section>
+
+        <section id="thankYou">
+            <h2>Merci!</h2>
+            <p>On se voit le <span id="finalDate"></span> dans un <span id="finalRestaurants"></span> </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Fait avec ❤️</p>
+    </footer>
 
     <script>
-        const cardContainer = document.getElementById('cardContainer');
-        const cards = Array.from(document.querySelectorAll('.card'));
-        const likeButton = document.getElementById('likeButton');
-        const nopeButton = document.getElementById('nopeButton');
-        let currentCardIndex = cards.length - 1;
+        let selectedRestaurants = [];
 
-        cards.forEach((card) => {
-            let startX = null, moveX = null;
-
-            card.addEventListener('pointerdown', (e) => {
-                startX = e.clientX;
-                card.style.transition = 'none';
-            });
-
-            card.addEventListener('pointermove', (e) => {
-                if (!startX) return;
-
-                moveX = e.clientX - startX;
-                card.style.transform = `translateX(${moveX}px) rotate(${moveX * 0.05}deg)`;
-
-                if (moveX > 0) {
-                    cardContainer.classList.add('background-like');
-                    cardContainer.classList.remove('background-nope');
-                    card.querySelector('.like').style.opacity = '1';
-                    card.querySelector('.like').style.transform = 'scale(1)';
-                } else {
-                    cardContainer.classList.add('background-nope');
-                    cardContainer.classList.remove('background-like');
-                    card.querySelector('.nope').style.opacity = '1';
-                    card.querySelector('.nope').style.transform = 'scale(1)';
-                }
-            });
-
-            card.addEventListener('pointerup', () => {
-                if (moveX > 150) {
-                    swipe('right', card);
-                } else if (moveX < -150) {
-                    swipe('left', card);
-                } else {
-                    resetCard(card);
-                }
-
-                cardContainer.classList.remove('background-like', 'background-nope');
-            });
-        });
-
-        likeButton.addEventListener('click', () => swipe('right', cards[currentCardIndex]));
-        nopeButton.addEventListener('click', () => swipe('left', cards[currentCardIndex]));
-
-        function swipe(direction, card) {
-            card.style.transition = "transform 0.3s ease, opacity 0.3s ease";
-
-            if (direction === 'right') {
-                card.style.transform = "translate(1000px, 0) rotate(30deg)";
-                card.querySelector('.like').style.opacity = '1';
-            } else {
-                card.style.transform = "translate(-1000px, 0) rotate(-30deg)";
-                card.querySelector('.nope').style.opacity = '1';
+        function goToStep2() {
+            const date = document.getElementById('date').value;
+            if (!date) {
+                alert('Veuillez sélectionner une date!');
+                return;
             }
 
-            card.style.opacity = "0";
-            card.addEventListener('transitionend', () => card.remove());
-            currentCardIndex--;
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
         }
 
-        function resetCard(card) {
-            card.style.transition = 'transform 0.3s ease';
-            card.style.transform = 'translateX(0) rotate(0)';
-            card.querySelector('.like').style.opacity = '0';
-            card.querySelector('.nope').style.opacity = '0';
+        function toggleSelection(card, restaurant) {
+            card.classList.toggle('selected');
+            if (card.classList.contains('selected')) {
+                selectedRestaurants.push(restaurant);
+            } else {
+                selectedRestaurants = selectedRestaurants.filter(r => r !== restaurant);
+            }
+        }
+
+        function goToConfirmation() {
+            if (selectedRestaurants.length === 0) {
+                alert('Veuillez sélectionner au moins un restaurant!');
+                return;
+            }
+
+            const date = document.getElementById('date').value;
+
+            document.getElementById('selectedDate').textContent = date;
+            document.getElementById('selectedRestaurants').textContent = selectedRestaurants.join(', ');
+            document.getElementById('hiddenDate').value = date;
+            document.getElementById('hiddenRestaurants').value = selectedRestaurants.join(', ');
+
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('confirmation').classList.add('active');
+        }
+
+        async function submitForm() {
+            const date = document.getElementById('hiddenDate').value;
+            const restaurants = document.getElementById('hiddenRestaurants').value;
+
+            if (!date || !restaurants) {
+                alert('Données manquantes. Veuillez compléter toutes les étapes.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('date', date);
+            formData.append('restaurants', restaurants);
+            formData.append('_subject', 'Nouvelle soumission de date!');
+
+            try {
+                const response = await fetch('https://formspree.io/f/mzzbqwjb', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+
+                if (response.ok) {
+                    document.getElementById('finalDate').textContent = date;
+                    document.getElementById('finalRestaurants').textContent = restaurants;
+
+                    document.getElementById('confirmation').classList.remove('active');
+                    document.getElementById('thankYou').classList.add('active');
+                } else {
+                    alert('Échec de l\'envoi de votre soumission. Veuillez réessayer plus tard.');
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi du formulaire:', error);
+                alert('Une erreur s\'est produite. Veuillez réessayer.');
+            }
         }
     </script>
 </body>
