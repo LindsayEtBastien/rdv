@@ -1,23 +1,50 @@
-function handleResponse(option) {
+function showSectors() {
+    document.getElementById('sectors').style.display = 'flex';
+}
+
+function handleResponse(sector) {
     const chatbotBody = document.getElementById('chatbot-body');
-    const response = document.createElement('div');
-    response.classList.add('chatbot-message', 'response');
 
-    let responseText;
-    switch (option) {
-        case 1:
-            responseText = `Vous avez sélectionné l'Option 1. Voici une réponse détaillée pour l'Option 1.`;
-            break;
-        case 2:
-            responseText = `Vous avez sélectionné l'Option 2. Voici une réponse détaillée pour l'Option 2.`;
-            break;
-        case 3:
-            responseText = `Vous avez sélectionné l'Option 3. Voici une réponse détaillée pour l'Option 3.`;
-            break;
-        default:
-            responseText = `Option invalide.`;
-    }
+    // Ajouter l'animation de réflexion
+    const thinking = document.createElement('div');
+    thinking.classList.add('chatbot-message', 'thinking');
+    thinking.innerHTML = '<span></span><span></span><span></span>';
+    chatbotBody.appendChild(thinking);
 
-    response.innerHTML = `<p>${responseText}</p>`;
-    chatbotBody.appendChild(response);
+    // Ajouter un délai avant de donner la réponse
+    setTimeout(() => {
+        // Supprimer l'animation de réflexion
+        chatbotBody.removeChild(thinking);
+
+        // Ajouter la réponse
+        const response = document.createElement('div');
+        response.classList.add('chatbot-message', 'bot');
+
+        let responseText;
+        switch (sector) {
+            case 'N’importe':
+                responseText = `Vous avez sélectionné N’importe. Voici une réponse détaillée pour N’importe.`;
+                break;
+            case 'Marketing':
+                responseText = `Vous avez sélectionné Marketing. Voici une réponse détaillée pour Marketing.`;
+                break;
+            case 'Secrétariat':
+                responseText = `Vous avez sélectionné Secrétariat. Voici une réponse détaillée pour Secrétariat.`;
+                break;
+            case 'Informatique':
+                responseText = `Vous avez sélectionné Informatique. Voici une réponse détaillée pour Informatique.`;
+                break;
+            case 'Bâtiment':
+                responseText = `Vous avez sélectionné Bâtiment. Voici une réponse détaillée pour Bâtiment.`;
+                break;
+            case 'Tourisme':
+                responseText = `Vous avez sélectionné Tourisme. Voici une réponse détaillée pour Tourisme.`;
+                break;
+            default:
+                responseText = `Option invalide.`;
+        }
+
+        response.innerHTML = `<p>${responseText}</p>`;
+        chatbotBody.appendChild(response);
+    }, 2000); // Délai de 2 secondes
 }
