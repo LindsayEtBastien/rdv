@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayOptions(options) {
-        inputBox.innerHTML = ''; // Réinitialiser les options
+        inputBox.innerHTML = ''; // Réinitialiser les options AVANT d'en ajouter
         options.forEach(option => {
             const button = document.createElement('button');
             button.textContent = option;
@@ -37,24 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleUserChoice(choice) {
         displayMessage(choice, 'user'); // Afficher le choix de l'utilisateur
-        inputBox.innerHTML = ''; // Effacer les boutons
+        inputBox.innerHTML = ''; // Effacer les boutons AVANT d'afficher une nouvelle réponse
 
         setTimeout(() => {
+            let response;
             if (choice.includes('Paiement')) {
-                displayMessage('Les informations de paiement incluent les cartes VISA, Mastercard et PayPal.', 'bot');
+                response = 'Les informations de paiement incluent les cartes VISA, Mastercard et PayPal.';
             } else if (choice.includes('Expédition')) {
-                displayMessage('Nos délais de livraison sont de 3 à 5 jours ouvrés.', 'bot');
+                response = 'Nos délais de livraison sont de 3 à 5 jours ouvrés.';
             } else if (choice.includes('Retour')) {
-                displayMessage('Vous pouvez effectuer un retour sous 30 jours après réception.', 'bot');
+                response = 'Vous pouvez effectuer un retour sous 30 jours après réception.';
             } else if (choice.includes('Guide')) {
-                displayMessage('Le guide d\'achat vous aide à choisir les meilleurs produits pour vos besoins.', 'bot');
+                response = 'Le guide d\'achat vous aide à choisir les meilleurs produits pour vos besoins.';
             } else if (choice.includes('Statut')) {
-                displayMessage('Veuillez entrer votre numéro de commande pour suivre votre statut.', 'bot');
+                response = 'Veuillez entrer votre numéro de commande pour suivre votre statut.';
             }
 
+            displayMessage(response, 'bot');
+
+            // Afficher le menu de retour proprement
             setTimeout(() => {
                 displayOptions(['Retourner au menu 🔄']);
-            }, 1500);
+            }, 1000);
+
         }, 1000);
     }
 });
