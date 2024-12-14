@@ -53,6 +53,11 @@
             margin: 15px 0;
         }
 
+        .card p {
+            color: #777;
+            font-size: 1em;
+        }
+
         .feedback {
             position: absolute;
             top: 50px;
@@ -68,6 +73,21 @@
         .feedback.like {
             left: 20px;
             transform: rotate(-20deg);
+        }
+
+        .feedback.nope {
+            right: 20px;
+            transform: rotate(20deg);
+        }
+
+        .background-like {
+            background: rgba(102, 255, 102, 0.4); /* Vert clair */
+            transition: background 0.3s ease;
+        }
+
+        .background-nope {
+            background: rgba(255, 102, 102, 0.4); /* Rouge clair */
+            transition: background 0.3s ease;
         }
 
         .controls {
@@ -93,6 +113,10 @@
             transition: transform 0.2s ease;
         }
 
+        .button:hover {
+            transform: scale(1.1);
+        }
+
         .button.like {
             color: green;
         }
@@ -101,204 +125,149 @@
             color: red;
         }
 
-        /* Styles pour les pages de date et restaurants */
-        section {
+        #datePage {
             display: none;
             text-align: center;
+            padding: 20px;
         }
-        section.active {
-            display: block;
+
+        #datePage input[type="date"] {
+            font-size: 1em;
+            padding: 10px;
+            margin: 20px 0;
         }
-        button {
-            margin-top: 20px;
+
+        #datePage button {
+            font-size: 1em;
             padding: 10px 20px;
-            background-color: #f44141;
+            background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1em;
-        }
-        button:hover {
-            background-color: #d93737;
-        }
-
-        .email-section {
-            margin-top: 20px;
-        }
-
-        .email-section input {
-            width: 80%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <!-- Carte Swiping -->
-        <div class="card-container" id="cardContainer">
-            <div class="card" data-index="1" data-name="Mel">
-                <div class="feedback like">LIKE</div>
-                <img src="https://via.placeholder.com/150" alt="Profile Picture">
-                <h2>Mel, 25 ans</h2>
-                <p>Paris</p>
-            </div>
-            <div class="card" data-index="2">
-                <div class="feedback like">LIKE</div>
-                <img src="https://via.placeholder.com/150" alt="Profile Picture">
-                <h2>Hina, 20 ans</h2>
-                <p>Paris</p>
-            </div>
+    <div class="card-container" id="cardContainer">
+        <div class="card" data-index="1" data-name="Mel">
+            <div class="feedback like">LIKE</div>
+            <div class="feedback nope">NOPE</div>
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
+            <h2>Mel, 25 ans</h2>
+            <p>Paris</p>
         </div>
-        <div class="controls">
-            <div class="button nope" id="nopeButton">&#10006;</div>
-            <div class="button like" id="likeButton">&#10084;</div>
+        <div class="card" data-index="2" data-name="Hina">
+            <div class="feedback like">LIKE</div>
+            <div class="feedback nope">NOPE</div>
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
+            <h2>Hina, 20 ans</h2>
+            <p>Paris</p>
         </div>
+    </div>
 
-        <!-- Page Choix de la date -->
-        <section id="datePage">
-            <h2>Choix de la date</h2>
-            <label for="date">Choisie une date :</label>
-            <input type="date" id="date" required>
-            <button onclick="goToRestaurantPage()">Suivant</button>
-        </section>
+    <div class="controls">
+        <div class="button nope" id="nopeButton">✖</div>
+        <div class="button like" id="likeButton">❤</div>
+    </div>
 
-        <!-- Page Choix des restaurants -->
-        <section id="restaurantPage">
-            <h2>Choix du restaurant</h2>
-            <p>Sélectionne un restaurant pour notre date</p>
-            <div>
-                <button onclick="finalStep('Restaurant Italien')">Restaurant Italien</button>
-                <button onclick="finalStep('Restaurant Japonais')">Restaurant Japonais</button>
-                <button onclick="finalStep('Restaurant Coréen')">Restaurant Coréen</button>
-                <button onclick="finalStep('Restaurant Américain')">Restaurant Américain</button>
-            </div>
-        </section>
-
-        <!-- Page Envoi de mail -->
-        <section id="emailPage">
-            <h2>Envoi de l'invitation</h2>
-            <div class="email-section">
-                <input type="email" id="email" placeholder="Entrez votre email" required>
-                <button onclick="sendEmail()">Envoyer</button>
-            </div>
-        </section>
+    <div id="datePage">
+        <h2>Sélectionnez une date pour votre rendez-vous</h2>
+        <input type="date" id="dateInput">
+        <button id="confirmDateButton">Confirmer</button>
     </div>
 
     <script>
-        const cards = document.querySelectorAll('.card');
+        const cardContainer = document.getElementById('cardContainer');
+        const cards = Array.from(document.querySelectorAll('.card'));
         const likeButton = document.getElementById('likeButton');
         const nopeButton = document.getElementById('nopeButton');
+        const datePage = document.getElementById('datePage');
+        const confirmDateButton = document.getElementById('confirmDateButton');
+        const dateInput = document.getElementById('dateInput');
         let currentCardIndex = cards.length - 1;
 
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
-
         cards.forEach((card) => {
-            card.addEventListener('touchstart', (e) => startDrag(e.touches[0].clientX));
-            card.addEventListener('touchmove', (e) => drag(e.touches[0].clientX));
-            card.addEventListener('touchend', endDrag);
+            let startX = null, moveX = null;
 
-            card.addEventListener('mousedown', (e) => startDrag(e.clientX));
-            card.addEventListener('mousemove', (e) => drag(e.clientX));
-            card.addEventListener('mouseup', endDrag);
-            card.addEventListener('mouseleave', endDrag);
+            card.addEventListener('pointerdown', (e) => {
+                startX = e.clientX;
+                card.style.transition = 'none';
+            });
+
+            card.addEventListener('pointermove', (e) => {
+                if (!startX) return;
+
+                moveX = e.clientX - startX;
+                card.style.transform = `translateX(${moveX}px) rotate(${moveX * 0.05}deg)`;
+
+                if (moveX > 0) {
+                    cardContainer.classList.add('background-like');
+                    cardContainer.classList.remove('background-nope');
+                    card.querySelector('.like').style.opacity = '1';
+                } else {
+                    cardContainer.classList.add('background-nope');
+                    cardContainer.classList.remove('background-like');
+                    card.querySelector('.nope').style.opacity = '1';
+                }
+            });
+
+            card.addEventListener('pointerup', () => {
+                if (moveX > 150) {
+                    swipe('right', card);
+                } else if (moveX < -150) {
+                    swipe('left', card);
+                } else {
+                    resetCard(card);
+                }
+
+                cardContainer.classList.remove('background-like', 'background-nope');
+            });
         });
 
-        function startDrag(x) {
-            isDragging = true;
-            startX = x;
-        }
+        likeButton.addEventListener('click', () => swipe('right', cards[currentCardIndex]));
+        nopeButton.addEventListener('click', () => swipe('left', cards[currentCardIndex]));
 
-        function drag(x) {
-            if (!isDragging) return;
-            currentX = x;
-            const deltaX = currentX - startX;
-            const card = cards[currentCardIndex];
-            if (!card) return;
-            card.style.transform = `translateX(${deltaX}px)`;
-        }
+        function swipe(direction, card) {
+            if (card.dataset.name === "Hina" && direction === 'right') {
+                showDatePage();
+                return;
+            }
 
-        function endDrag() {
-            if (!isDragging) return;
-            isDragging = false;
-            const deltaX = currentX - startX;
-            const card = cards[currentCardIndex];
-            if (!card) return;
+            card.style.transition = "transform 0.3s ease, opacity 0.3s ease";
 
-            if (deltaX > 150) {
-                swipeRight(card);
-            } else if (deltaX < -150) {
-                swipeLeft(card);
+            if (direction === 'right') {
+                card.style.transform = "translate(1000px, 0) rotate(30deg)";
             } else {
-                card.style.transform = '';
+                card.style.transform = "translate(-1000px, 0) rotate(-30deg)";
             }
-        }
 
-        function swipeRight(card) {
-            const name = card.dataset.name;
-            card.style.transform = 'translate(1000px, 0) rotate(30deg)';
-            card.style.opacity = '0';
-
-            if (name === 'Mel') {
-                setTimeout(() => showDatePage(), 300);
-            }
-        }
-
-        function swipeLeft(card) {
-            card.style.transform = 'translate(-1000px, 0) rotate(-30deg)';
-            card.style.opacity = '0';
-        }
-
-        likeButton.addEventListener('click', () => {
-            const currentCard = cards[currentCardIndex];
-            if (!currentCard) return;
-            swipeRight(currentCard);
+            card.style.opacity = "0";
+            card.addEventListener('transitionend', () => card.remove());
             currentCardIndex--;
-        });
+        }
 
-        nopeButton.addEventListener('click', () => {
-            const currentCard = cards[currentCardIndex];
-            if (!currentCard) return;
-            swipeLeft(currentCard);
-            currentCardIndex--;
-        });
+        function resetCard(card) {
+            card.style.transition = 'transform 0.3s ease';
+            card.style.transform = 'translateX(0) rotate(0)';
+            card.querySelector('.like').style.opacity = '0';
+            card.querySelector('.nope').style.opacity = '0';
+        }
 
         function showDatePage() {
-            document.getElementById('cardContainer').style.display = 'none';
-            document.getElementById('datePage').classList.add('active');
+            cardContainer.style.display = "none";
+            datePage.style.display = "block";
         }
 
-        function goToRestaurantPage() {
-            const date = document.getElementById('date').value;
-            if (!date) {
-                alert('Veuillez choisir une date');
-                return;
+        confirmDateButton.addEventListener('click', () => {
+            const selectedDate = dateInput.value;
+            if (selectedDate) {
+                alert(`Date sélectionnée : ${selectedDate}`);
+                // Action supplémentaire à implémenter si nécessaire
+            } else {
+                alert("Veuillez sélectionner une date.");
             }
-            document.getElementById('datePage').classList.remove('active');
-            document.getElementById('restaurantPage').classList.add('active');
-        }
-
-        function finalStep(restaurant) {
-            document.getElementById('restaurantPage').classList.remove('active');
-            document.getElementById('emailPage').classList.add('active');
-        }
-
-        function sendEmail() {
-            const email = document.getElementById('email').value;
-            if (!email) {
-                alert('Veuillez entrer un email');
-                return;
-            }
-
-            const mailtoLink = `mailto:${email}?subject=Invitation à notre rendez-vous&body=J'ai choisi un restaurant pour notre rendez-vous!`;
-            window.location.href = mailtoLink;
-        }
+        });
     </script>
 </body>
 </html>
