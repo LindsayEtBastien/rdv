@@ -1,3 +1,5 @@
+document.getElementById('start-button').addEventListener('click', startChat);
+
 function startChat() {
     const chatBox = document.getElementById('chat-box');
     chatBox.innerHTML = ''; // Clear previous messages
