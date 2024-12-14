@@ -72,3 +72,23 @@ button:hover {
     background: #c81d3f;
     color: white;
 }
+
+.loading {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.loading::after {
+    content: ' .';
+    animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: ' .'; }
+    40% { content: ' ..'; }
+    60% { content: ' ...'; }
+}

@@ -18,12 +18,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayMessage(text, sender) {
+        // Ajouter un indicateur de chargement pour le bot
+        if (sender === 'bot') {
+            showLoadingIndicator();
+    
+            // Délai pour simuler un temps de réponse
+            setTimeout(() => {
+                removeLoadingIndicator();
+                addMessage(text, sender);
+            }, 1000); // Ajustez le délai si nécessaire
+        } else {
+            addMessage(text, sender); // Ajouter directement les messages utilisateur
+        }
+    }
+    
+    function showLoadingIndicator() {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'message bot loading';
+        loadingDiv.id = 'loading-indicator';
+        loadingDiv.textContent = 'Le bot écrit';
+        chatBox.appendChild(loadingDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+    
+    function removeLoadingIndicator() {
+        const loadingDiv = document.getElementById('loading-indicator');
+        if (loadingDiv) {
+            chatBox.removeChild(loadingDiv);
+        }
+    }
+    
+    function addMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}`;
         messageDiv.textContent = text;
         chatBox.appendChild(messageDiv);
         chatBox.scrollTop = chatBox.scrollHeight;
-    }
+    } 
 
     function displayOptions(options) {
         inputBox.innerHTML = ''; // Réinitialiser les options AVANT d'en ajouter
@@ -57,7 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Afficher le menu de retour proprement
             setTimeout(() => {
-                displayOptions(['Retourner au menu 🔄']);
+                if (choice.includes('Retourner')) {
+                    chatBox.innerHTML = ''; // Nettoyer complètement le chat pour éviter les doublons
+                    startConversation();    // Relancer le menu principal
+                } else {
+                    displayOptions(['Retourner au menu 🔄']); // Afficher l'option de retour
+                }
             }, 1000);
 
         }, 1000);
