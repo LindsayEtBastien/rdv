@@ -92,3 +92,47 @@ button:hover {
     40% { content: ' ..'; }
     60% { content: ' ...'; }
 }
+
+.message-container {
+    display: flex;
+    align-items: flex-start; /* Aligne l'image et le message verticalement */
+    margin: 5px 0;
+}
+
+.message-container.bot {
+    flex-direction: row; /* Alignement des messages bot */
+}
+
+.message-container.user {
+    flex-direction: row-reverse; /* Alignement des messages utilisateur */
+    justify-content: flex-end;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.message-container.user .profile-pic {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.message {
+    background-color: #f1f1f1;
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.message.bot {
+    background-color: #e0e0e0; /* Gris clair pour le bot */
+}
+
+.message.user {
+    background-color: #007bff; /* Bleu pour l'utilisateur */
+    color: white;
+}
