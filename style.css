@@ -29,29 +29,69 @@ body {
     height: 350px;
     overflow-y: auto;
     border-bottom: 1px solid #ddd;
-    background-color: #fdfdfd;
+    background-color: white; /* Fond blanc */
 }
 
+/* Conteneur général des messages */
+.message-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 8px 0;
+}
+
+/* Alignement des messages bot */
+.message-container.bot {
+    flex-direction: row; /* Icône à gauche */
+}
+
+/* Alignement des messages utilisateur */
+.message-container.user {
+    flex-direction: row-reverse; /* Icône à droite */
+    justify-content: flex-end;
+}
+
+/* Icônes de profil */
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white; /* Fond blanc autour de l'image */
+    margin: 0 10px; /* Espacement entre l'icône et le message */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Espacement spécifique pour les messages utilisateur */
+.message-container.user .profile-pic {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+/* Style des bulles de messages */
 .message {
-    margin: 10px 0;
-    padding: 8px 12px;
-    border-radius: 15px;
-    max-width: 80%;
-    line-height: 1.4;
+    padding: 10px 15px;
+    border-radius: 20px; /* Bordures arrondies */
+    max-width: 70%; /* Largeur maximale */
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word; /* Retour automatique des lignes */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre douce */
 }
 
-.bot {
-    background-color: #f1f0f0;
-    text-align: left;
+/* Messages bot : bulles grises */
+.message.bot {
+    background-color: #f0f0f0; /* Gris clair */
+    color: #000; /* Texte noir */
 }
 
-.user {
-    background-color: #007bff;
-    color: white;
+/* Messages utilisateur : bulles bleues */
+.message.user {
+    background-color: #d3eafd; /* Bleu clair plus doux */
+    color: #000; /* Texte noir */
     text-align: right;
-    margin-left: auto;
 }
 
+/* Boutons et boîte d'entrée */
 .input-box {
     padding: 10px;
     text-align: center;
@@ -73,13 +113,13 @@ button:hover {
     color: white;
 }
 
+/* Animation de chargement */
 .loading {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    padding: 10px;
     font-size: 14px;
     color: #aaa;
+    padding: 10px;
 }
 
 .loading::after {
@@ -91,48 +131,4 @@ button:hover {
     0%, 20% { content: ' .'; }
     40% { content: ' ..'; }
     60% { content: ' ...'; }
-}
-
-.message-container {
-    display: flex;
-    align-items: flex-start; /* Aligne l'image et le message verticalement */
-    margin: 5px 0;
-}
-
-.message-container.bot {
-    flex-direction: row; /* Alignement des messages bot */
-}
-
-.message-container.user {
-    flex-direction: row-reverse; /* Alignement des messages utilisateur */
-    justify-content: flex-end;
-}
-
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-}
-
-.message-container.user .profile-pic {
-    margin-left: 10px;
-    margin-right: 0;
-}
-
-.message {
-    background-color: #f1f1f1;
-    padding: 10px 15px;
-    border-radius: 10px;
-    max-width: 70%;
-}
-
-.message.bot {
-    background-color: #e0e0e0; /* Gris clair pour le bot */
-}
-
-.message.user {
-    background-color: #007bff; /* Bleu pour l'utilisateur */
-    color: white;
 }
