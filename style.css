@@ -14,6 +14,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-header {
@@ -26,86 +28,80 @@ body {
 
 .chat-box {
     padding: 15px;
+    flex-grow: 1;
     height: 350px;
     overflow-y: auto;
     border-bottom: 1px solid #ddd;
-    background-color: white; /* Fond blanc */
+    background-color: #fdfdfd;
 }
 
-/* Conteneur général des messages */
 .message-container {
     display: flex;
     align-items: flex-start;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
-/* Alignement des messages bot */
 .message-container.bot {
-    flex-direction: row; /* Icône à gauche */
+    flex-direction: row;
 }
 
-/* Alignement des messages utilisateur */
 .message-container.user {
-    flex-direction: row-reverse; /* Icône à droite */
+    flex-direction: row-reverse;
     justify-content: flex-end;
 }
 
-/* Icônes de profil */
 .profile-pic {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    background-color: white; /* Fond blanc autour de l'image */
-    margin: 0 10px; /* Espacement entre l'icône et le message */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    background: white;
+    margin-right: 10px;
 }
 
-/* Espacement spécifique pour les messages utilisateur */
 .message-container.user .profile-pic {
     margin-left: 10px;
     margin-right: 0;
 }
 
-/* Style des bulles de messages */
 .message {
+    max-width: 70%;
     padding: 10px 15px;
-    border-radius: 20px; /* Bordures arrondies */
-    max-width: 70%; /* Largeur maximale */
+    border-radius: 20px;
     font-size: 14px;
-    line-height: 1.5;
-    word-wrap: break-word; /* Retour automatique des lignes */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Messages bot : bulles grises */
 .message.bot {
-    background-color: #f0f0f0; /* Gris clair */
-    color: #000; /* Texte noir */
+    background-color: #e0e0e0; /* Gris clair pour les messages bot */
+    color: #000;
+    border-radius: 20px 20px 20px 5px; /* Rond à droite */
 }
 
-/* Messages utilisateur : bulles bleues */
 .message.user {
-    background-color: #d3eafd; /* Bleu clair plus doux */
-    color: #000; /* Texte noir */
-    text-align: right;
+    background-color: #007bff; /* Bleu pour les messages utilisateur */
+    color: white;
+    border-radius: 20px 20px 5px 20px; /* Rond à gauche */
 }
 
-/* Boutons et boîte d'entrée */
 .input-box {
     padding: 10px;
     text-align: center;
+    border-top: 1px solid #ddd;
+    background-color: white;
 }
 
 button {
     padding: 8px 12px;
-    margin: 5px 0;
+    margin: 5px;
     background: white;
     color: #c81d3f;
     border: 2px solid #c81d3f;
     border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
@@ -113,13 +109,14 @@ button:hover {
     color: white;
 }
 
-/* Animation de chargement */
 .loading {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
+    padding: 10px;
     font-size: 14px;
     color: #aaa;
-    padding: 10px;
+    font-style: italic;
 }
 
 .loading::after {
