@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-button');
     const chatBox = document.getElementById('chat-box');
     const inputBox = document.getElementById('input-box');
-    let lastSender = null; // Permet de suivre le dernier expéditeur de message
 
     startButton.addEventListener('click', startConversation);
 
@@ -11,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         inputBox.innerHTML = '';
 
         // Ajouter le premier message
-        displayMessage('Bienvenue ! 👋 Avez-vous besoin d\'aide concernant un produit ou une commande ?', 'bot');
+        displayMessage('Bienvenue Lily ! 👋 Avez-vous besoin d\'aide concernant un produit ou une commande ?', 'bot');
 
         setTimeout(() => {
             displayOptions(['Infos de paiement 💳', 'Expédition 🚚', 'Retour & Réclamations 🔙', 'Guide d\'achat 🔍', 'Statut de commande ✅']);
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ajouter un indicateur de chargement pour le bot
         if (sender === 'bot') {
             showLoadingIndicator();
-
+    
             // Délai pour simuler un temps de réponse
             setTimeout(() => {
                 removeLoadingIndicator();
@@ -32,47 +31,52 @@ document.addEventListener('DOMContentLoaded', () => {
             addMessage(text, sender); // Ajouter directement les messages utilisateur
         }
     }
-
+    
     function showLoadingIndicator() {
         const loadingDiv = document.createElement('div');
         loadingDiv.className = 'message bot loading';
         loadingDiv.id = 'loading-indicator';
-        loadingDiv.textContent = 'Le bot écrit...';
+        loadingDiv.textContent = 'Le bot écrit';
         chatBox.appendChild(loadingDiv);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
-
+    
     function removeLoadingIndicator() {
         const loadingDiv = document.getElementById('loading-indicator');
         if (loadingDiv) {
             chatBox.removeChild(loadingDiv);
         }
     }
-
+    
     function addMessage(text, sender) {
-        const messageContainer = document.createElement('div');
-        messageContainer.className = `message-container ${sender}`;
+        const container = document.createElement('div');
+        container.className = `message-container ${sender}`;
 
-        // Ajouter l'icône de profil uniquement si le dernier message ne provient pas du même expéditeur
-        if (lastSender !== sender) {
-            const profilePic = document.createElement('img');
-            profilePic.className = 'profile-pic';
-            profilePic.src = sender === 'bot' ? 'imgs/bot.png' : 'imgs/lily_40x40.jpeg'; // Chemin vers les images
-            profilePic.alt = sender === 'bot' ? 'Bot' : 'Utilisateur';
-            messageContainer.appendChild(profilePic);
-            lastSender = sender; // Mettre à jour l'expéditeur
-        }
+        const profilePic = document.createElement('img');
+        profilePic.className = 'profile-pic';
+        profilePic.src = sender === 'bot' ? 'imgs/bot.png' : 'imgs/lily_40x40.jpeg';
 
-        // Ajouter le texte du message
+        const profileName = document.createElement('div');
+        profileName.className = 'profile-name';
+        profileName.textContent = sender === 'bot' ? 'Bot' : 'Lily';
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}`;
         messageDiv.textContent = text;
-        messageContainer.appendChild(messageDiv);
 
-        // Ajouter le conteneur complet au chat
-        chatBox.appendChild(messageContainer);
+        // Ajouter l'icône et le pseudo
+        if (sender === 'bot') {
+            container.appendChild(profilePic);
+            container.appendChild(profileName);
+        } else {
+            container.appendChild(profileName);
+            container.appendChild(profilePic);
+        }
+
+        container.appendChild(messageDiv);
+        chatBox.appendChild(container);
         chatBox.scrollTop = chatBox.scrollHeight;
-    }
+    } 
 
     function displayOptions(options) {
         inputBox.innerHTML = ''; // Réinitialiser les options AVANT d'en ajouter
