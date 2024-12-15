@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const profilePic = document.createElement('img');
             profilePic.className = 'profile-pic';
             profilePic.src = sender === 'bot' ? 'imgs/bot.png' : 'imgs/lily_40x40.jpeg'; // Chemin vers les images
-            profilePic.alt = sender === 'bot' ? 'Bastien' : 'Lily';
+            profilePic.alt = sender === 'bot' ? 'Bot' : 'Utilisateur';
             messageContainer.appendChild(profilePic);
             lastSender = sender; // Mettre à jour l'expéditeur
         }
