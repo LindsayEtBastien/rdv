@@ -11,13 +11,13 @@
         <h1>Planifier notre date</h1>
     </header>
     <main>
-        <section id="welcome">
+        <section id="welcome" class="active">
             <h2>On fait quoi ?</h2>
             <img src="imgs/the-office-michael-scott.gif" alt="Animation sympa" class="animation">
             <button type="button" onclick="goToActivities()">Let's goooo</button>
         </section>
 
-        
+
         <section id="step0">
             <h2>Choix de l'activité</h2>
             <div class="card-container" id="activityCards">
@@ -41,7 +41,7 @@
             <button type="button" onclick="goToStep1()">Suivant</button>
         </section>
 
-        <section id="step1" class="active">
+        <section id="step1">
             <h2>Choix de la date</h2>
             <form id="dateForm">
                 <label for="date">Choisie une date : </label>
