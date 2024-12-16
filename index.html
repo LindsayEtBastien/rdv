@@ -46,18 +46,26 @@
                     <h3>Musée</h3>
                 </div>
             </div>
-            <button type="button" onclick="goToStep1()">Suivant</button>
+            <button type="button" onclick="goToManger()">Suivant</button>
+        </section>
+
+        <section id="manger">
+            <h2>On va manger ?"</h2>
+            <img src="imgs/kirby.gif" class="animation_kirby">
+            <button type="button" onclick="goToStep1()">Ouii Miammm Miammm!! Petite vessie mais gros estomac 😏</button>
+            <button type="button" onclick="goToConfirmation()">Non... pas envie 😶</button>
         </section>
 
         <section id="step2">
             <h2>Choix du restaurant</h2>
+            <p>Tu peux choisir tes préférences avec l'ordre de ta sélection (max. 3 stp)</p>
             <div class="card-container" id="restaurantCards">
                 <div class="card" onclick="toggleSelection(this, 'Restaurant Italien')">
                     <img src="imgs/italien.png" alt="Restaurant Italien">
                     <h3>Restaurant Italien</h3>
                 </div>
                 <div class="card" onclick="toggleSelection(this, 'Restaurant Japonnais')">
-                    <img src="imgs/sushis.jpg" alt="Restaurant Japonnais">
+                    <img src="imgs/japonnais.jpg" alt="Restaurant Japonnais">
                     <h3>Restaurant Japonnais</h3>
                 </div>
                 <div class="card" onclick="toggleSelection(this, 'Restaurant Coréen')">
@@ -75,6 +83,7 @@
         <section id="confirmation">
             <h2>Confirmation</h2>
             <form id="finalForm">
+                <p><strong>Date :</strong> <span id="selectedDate"></span></p>
                 <p><strong>Date :</strong> <span id="selectedDate"></span></p>
                 <p><strong>Restaurants (dans l'ordre de sélection):</strong> <span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">

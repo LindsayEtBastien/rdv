@@ -34,6 +34,12 @@ function goToStep1() {
     }
 
     document.getElementById('step1').classList.remove('active');
+    document.getElementById('manger').classList.add('active');
+}
+
+/*Manger*/
+function goToManger() {
+    document.getElementById('manger').classList.remove('active');
     document.getElementById('step2').classList.add('active');
 }
 
