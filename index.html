@@ -13,12 +13,20 @@
     <main>
         <section id="welcome" class="active">
             <h2>On fait quoi ?</h2>
-            <img src="imgs/the-office-michael-scott.gif" alt="Animation sympa" class="animation">
+            <img src="imgs/happening.gif" class="animation">
             <button type="button" onclick="goToActivities()">Let's goooo</button>
         </section>
 
-
         <section id="step0">
+            <h2>Choix de la date</h2>
+            <form id="dateForm">
+                <label for="date">Choisie une date : </label>
+                <input type="date" id="date" name="date" required>
+                <button type="button" onclick="goToStep1()">Suivant</button>
+            </form>
+        </section>
+
+        <section id="step1">
             <h2>Choix de l'activité</h2>
             <div class="card-container" id="activityCards">
                 <div class="card" onclick="toggleActivity(this, 'Cinéma')">
@@ -38,16 +46,7 @@
                     <h3>Musée</h3>
                 </div>
             </div>
-            <button type="button" onclick="goToStep1()">Suivant</button>
-        </section>
-
-        <section id="step1">
-            <h2>Choix de la date</h2>
-            <form id="dateForm">
-                <label for="date">Choisie une date : </label>
-                <input type="date" id="date" name="date" required>
-                <button type="button" onclick="goToStep2()">Suivant</button>
-            </form>
+            <button type="button" onclick="goToStep2()">Suivant</button>
         </section>
 
         <section id="step2">
