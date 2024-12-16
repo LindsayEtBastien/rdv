@@ -95,17 +95,26 @@ footer {
     border: 4px solid #f44141;
     background-color: #ffe6e6;
 }
+#welcome {
+    display: flex;
+    flex-direction: column; /* Aligner le GIF et le bouton en colonne */
+    align-items: center; /* Centrer horizontalement */
+    justify-content: center; /* Centrer verticalement */
+    min-height: 100vh; /* S'assurer que la section occupe toute la hauteur de la fenêtre */
+}
 .animation {
     display: block; /* S'assurer qu'il est visible */
-    max-width: 100%; /* Ajuste la taille à l'écran si nécessaire */
-    height: auto; /* Conserve les proportions */
-}
-#welcome h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    max-width: 300px; /* Limiter la taille du GIF */
+    height: auto; /* Conserver les proportions */
+    margin-bottom: 20px; /* Ajouter un espace entre le GIF et le bouton */
 }
 #welcome button {
-    font-size: 1.2em;
-    padding: 10px 20px;
+    font-size: 1em; /* Réduire la taille de la police */
+    padding: 10px 15px; /* Ajuster le padding pour rendre le bouton plus compact */
     background-color: #f77f7f;
+    border-radius: 5px; /* Rendre les coins légèrement arrondis */
+    transition: transform 0.3s ease;
+}
+#welcome button:hover {
+    transform: scale(1.05); /* Ajouter un léger zoom à l'hover */
 }
