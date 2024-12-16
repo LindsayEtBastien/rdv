@@ -64,6 +64,15 @@ section h2 {
     align-items: center;
 }
 
+.animation_kirby {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
 button {
     background-color: #f44141;
     color: white;
