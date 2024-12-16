@@ -1,21 +1,8 @@
-function showSection(sectionId) {
-    // Cacher toutes les sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => section.classList.remove('active'));
-
-    // Activer uniquement la section avec l'ID spécifié
-    const activeSection = document.getElementById(sectionId);
-    if (activeSection) {
-        activeSection.classList.add('active');
-    }
-}
-
 /*WELCOME*/
 let selectedActivities = [];
 function goToActivities() {
-    /*document.getElementById('welcome').classList.remove('active');
-    document.getElementById('step0').classList.add('active');*/
-    showSection('step0'); // Affiche la section "Choix de la date"
+    document.getElementById('welcome').classList.remove('active');
+    document.getElementById('step0').classList.add('active');
 }
 
 /*DATE*/
@@ -26,9 +13,8 @@ function goToStep0() {
         return;
     }
 
-    /*document.getElementById('step0').classList.remove('active');
-    document.getElementById('step1').classList.add('active');*/
-    showSection('step1'); // Affiche la section "Choix de l'activité"
+    document.getElementById('step0').classList.remove('active');
+    document.getElementById('step1').classList.add('active');
     }
 
 /*ACTIVITES*/
@@ -47,9 +33,8 @@ function goToStep1() {
         return;
     }
 
-    /*document.getElementById('step1').classList.remove('active');
-    document.getElementById('step2').classList.add('active');*/
-    showSection('step2'); // Affiche la section "Choix de l'activité"
+    document.getElementById('step1').classList.remove('active');
+    document.getElementById('step2').classList.add('active');
 }
 
 /*RESTAURANTS*/
@@ -77,9 +62,8 @@ document.getElementById('selectedRestaurants').textContent = selectedRestaurants
 document.getElementById('hiddenDate').value = date;
 document.getElementById('hiddenRestaurants').value = selectedRestaurants.join(', ');
 
-/*document.getElementById('step2').classList.remove('active');
-document.getElementById('confirmation').classList.add('active');*/
-showSection('confirmation'); // Affiche la section "Choix de l'activité"
+document.getElementById('step2').classList.remove('active');
+document.getElementById('confirmation').classList.add('active');
 }
 
 async function submitForm() {
