@@ -97,3 +97,18 @@ footer {
     border: 4px solid #f44141; /* Bordure plus épaisse */
     background-color: #ffe6e6;
 }
+
+.animation {
+    max-width: 200px;
+    margin: 20px auto;
+    display: block;
+}
+#welcome h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+#welcome button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    background-color: #f77f7f;
+}

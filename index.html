@@ -11,6 +11,35 @@
         <h1>Planifier notre date</h1>
     </header>
     <main>
+        <section id="welcome">
+            <h2>On fait quoi ?</h2>
+            <img src="imgs/the-office-michael-scott.gif" alt="Animation sympa" class="animation">
+            <button type="button" onclick="goToActivities()">Let's goooo</button>
+        </section>
+
+        <section id="step0">
+            <h2>Choix de l'activité</h2>
+            <div class="card-container" id="activityCards">
+                <div class="card" onclick="toggleActivity(this, 'Cinéma')">
+                    <img src="imgs/cinema.jpg" alt="Cinéma">
+                    <h3>Cinéma (film du moment)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Parc')">
+                    <img src="imgs/parc.jpg" alt="Parc">
+                    <h3>Parc (jardin aussi)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Bowling')">
+                    <img src="imgs/bowling.jpg" alt="Bowling">
+                    <h3>Bowling</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Musée')">
+                    <img src="imgs/musee.jpg" alt="Musée">
+                    <h3>Musée</h3>
+                </div>
+            </div>
+            <button type="button" onclick="goToStep1()">Suivant</button>
+        </section>
+
         <section id="step1" class="active">
             <h2>Choix de la date</h2>
             <form id="dateForm">

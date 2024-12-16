@@ -1,3 +1,28 @@
+let selectedActivities = [];
+function goToActivities() {
+    document.getElementById('welcome').classList.remove('active');
+    document.getElementById('step0').classList.add('active');
+}
+
+function toggleActivity(card, activity) {
+    card.classList.toggle('selected');
+    if (card.classList.contains('selected')) {
+        selectedActivities.push(activity);
+    } else {
+        selectedActivities = selectedActivities.filter(a => a !== activity);
+    }
+}
+
+function goToStep1() {
+    if (selectedActivities.length === 0) {
+        alert('Veuillez sélectionner au moins une activité!');
+        return;
+    }
+
+    document.getElementById('step0').classList.remove('active');
+    document.getElementById('step1').classList.add('active');
+}
+
 let selectedRestaurants = [];
 
         function goToStep2() {
