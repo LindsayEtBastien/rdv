@@ -1,9 +1,37 @@
-let selectedActivities = [];
-function goToActivities() {
-    document.getElementById('welcome').classList.remove('active');
-    document.getElementById('step0').classList.add('active');
+function showSection(sectionId) {
+    // Cacher toutes les sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => section.classList.remove('active'));
+
+    // Activer uniquement la section avec l'ID spécifié
+    const activeSection = document.getElementById(sectionId);
+    if (activeSection) {
+        activeSection.classList.add('active');
+    }
 }
 
+/*WELCOME*/
+let selectedActivities = [];
+function goToActivities() {
+    /*document.getElementById('welcome').classList.remove('active');
+    document.getElementById('step0').classList.add('active');*/
+    showSection('step0'); // Affiche la section "Choix de la date"
+}
+
+/*DATE*/
+function goToStep0() {
+    const date = document.getElementById('date').value;
+    if (!date) {
+        alert('Veuillez sélectionner une date!');
+        return;
+    }
+
+    /*document.getElementById('step0').classList.remove('active');
+    document.getElementById('step1').classList.add('active');*/
+    showSection('step1'); // Affiche la section "Choix de l'activité"
+    }
+
+/*ACTIVITES*/
 function toggleActivity(card, activity) {
     card.classList.toggle('selected');
     if (card.classList.contains('selected')) {
@@ -13,17 +41,19 @@ function toggleActivity(card, activity) {
     }
 }
 
-function goToStep0() {
-    const date = document.getElementById('date').value;
-    if (!date) {
-        alert('Veuillez sélectionner une date!');
+function goToStep1() {
+    if (selectedActivities.length === 0) {
+        alert('Veuillez sélectionner au moins une activité!');
         return;
     }
 
-    document.getElementById('step0').classList.remove('active');
-    document.getElementById('step1').classList.add('active');
-    }
+    /*document.getElementById('step1').classList.remove('active');
+    document.getElementById('step2').classList.add('active');*/
+    showSection('step2'); // Affiche la section "Choix de l'activité"
+}
 
+/*RESTAURANTS*/
+let selectedRestaurants = [];
 function toggleSelection(card, restaurant) {
     card.classList.toggle('selected');
     if (card.classList.contains('selected')) {
@@ -33,18 +63,7 @@ function toggleSelection(card, restaurant) {
     }
 }
 
-function goToStep1() {
-    if (selectedActivities.length === 0) {
-        alert('Veuillez sélectionner au moins une activité!');
-        return;
-    }
-
-    document.getElementById('step1').classList.remove('active');
-    document.getElementById('step2').classList.add('active');
-}
-
-let selectedRestaurants = [];
-
+/*CONFIRMATION*/
 function goToConfirmation() {
      if (selectedRestaurants.length === 0) {
         alert('Veuillez sélectionner au moins un restaurant!');
@@ -58,8 +77,9 @@ document.getElementById('selectedRestaurants').textContent = selectedRestaurants
 document.getElementById('hiddenDate').value = date;
 document.getElementById('hiddenRestaurants').value = selectedRestaurants.join(', ');
 
-document.getElementById('step2').classList.remove('active');
-document.getElementById('confirmation').classList.add('active');
+/*document.getElementById('step2').classList.remove('active');
+document.getElementById('confirmation').classList.add('active');*/
+showSection('confirmation'); // Affiche la section "Choix de l'activité"
 }
 
 async function submitForm() {

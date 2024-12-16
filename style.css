@@ -54,7 +54,11 @@ section {
     display: none;
 }
 section.active {
-    display: block;
+    display: flex; /* Afficher uniquement la section active */
+    flex-direction: column;
+    align-items: center; /* Centrer horizontalement les éléments */
+    justify-content: center; /* Centrer verticalement les éléments */
+    min-height: 100vh; /* Assurer que la section occupe la hauteur de la fenêtre */
 }
 footer {
     margin-top: 20px;
