@@ -38,7 +38,7 @@ function goToStep1() {
 }
 
 /*Manger*/
-function goToManger() {
+function goToRestaurant() {
     document.getElementById('manger').classList.remove('active');
     document.getElementById('step2').classList.add('active');
 }
