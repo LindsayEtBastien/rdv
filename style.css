@@ -30,7 +30,6 @@ header h1 {
 main {
     padding: 20px;
     width: 100%;
-    max-width: 1200px; /* Augmenter la largeur maximale pour prendre plus de place */
     flex: 1; /* Permet à main de prendre l'espace disponible */
     display: flex;
     flex-direction: column;
@@ -45,7 +44,6 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px; /* Augmenter la marge pour plus d'espace entre les sections */
     width: 100%; /* Assure que la section prend toute la largeur disponible */
-    max-width: 800px; /* Limiter la largeur maximale pour un meilleur affichage */
 }
 
 section.active {
