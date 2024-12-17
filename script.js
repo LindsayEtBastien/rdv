@@ -14,26 +14,68 @@ function goToStep0() {
     }
 
     document.getElementById('step0').classList.remove('active');
-    document.getElementById('step1').classList.add('active');
+    document.getElementById('step1_1').classList.add('active');
     }
 
 /*ACTIVITES*/
-function toggleActivity(card, activity) {
+let selectedMainActivities = [];
+let selectedSecondaryActivities = [];
+
+// Fonction pour sélectionner/désélectionner des activités
+function toggleActivity(card, activity, type) {
     card.classList.toggle('selected');
-    if (card.classList.contains('selected')) {
-        selectedActivities.push(activity);
-    } else {
-        selectedActivities = selectedActivities.filter(a => a !== activity);
+
+    if (type === 'main') { // Gestion des activités principales
+        if (card.classList.contains('selected')) {
+            selectedMainActivities.push(activity);
+        } else {
+            selectedMainActivities = selectedMainActivities.filter(a => a !== activity);
+        }
+    } else if (type === 'secondary') { // Gestion des activités secondaires
+        if (card.classList.contains('selected')) {
+            selectedSecondaryActivities.push(activity);
+        } else {
+            selectedSecondaryActivities = selectedSecondaryActivities.filter(a => a !== activity);
+        }
     }
 }
 
-function goToStep1() {
+// Fonction pour ajouter une activité personnalisée
+function addCustomActivity(type) {
+    const inputId = type === 'main' ? 'customMainActivity' : 'customSecondaryActivity';
+    const input = document.getElementById(inputId);
+    const activity = input.value.trim();
+
+    if (activity) {
+        if (type === 'main') {
+            selectedMainActivities.push(activity);
+        } else {
+            selectedSecondaryActivities.push(activity);
+        }
+        input.value = ''; // Réinitialiser l'input
+        alert(`Activité ajoutée : ${activity}`);
+    }
+}
+
+// Valider les activités principales et passer à l'étape secondaire
+function goToStep1_2() {
     if (selectedActivities.length === 0) {
         alert('Veuillez sélectionner au moins une activité!');
         return;
     }
 
-    document.getElementById('step1').classList.remove('active');
+    document.getElementById('step1_1').classList.remove('active');
+    document.getElementById('step1_2').classList.add('active');
+}
+
+// Valider les activités secondaires et passer à l'étape suivante
+function goToStep2() {
+    if (selectedActivities.length === 0) {
+        alert('Veuillez sélectionner au moins une activité!');
+        return;
+    }
+
+    document.getElementById('step1_2').classList.remove('active');
     document.getElementById('manger').classList.add('active');
 }
 
@@ -75,21 +117,17 @@ function goToConfirmationSansResto() {
 function afficherConfirmation() {
     const date = document.getElementById('date').value;
 
-    // Afficher la date
     document.getElementById('selectedDate').textContent = date;
-    document.getElementById('hiddenDate').value = date;
 
-    // Afficher les activités sélectionnées
-    const activities = selectedActivities.join(', ');
-    document.getElementById('selectedActivities').textContent = activities;
+    // Afficher les activités principales et secondaires
+    document.getElementById('selectedMainActivities').textContent = selectedMainActivities.join(', ');
+    document.getElementById('selectedSecondaryActivities').textContent = selectedSecondaryActivities.join(', ');
 
-    // Afficher les restaurants sélectionnés uniquement s'ils existent
+    // Afficher les restaurants sélectionnés (si existants)
     if (selectedRestaurants.length > 0) {
         document.getElementById('selectedRestaurants').textContent = selectedRestaurants.join(', ');
-        document.getElementById('hiddenRestaurants').value = selectedRestaurants.join(', ');
     } else {
         document.getElementById('selectedRestaurants').textContent = 'Aucun restaurant sélectionné';
-        document.getElementById('hiddenRestaurants').value = '';
     }
 }
 

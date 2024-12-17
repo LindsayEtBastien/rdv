@@ -28,29 +28,54 @@
             </form>
         </section>
 
-        <section id="step1">
-            <h2>Choix de l'activité</h2>
-            <p>Le concept est simple, tu choisie je réserve.</p>
-            <div class="card-container" id="activityCards">
-                <div class="card" onclick="toggleActivity(this, 'Cinéma')">
+        <!-- Choix d'activité principale -->
+        <section id="step1_1">
+            <h2>Choix de l'activité principale</h2>
+            <p>Le concept est simple, tu choisis, je réserve.</p>
+            <div class="card-container" id="mainActivityCards">
+                <div class="card" onclick="toggleActivity(this, 'Cinéma', 'main')">
                     <img src="imgs/cinema.jpg" alt="Cinéma">
                     <h3>Cinéma (film du moment)</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Parc')">
+                <div class="card" onclick="toggleActivity(this, 'Parc', 'main')">
                     <img src="imgs/parc.jpg" alt="Parc">
                     <h3>Parc (jardin aussi)</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Bowling')">
+                <div class="card" onclick="toggleActivity(this, 'Bowling', 'main')">
                     <img src="imgs/bowling.jpg" alt="Bowling">
                     <h3>Bowling</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Musée')">
+                <div class="card" onclick="toggleActivity(this, 'Musée', 'main')">
                     <img src="imgs/musee.jpg" alt="Musée">
                     <h3>Musée</h3>
                 </div>
+                <div class="custom-activity">
+                    <input type="text" id="customMainActivity" placeholder="Autre activité..." onblur="addCustomActivity('main')">
+                </div>
             </div>
-            <button type="button" onclick="goToStep1()">Suivant</button>
+            <button type="button" onclick="goToStep1_2()">Suivant</button>
         </section>
+
+        <!-- Choix d'activité secondaire -->
+        <section id="step1_2">
+            <h2>Choix de l'activité secondaire</h2>
+            <p>Au cas où l'activité principale ne serait plus disponible.</p>
+            <div class="card-container" id="secondaryActivityCards">
+                <div class="card" onclick="toggleActivity(this, 'Cinéma', 'secondary')">
+                    <img src="imgs/cinema.jpg" alt="Cinéma">
+                    <h3>Cinéma</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Parc', 'secondary')">
+                    <img src="imgs/parc.jpg" alt="Parc">
+                    <h3>Parc</h3>
+                </div>
+                <div class="custom-activity">
+                    <input type="text" id="customSecondaryActivity" placeholder="Autre activité..." onblur="addCustomActivity('secondary')">
+                </div>
+            </div>
+            <button type="button" onclick="goToStep2()">Suivant</button>
+        </section>
+
 
         <section id="manger">
             <h2>On va manger ?</h2>
