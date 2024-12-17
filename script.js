@@ -60,7 +60,7 @@ function addCustomActivity(type) {
 // Valider les activités principales et passer à l'étape secondaire
 function goToStep1_2() {
     if (selectedMainActivities.length === 0) {
-        alert('Veuillez sélectionner au moins une activité!');
+        alert('Veuillez sélectionner au moins une activité principale!');
         return;
     }
 
@@ -71,7 +71,7 @@ function goToStep1_2() {
 // Valider les activités secondaires et passer à l'étape suivante
 function goToStep2() {
     if (selectedSecondaryActivities.length === 0) {
-        alert('Veuillez sélectionner au moins une activité!');
+        alert('Veuillez sélectionner au moins une activité secondaire!');
         return;
     }
 
