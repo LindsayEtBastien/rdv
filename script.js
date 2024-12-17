@@ -54,58 +54,77 @@ function toggleSelection(card, restaurant) {
     }
 }
 
-/*CONFIRMATION*/
+/* CONFIRMATION */
 function goToConfirmation() {
-     if (selectedRestaurants.length === 0) {
+    if (selectedRestaurants.length === 0) {
         alert('Veuillez sélectionner au moins un restaurant!');
-     return;
+        return;
     }
 
-const date = document.getElementById('date').value;
-
-document.getElementById('selectedDate').textContent = date;
-document.getElementById('selectedRestaurants').textContent = selectedRestaurants.join(', ');
-document.getElementById('hiddenDate').value = date;
-document.getElementById('hiddenRestaurants').value = selectedRestaurants.join(', ');
-
-document.getElementById('step2').classList.remove('active');
-document.getElementById('confirmation').classList.add('active');
+    afficherConfirmation(); // Appelle une fonction commune pour afficher les données
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('confirmation').classList.add('active');
 }
 
 function goToConfirmationSansResto() {
-        document.getElementById('manger').classList.remove('active');
-        document.getElementById('confirmation').classList.add('active');
+    afficherConfirmation(); // Affiche la confirmation sans forcer la sélection des restaurants
+    document.getElementById('manger').classList.remove('active');
+    document.getElementById('confirmation').classList.add('active');
 }
 
+function afficherConfirmation() {
+    const date = document.getElementById('date').value;
+
+    // Afficher la date
+    document.getElementById('selectedDate').textContent = date;
+    document.getElementById('hiddenDate').value = date;
+
+    // Afficher les activités sélectionnées
+    const activities = selectedActivities.join(', ');
+    document.getElementById('selectedActivities').textContent = activities;
+
+    // Afficher les restaurants sélectionnés uniquement s'ils existent
+    if (selectedRestaurants.length > 0) {
+        document.getElementById('selectedRestaurants').textContent = selectedRestaurants.join(', ');
+        document.getElementById('hiddenRestaurants').value = selectedRestaurants.join(', ');
+    } else {
+        document.getElementById('selectedRestaurants').textContent = 'Aucun restaurant sélectionné';
+        document.getElementById('hiddenRestaurants').value = '';
+    }
+}
+
+/* SUBMIT FORMULAIRE */
 async function submitForm() {
     const date = document.getElementById('hiddenDate').value;
     const restaurants = document.getElementById('hiddenRestaurants').value;
+    const activities = document.getElementById('selectedActivities').textContent;
 
-    if (!date || !restaurants) {
+    if (!date || !activities) {
         alert('Données manquantes. Veuillez compléter toutes les étapes.');
-    return;
+        return;
     }
 
-const formData = new FormData();
-formData.append('date', date);
-formData.append('restaurants', restaurants);
-formData.append('_subject', 'Nouvelle soumission de date!');
+    const formData = new FormData();
+    formData.append('date', date);
+    formData.append('activities', activities);
+    formData.append('restaurants', restaurants);
+    formData.append('_subject', 'Nouvelle soumission de date!');
 
     try {
         const response = await fetch('https://formspree.io/f/mzzbqwjb', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json',
-        },
-    });
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+            },
+        });
 
-    if (response.ok) {
-        document.getElementById('finalDate').textContent = date;
-        document.getElementById('finalRestaurants').textContent = restaurants;
+        if (response.ok) {
+            document.getElementById('finalDate').textContent = date;
+            document.getElementById('finalRestaurants').textContent = restaurants || 'Aucun restaurant sélectionné';
 
-        document.getElementById('confirmation').classList.remove('active');
-        document.getElementById('thankYou').classList.add('active');
+            document.getElementById('confirmation').classList.remove('active');
+            document.getElementById('thankYou').classList.add('active');
         } else {
             alert('Échec de l\'envoi de votre soumission. Veuillez réessayer plus tard.');
         }
