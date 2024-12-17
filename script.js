@@ -72,6 +72,11 @@ document.getElementById('step2').classList.remove('active');
 document.getElementById('confirmation').classList.add('active');
 }
 
+function goToConfirmationSansResto() {
+        document.getElementById('manger').classList.remove('active');
+        document.getElementById('confirmation').classList.add('active');
+}
+
 async function submitForm() {
     const date = document.getElementById('hiddenDate').value;
     const restaurants = document.getElementById('hiddenRestaurants').value;
