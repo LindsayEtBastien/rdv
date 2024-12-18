@@ -69,13 +69,12 @@
                     <img src="imgs/parc.jpg" alt="Parc">
                     <h3>Parc</h3>
                 </div>
-                <div class="custom-activity">
+                <div class="card">
                     <input type="text" id="customSecondaryActivity" placeholder="Autre activité..." onblur="addCustomActivity('secondary')">
                 </div>
             </div>
             <button type="button" onclick="goToStep2()">Suivant</button>
         </section>
-
 
         <section id="manger">
             <h2>On va manger ?</h2>
@@ -112,7 +111,8 @@
             <h2>Confirmation</h2>
             <form id="finalForm">
                 <p><strong>Date :</strong> <span id="selectedDate"></span></p>
-                <p><strong>Activités :</strong> <span id="selectedActivities"></span></p>
+                <p><strong>Activités :</strong> <span id="selectedMainActivities"></span></p>
+                <p><strong>Activités :</strong> <span id="selectedSecondaryActivities"></span></p>
                 <p><strong>Restaurants (dans l'ordre de sélection):</strong> <span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
                 <input type="hidden" name="restaurants" id="hiddenRestaurants">

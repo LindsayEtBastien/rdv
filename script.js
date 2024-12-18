@@ -116,18 +116,37 @@ function goToConfirmationSansResto() {
 
 function afficherConfirmation() {
     const date = document.getElementById('date').value;
+    const dateElement = document.getElementById('selectedDate');
+    const mainElement = document.getElementById('selectedMainActivities');
+    const secondaryElement = document.getElementById('selectedSecondaryActivities');
+    const restaurantElement = document.getElementById('selectedRestaurants');
 
     document.getElementById('selectedDate').textContent = date;
 
-    // Afficher les activités principales et secondaires
-    document.getElementById('selectedMainActivities').textContent = selectedMainActivities.join(', ');
-    document.getElementById('selectedSecondaryActivities').textContent = selectedSecondaryActivities.join(', ');
+    // Afficher la date uniquement si l'élément existe
+    if (dateElement) {
+        dateElement.textContent = date || "Aucune date sélectionnée";
+    }
 
-    // Afficher les restaurants sélectionnés (si existants)
-    if (selectedRestaurants.length > 0) {
-        document.getElementById('selectedRestaurants').textContent = selectedRestaurants.join(', ');
-    } else {
-        document.getElementById('selectedRestaurants').textContent = 'Aucun restaurant sélectionné';
+    // Activité principale
+    if (mainElement) {
+        mainElement.textContent = selectedMainActivities.length > 0
+            ? selectedMainActivities.join(', ')
+            : "Aucune activité principale sélectionnée";
+    }
+
+    // Activité secondaire
+    if (secondaryElement) {
+        secondaryElement.textContent = selectedSecondaryActivities.length > 0
+            ? selectedSecondaryActivities.join(', ')
+            : "Aucune activité secondaire sélectionnée";
+    }
+
+    // Restaurants
+    if (restaurantElement) {
+        restaurantElement.textContent = selectedRestaurants.length > 0
+            ? selectedRestaurants.join(', ')
+            : "Aucun restaurant sélectionné";
     }
 }
 
