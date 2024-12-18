@@ -167,7 +167,10 @@ footer {
         max-width: calc(33.33% - 20px);
     }
     .card img {
+        width: 100%;
         height: 130px; /* Images encore plus réduites */
+        object-fit: cover; /* Garde le ratio et couvre bien la carte */
+        border-radius: 10px 10px 10px 10px; /* Coins arrondis en haut */
     }
     .card h3 {
         font-size: 0.9em; /* Réduction de la taille de la police */
@@ -182,7 +185,10 @@ footer {
     }
 
     .card img {
-        height: 120px; /* Hauteur réduite pour les images sur mobile */
+        width: 100%;
+        height: 120px; /* Images encore plus réduites */
+        object-fit: cover; /* Garde le ratio et couvre bien la carte */
+        border-radius: 7px 7px 7px 7px; /* Coins arrondis en haut */
     }
     .card h3 {
         font-size: 0.8em; /* Taille encore plus petite */
@@ -204,7 +210,10 @@ footer {
         padding: 10px;
     }
     .card img {
+        width: 100%;
         height: 100px; /* Images encore plus réduites */
+        object-fit: cover; /* Garde le ratio et couvre bien la carte */
+        border-radius: 5px 5px 5px 5px; /* Coins arrondis en haut */
     }
     .card h3 {
         font-size: 0.6em; /* Police plus petite pour les petits téléphones */
