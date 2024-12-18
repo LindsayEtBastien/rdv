@@ -111,7 +111,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px; /* Espace réduit entre les cartes */
+    gap: 25px; /* Espace réduit entre les cartes */
     margin: 0 auto;
     padding: 10px;
 }
