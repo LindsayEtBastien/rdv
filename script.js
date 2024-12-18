@@ -28,20 +28,28 @@ let selectedSecondaryActivities = [];
 
 // Fonction pour sélectionner/désélectionner des activités
 function toggleActivity(card, activity, type) {
-    card.classList.toggle('selected');
+    // Sélectionner le conteneur correspondant (main ou secondary)
+    const container = type === 'main' ? document.getElementById('mainActivityCards') 
+                                      : document.getElementById('secondaryActivityCards');
 
-    if (type === 'main') { // Gestion des activités principales
-        if (card.classList.contains('selected')) {
-            selectedMainActivities.push(activity);
-        } else {
-            selectedMainActivities = selectedMainActivities.filter(a => a !== activity);
-        }
-    } else if (type === 'secondary') { // Gestion des activités secondaires
-        if (card.classList.contains('selected')) {
-            selectedSecondaryActivities.push(activity);
-        } else {
-            selectedSecondaryActivities = selectedSecondaryActivities.filter(a => a !== activity);
-        }
+    // Désélectionner toutes les autres cartes de la même section
+    container.querySelectorAll('.card').forEach(c => {
+        c.classList.remove('selected');
+    });
+
+    // Vider les tableaux des activités déjà sélectionnées dans la section
+    if (type === 'main') {
+        selectedMainActivities = [];
+    } else if (type === 'secondary') {
+        selectedSecondaryActivities = [];
+    }
+
+    // Ajouter la nouvelle activité sélectionnée
+    card.classList.add('selected');
+    if (type === 'main') {
+        selectedMainActivities.push(activity);
+    } else if (type === 'secondary') {
+        selectedSecondaryActivities.push(activity);
     }
 }
 

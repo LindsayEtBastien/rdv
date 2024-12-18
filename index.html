@@ -49,7 +49,7 @@
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Tour Montparnasse', 'main')">
                     <img src="imgs/activites/tour-montparnasse.jpg" alt="Tour-montparnasse">
-                    <h3>Tour Montparnasse</h3>
+                    <h3>Observatoire Tour Montparnasse</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Aquarium Paris', 'main')">
                     <img src="imgs/activites/aquarium-paris.jpg" alt="Aquarium Paris">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Atelier crochet ensemble', 'main')">
                     <img src="imgs/activites/atelier-crochet.gif" alt="Atelier-crochet">
-                    <h3>Atelier Crochet ensemble (chill dans un café)</h3>
+                    <h3>Atelier Crochet ensemble (chill dans un café par exemple)</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Atelier cuisine/patisserie', 'main')">
                     <img src="imgs/activites/atelier-cuisine-patisserie.gif" alt="Atelier-cuisine-patisserie">
@@ -88,6 +88,10 @@
                     <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe">
                     <h3>Canoë-kayak (Ile-de-france)</h3>
                 </div>
+                <div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'main')">
+                    <img src="imgs/activites/.jpg" alt="Canoe">
+                    <h3>Randonnée</h3>
+                </div>
                 <div class="card" onclick="toggleActivity(this, 'Photos', 'main')">
                     <img src="imgs/activites/photos.gif" alt="Photos">
                     <h3>Photos pleeeeeease </h3>
@@ -103,19 +107,18 @@
                 <!--Autres-->
                 <div class="card">
                     <img src="imgs/activites/activite-culturel.jpeg" alt="Autre-culturel">
-                    <p>J'ai une culture dévelopée! Allons visiter ...
+                    <h3>J'ai une culture dévelopée! Allons visiter ...</h3>
                         <div class="custom-activity">
                             <input type="text" id="customMainActivity" placeholder="écrire...">
-                            <button type="button" onclick="addCustomActivity('main')">Envoyer</button>
+                            <button type="button" onclick="addCustomActivity('main')">Go</button>
                         </div>
                 </div>
                 <div class="card">
                     <img src="imgs/activites/autre-activite.jpg" alt="Autre-activite">
                     <h3>Tes idées sont nulles, je veux faire...</h3>
-                    <input type="text" id="customMainActivity" placeholder="Autre activité (un musée en particulier, etc...)" onblur="addCustomActivity('main')">
                     <div class="custom-activity">
                         <input type="text" id="customMainActivity" placeholder="écrire...">
-                        <button type="button" onclick="addCustomActivity('main')">Envoyer</button>
+                        <button type="button" onclick="addCustomActivity('main')">Go</button>
                     </div>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Rien', 'main')">
