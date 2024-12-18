@@ -36,23 +36,88 @@
             <div class="card-container" id="mainActivityCards">
                 <div class="card" onclick="toggleActivity(this, 'Cinéma', 'main')">
                     <img src="imgs/cinema.jpg" alt="Cinéma">
-                    <h3>Cinéma (film du moment)</h3>
+                    <h3>Cinéma (pathé, mk2, 4DX, canapé à deux)</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Parc', 'main')">
-                    <img src="imgs/parc.jpg" alt="Parc">
-                    <h3>Parc (jardin aussi)</h3>
+                <div class="card" onclick="toggleActivity(this, 'Parc jardin', 'main')">
+                    <img src="imgs/parc-jardin.jpg" alt="Parc-jardin">
+                    <h3>Je vois la vie en vert, allons dans un parc ou un jardin</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Bowling', 'main')">
-                    <img src="imgs/bowling.jpg" alt="Bowling">
-                    <h3>Bowling</h3>
+                <div class="card" onclick="toggleActivity(this, 'Musée richelieu + bibliothèque', 'main')">
+                    <img src="imgs/musee-richelieu-bibliotheque.jpg" alt="Musée-richelieu-bilbiothèque">
+                    <h3>Musée richelieu + bibliothèque</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Musée', 'main')">
-                    <img src="imgs/musee.jpg" alt="Musée">
-                    <h3>Musée</h3>
+                <div class="card" onclick="toggleActivity(this, 'Tour Montparnasse', 'main')">
+                    <img src="imgs/tour-montparnasse.jpg" alt="Tour-montparnasse">
+                    <h3>Tour Montparnasse</h3>
                 </div>
+                <div class="card" onclick="toggleActivity(this, 'Aquarium Paris', 'main')">
+                    <img src="imgs/aquarium-paris.jpg" alt="Aquarium Paris">
+                    <h3>Aquarium Paris</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Achats', 'main')">
+                    <img src="imgs/achats.jpg" alt="Achats">
+                    <h3>Achats (laine, bivouac, autres)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier crochet ensemble', 'main')">
+                    <img src="imgs/atelier-crochet.jpg" alt="Atelier-crochet">
+                    <h3>Atelier Crochet ensemble (chill dans un café)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier cuisine/patisserie', 'main')">
+                    <img src="imgs/atelier-cuisine-patisserie.jpg" alt="Atelier-cuisine-patisserie">
+                    <h3>Atelier Cuisine/Pâtisserie (organisé dans un lieu ou à décider ensemble)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier cuisine/patisserie', 'main')">
+                    <img src="imgs/atelier-cuisine-patisserie.jpg" alt="Atelier-cuisine-patisserie">
+                    <h3>Atelier Cuisine/Pâtisserie (à organisé dans un lieu)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Visite planetarium', 'main')">
+                    <img src="imgs/planetarium.jpg" alt="Visite-planetarium">
+                    <h3>Visite planétarium</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Rien', 'main')">
+                    <img src="imgs/rien.jpg" alt="rien">
+                    <h3>Rien, pas le temps</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Theatre', 'main')">
+                    <img src="imgs/théatre.jpg" alt="theatre">
+                    <h3>Pièce de théatre</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'main')">
+                    <img src="imgs/activite-hors-paris.jpg" alt="Activites-hors-paris">
+                    <h3>Fait moi voyager</h3>
+                    <p>Activités ou visites en dehors de Paris (non sportive)</p>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Opera', 'main')">
+                    <img src="imgs/opera.jpg" alt="Opera">
+                    <h3>OpérAAAAAAAAAAAAH</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Canoe IDF', 'main')">
+                    <img src="imgs/canoe.jpg" alt="Canoe">
+                    <h3>Canoë (Ile-de-france)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Photos', 'main')">
+                    <img src="imgs/photos.jpg" alt="Photos">
+                    <h3>Photos pleeeeeease </h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'ActivitesX', 'main')">
+                    <img src="imgs/activitesx.jpg" alt="ActivitesX">
+                    <h3>Activités</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'ActivitesXX', 'main')">
+                    <img src="imgs/activitesxx.jpg" alt="ActivitesXX">
+                    <h3>Activités</h3>
+                </div>
+                <!--Autres-->
                 <div class="card">
-                    <img src="imgs/cinema.jpg" alt="Musée">
-                    <input type="text" id="customMainActivity" placeholder="Autre activité..." onblur="addCustomActivity('main')">
+                    <img src="imgs/culturel.jpg" alt="Autre-culturel">
+                    <p>J'ai une culture dévelopée! Allons visiter ...
+                    <input type="text" id="customMainActivity" placeholder="écrire..." onblur="addCustomActivity('main')"></p>
+                </div>
+                
+                <div class="card">
+                    <img src="imgs/autre-activite.jpg" alt="Autre-activite">
+                    <h3>Tes idées sont nulles, je veux faire...</h3>
+                    <input type="text" id="customMainActivity" placeholder="Autre activité (un musée en particulier, etc...)" onblur="addCustomActivity('main')">
                 </div>
             </div>
             <button type="button" onclick="goToStep1_2()">Suivant</button>
