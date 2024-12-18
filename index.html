@@ -20,7 +20,8 @@
     
         <section id="step0">
             <h2>Choix de la date</h2>
-            <p>Impossible de sélectionner une date prolongée sur plusieurs jours... Peut être bientôt 😉</p>
+            <p>Impossible de sélectionner une date prolongée sur plusieurs jours...</p>
+            <p>Peut être bientôt 😉</p>
             <form id="dateForm">
                 <label for="date">Choisie une date : </label>
                 <input type="date" id="date" name="date" required>
@@ -31,7 +32,7 @@
         <!-- Choix d'activité principale -->
         <section id="step1_1">
             <h2>Choix de l'activité principale</h2>
-            <p>Le concept est simple, tu choisis, je réserve.</p>
+            <p>Le concept est simple, tu choisie.</p>
             <div class="card-container" id="mainActivityCards">
                 <div class="card" onclick="toggleActivity(this, 'Cinéma', 'main')">
                     <img src="imgs/cinema.jpg" alt="Cinéma">
@@ -78,7 +79,9 @@
 
         <section id="manger">
             <h2>On va manger ?</h2>
-            <img src="imgs/kirby.gif" class="animation_kirby">
+            <div class="animation-container">
+                <img src="imgs/kirby.gif" class="animation_kirby">
+            </div>
             <button type="button" onclick="goToRestaurant()">Ouii Miammm Miammm!! Petite vessie mais gros estomac 😏</button>
             <button type="button" onclick="goToConfirmationSansResto()">Non... pas envie 😶</button>
         </section>
