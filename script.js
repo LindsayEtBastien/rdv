@@ -42,22 +42,25 @@ function toggleActivity(card, activity, type) {
 
 // Fonction pour ajouter une activité personnalisée
 function addCustomActivity(type) {
-    const input = type === 'main' ? document.getElementById('customMainActivity') : document.getElementById('customSecondaryActivity');
-    const value = input.value.trim();
+    const inputField = type === 'main' ? document.getElementById('customMainActivity') : document.getElementById('customSecondaryActivity');
+    const activity = inputField.value.trim();
 
-    if (value) {
+    if (activity !== "") {
         if (type === 'main') {
-            selectedMainActivities.push(value);
-            alert("Activité principale ajoutée : " + value);
-            goToStep1_2(); // Passer automatiquement à l'activité secondaire
+            selectedMainActivities.push(activity);
+            alert(`Activité principale "${activity}" ajoutée`);
+            goToStep1_2(); // Aller à l'étape suivante
         } else if (type === 'secondary') {
-            selectedSecondaryActivities.push(value);
-            alert("Activité secondaire ajoutée : " + value);
-            goToStep2(); // Passer automatiquement à la section suivante
+            selectedSecondaryActivities.push(activity);
+            alert(`Activité secondaire "${activity}" ajoutée`);
+            goToStep2(); // Aller à l'étape suivante
         }
-        input.value = ""; // Réinitialiser l'input
+        inputField.value = ""; // Réinitialise l'input
+    } else {
+        alert("Veuillez entrer une activité.");
     }
 }
+
 
 // Valider les activités principales et passer à l'étape secondaire
 function goToStep1_2() {

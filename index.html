@@ -74,10 +74,6 @@
                     <img src="imgs/planetarium.jpg" alt="Visite-planetarium">
                     <h3>Visite planétarium</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Rien', 'main')">
-                    <img src="imgs/rien.jpg" alt="rien">
-                    <h3>Rien, pas le temps</h3>
-                </div>
                 <div class="card" onclick="toggleActivity(this, 'Theatre', 'main')">
                     <img src="imgs/théatre.jpg" alt="theatre">
                     <h3>Pièce de théatre</h3>
@@ -111,13 +107,23 @@
                 <div class="card">
                     <img src="imgs/culturel.jpg" alt="Autre-culturel">
                     <p>J'ai une culture dévelopée! Allons visiter ...
-                    <input type="text" id="customMainActivity" placeholder="écrire..." onblur="addCustomActivity('main')"></p>
+                        <div class="custom-activity">
+                            <input type="text" id="customMainActivity" placeholder="écrire...">
+                            <button type="button" onclick="addCustomActivity('main')">Envoyer</button>
+                        </div>
                 </div>
-                
                 <div class="card">
                     <img src="imgs/autre-activite.jpg" alt="Autre-activite">
                     <h3>Tes idées sont nulles, je veux faire...</h3>
                     <input type="text" id="customMainActivity" placeholder="Autre activité (un musée en particulier, etc...)" onblur="addCustomActivity('main')">
+                    <div class="custom-activity">
+                        <input type="text" id="customMainActivity" placeholder="écrire...">
+                        <button type="button" onclick="addCustomActivity('main')">Envoyer</button>
+                    </div>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Rien', 'main')">
+                    <img src="imgs/rien.jpg" alt="rien">
+                    <h3>Rien, pas le temps</h3>
                 </div>
             </div>
             <button type="button" onclick="goToStep1_2()">Suivant</button>
@@ -137,7 +143,12 @@
                     <h3>Parc</h3>
                 </div>
                 <div class="card">
-                    <input type="text" id="customSecondaryActivity" placeholder="Autre activité..." onblur="addCustomActivity('secondary')">
+                    <img src="imgs/autre-activite.jpg" alt="Autre-activite">
+                    <h3>Tes idées sont nulles, je veux faire...</h3>
+                    <div class="custom-activity">
+                        <input type="text" id="customSecondaryActivity" placeholder="Autre activité...">
+                        <button type="button" onclick="addCustomActivity('secondary')">Entrée</button>
+                    </div>>
                 </div>
             </div>
             <button type="button" onclick="goToStep2()">Suivant</button>
