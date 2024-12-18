@@ -20,11 +20,12 @@
     
         <section id="step0">
             <h2>Choix de la date</h2>
-            <p>Impossible de sélectionner une date prolongée sur plusieurs jours...</p>
-            <p>Peut être bientôt 😉</p>
+            <p>Impossible de sélectionner une date prolongée sur plusieurs jours...Peut être bientôt 😉</p>
             <form id="dateForm">
-                <label for="date">Choisie une date : </label>
+                <label for="date">Choisie une date ou tu serait disponible : </label>
                 <input type="date" id="date" name="date" required>
+                <label for="time">A partir de quelle heure ? : </label>
+                <input type="time" id="time" name="time" required>
                 <button type="button" onclick="goToStep0()">Suivant</button>
             </form>
         </section>
@@ -62,7 +63,6 @@
                     <img src="imgs/activites/atelier-crochet.gif" alt="Atelier-crochet">
                     <h3>Atelier Crochet ensemble (chill dans un café)</h3>
                 </div>
-
                 <div class="card" onclick="toggleActivity(this, 'Atelier cuisine/patisserie', 'main')">
                     <img src="imgs/activites/atelier-cuisine-patisserie.gif" alt="Atelier-cuisine-patisserie">
                     <h3>Atelier Cuisine/Pâtisserie (à organisé dans un lieu)</h3>
@@ -77,8 +77,8 @@
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'main')">
                     <img src="imgs/activites/activite-hors-paris.jpg" alt="Activites-hors-paris">
-                    <h3>Fait moi voyager</h3>
                     <p>Activités ou visites en dehors de Paris</p>
+                    <h3>Fait moi voyager</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Opera', 'main')">
                     <img src="imgs/activites/opera.jpg" alt="Opera">

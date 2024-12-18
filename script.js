@@ -8,10 +8,15 @@ function goToActivities() {
 /*DATE*/
 function goToStep0() {
     const date = document.getElementById('date').value;
-    if (!date) {
-        alert('Veuillez sélectionner une date!');
+    const time = document.getElementById('time').value;
+
+    if (!date || !time) {
+        alert('Sélectionne une date et une heure.');
         return;
     }
+    //stock dans des champs cachés
+    document.getElementById('hiddenDate').value = date;
+    document.getElementById('hiddenTime').value = time;
 
     document.getElementById('step0').classList.remove('active');
     document.getElementById('step1_1').classList.add('active');
@@ -158,19 +163,20 @@ function afficherConfirmation() {
 /* SUBMIT FORMULAIRE */
 async function submitForm() {
     const date = document.getElementById('hiddenDate').value;
+    const time = document.getElementById('hiddenTime').value;
     const restaurants = document.getElementById('hiddenRestaurants').value;
     const activities = document.getElementById('selectedActivities').textContent;
 
-    if (!date || !activities) {
-        alert('Données manquantes. Veuillez compléter toutes les étapes.');
+    if (!date || !time || !activities) {
+        alert('Des données sont manquantes. Rafraichit et complète toutes les étapes.');
         return;
     }
 
     const formData = new FormData();
-    formData.append('date', date);
+    formData.append('date', `${date} à partir de ${time}`);
     formData.append('activities', activities);
     formData.append('restaurants', restaurants);
-    formData.append('_subject', 'Nouvelle soumission de date!');
+    formData.append('_subject', 'Rencard avec Lily');
 
     try {
         const response = await fetch('https://formspree.io/f/mzzbqwjb', {
