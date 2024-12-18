@@ -39,6 +39,10 @@
                     <img src="imgs/activites/cinema.jpg" alt="Cinéma">
                     <h3>Cinéma (pathé, mk2, 4DX, canapé à deux)</h3>
                 </div>
+                <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
+                    <img src="imgs/activites/cine-mailles.jpeg" alt="cine-mailles">
+                    <h3>Ciné-mailles (quand ce sera disponible)</h3>
+                </div>
                 <div class="card" onclick="toggleActivity(this, 'Parc jardin', 'main')">
                     <img src="imgs/activites/parc-jardin.jpg" alt="Parc-jardin">
                     <h3>Je vois la vie en vert, allons dans un parc ou un jardin</h3>
@@ -46,6 +50,10 @@
                 <div class="card" onclick="toggleActivity(this, 'Musée richelieu + bibliothèque', 'main')">
                     <img src="imgs/activites/musee-richelieu-bibliotheque.jpg" alt="Musée-richelieu-bilbiothèque">
                     <h3>Musée richelieu + bibliothèque</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Ikea', 'main')">
+                    <img src="imgs/activites/ikea.jpg" alt="Ikea">
+                    <h3>Ikea date</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Tour Montparnasse', 'main')">
                     <img src="imgs/activites/tour-montparnasse.jpg" alt="Tour-montparnasse">
@@ -55,9 +63,13 @@
                     <img src="imgs/activites/aquarium-paris.jpg" alt="Aquarium Paris">
                     <h3>Aquarium Paris</h3>
                 </div>
+                <div class="card" onclick="toggleActivity(this, 'Bookoff', 'main')">
+                    <img src="imgs/activites/bookoff.jpg" alt="Bookoff">
+                    <h3>Bookoff</h3>
+                </div>
                 <div class="card" onclick="toggleActivity(this, 'Achats', 'main')">
                     <img src="imgs/activites/achats.jpg" alt="Achats">
-                    <h3>Achats (laine, bivouac, autres)</h3>
+                    <h3>Journée Achat/recyclerie (laine, bivouac, autres)</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Atelier crochet ensemble', 'main')">
                     <img src="imgs/activites/atelier-crochet.gif" alt="Atelier-crochet">
@@ -84,12 +96,16 @@
                     <img src="imgs/activites/opera.jpg" alt="Opera">
                     <h3>OpérAAAAAAAAAAAAH</h3>
                 </div>
+                <div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'main')">
+                    <img src="imgs/activites/pique-nique-sceaux.jpg" alt="Pique-nique-sceaux">
+                    <h3>Pique-nique à Sceaux</h3>
+                </div>
                 <div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'main')">
                     <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe">
                     <h3>Canoë-kayak (Ile-de-france)</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'main')">
-                    <img src="imgs/activites/.jpg" alt="Canoe">
+                <div class="card" onclick="toggleActivity(this, 'Randonnee', 'main')">
+                    <img src="imgs/activites/randonnee.jpg" alt="randonnee">
                     <h3>Randonnée</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Photos', 'main')">
@@ -98,10 +114,6 @@
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'ActivitesX', 'main')">
                     <img src="imgs/activites/activitex.gif" alt="ActivitesX">
-                    <h3>Activités</h3>
-                </div>
-                <div class="card" onclick="toggleActivity(this, 'ActivitesXX', 'main')">
-                    <img src="imgs/activites/activitex.gif" alt="ActivitesXX">
                     <h3>Activités</h3>
                 </div>
                 <!--Autres-->
@@ -132,16 +144,86 @@
         <!-- Choix d'activité secondaire -->
         <section id="step1_2">
             <h2>Choix de l'activité secondaire</h2>
-            <p>Au cas où l'activité principale ne serait plus disponible.</p>
+            <p>Au cas où l'activité principale ne serait plus disponible ou bien si tu veux en faire une deuxième</p>
             <div class="card-container" id="secondaryActivityCards">
                 <div class="card" onclick="toggleActivity(this, 'Cinéma', 'secondary')">
-                    <img src="imgs/cinema.jpg" alt="Cinéma">
-                    <h3>Cinéma</h3>
+                    <img src="imgs/activites/cinema.jpg" alt="Cinéma">
+                    <h3>Cinéma (pathé, mk2, 4DX, canapé à deux)</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Parc', 'secondary')">
-                    <img src="imgs/parc.jpg" alt="Parc">
-                    <h3>Parc</h3>
+                <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
+                    <img src="imgs/activites/cine-mailles.jpeg" alt="cine-mailles">
+                    <h3>Ciné-mailles (quand ce sera disponible)</h3>
                 </div>
+                <div class="card" onclick="toggleActivity(this, 'Parc jardin', 'secondary')">
+                    <img src="imgs/activites/parc-jardin.jpg" alt="Parc-jardin">
+                    <h3>Je vois la vie en vert, allons dans un parc ou un jardin</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Musée richelieu + bibliothèque', 'secondary')">
+                    <img src="imgs/activites/musee-richelieu-bibliotheque.jpg" alt="Musée-richelieu-bilbiothèque">
+                    <h3>Musée richelieu + bibliothèque</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Ikea', 'main')">
+                    <img src="imgs/activites/ikea.jpg" alt="Ikea">
+                    <h3>Ikea date</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Tour Montparnasse', 'secondary')">
+                    <img src="imgs/activites/tour-montparnasse.jpg" alt="Tour-montparnasse">
+                    <h3>Observatoire Tour Montparnasse</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Aquarium Paris', 'secondary')">
+                    <img src="imgs/activites/aquarium-paris.jpg" alt="Aquarium Paris">
+                    <h3>Aquarium Paris</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Bookoff', 'main')">
+                    <img src="imgs/activites/bookoff.jpg" alt="Bookoff">
+                    <h3>Bookoff</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Achats', 'secondary')">
+                    <img src="imgs/activites/achats.jpg" alt="Achats">
+                    <h3>Achats (laine, bivouac, autres)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier crochet ensemble', 'secondary')">
+                    <img src="imgs/activites/atelier-crochet.gif" alt="Atelier-crochet">
+                    <h3>Atelier Crochet ensemble (chill dans un café par exemple)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier cuisine/patisserie', 'secondary')">
+                    <img src="imgs/activites/atelier-cuisine-patisserie.gif" alt="Atelier-cuisine-patisserie">
+                    <h3>Atelier Cuisine/Pâtisserie (à organisé dans un lieu)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Visite planetarium', 'secondary')">
+                    <img src="imgs/activites/planetarium.jpeg" alt="Visite-planetarium">
+                    <h3>Visite planétarium</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Theatre', 'secondary')">
+                    <img src="imgs/activites/theatre.jpg" alt="theatre">
+                    <h3>Pièce de théatre</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'secondary')">
+                    <img src="imgs/activites/activite-hors-paris.jpg" alt="Activites-hors-paris">
+                    <p>Activités ou visites en dehors de Paris</p>
+                    <h3>Fait moi voyager</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Opera', 'secondary')">
+                    <img src="imgs/activites/opera.jpg" alt="Opera">
+                    <h3>OpérAAAAAAAAAAAAH</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'main')">
+                    <img src="imgs/activites/pique-nique-sceaux.jpg" alt="Pique-nique-sceaux">
+                    <h3>Pique-nique à Sceaux</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'secondary')">
+                    <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe">
+                    <h3>Canoë-kayak (Ile-de-france)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Randonnee', 'secondary')">
+                    <img src="imgs/activites/randonnee.jpg" alt="randonnee">
+                    <h3>Randonnée</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Photos', 'secondary')">
+                    <img src="imgs/activites/photos.gif" alt="Photos">
+                    <h3>Photos pleeeeeease </h3>
+                </div>
+
                 <div class="card">
                     <img src="imgs/autre-activite.jpg" alt="Autre-activite">
                     <h3>Tes idées sont nulles, je veux faire...</h3>
