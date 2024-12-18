@@ -22,9 +22,9 @@
             <h2>Choix de la date</h2>
             <p>Impossible de sélectionner une date prolongée sur plusieurs jours...Peut être bientôt 😉</p>
             <form id="dateForm">
-                <label for="date">Choisie une date où tu serait disponible : </label>
+                <label for="date">Choisie une date où tu serait disponible </label>
                 <input type="date" id="date" name="date" required>
-                <br><label for="time">A partir de quelle heure ? : </label>
+                <br><label for="time">A partir de quelle heure ? </label>
                 <input type="time" id="time" name="time" required>
             </form>
             <button type="button" onclick="goToStep0()">Suivant</button>
@@ -192,6 +192,7 @@
                 <p><strong>Activités :</strong> <span id="selectedSecondaryActivities"></span></p>
                 <p><strong>Restaurants (dans l'ordre de sélection):</strong> <span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
+                <input type="hidden" name="time" id="hiddenTime">
                 <input type="hidden" name="restaurants" id="hiddenRestaurants">
                 <button type="button" onclick="submitForm()">Envoyer</button>
             </form>
