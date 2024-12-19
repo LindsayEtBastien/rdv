@@ -22,9 +22,9 @@
             <h2>Choix de la date</h2>
             <p>Impossible de sélectionner une date prolongée sur plusieurs jours...Peut être bientôt 😉</p>
             <form id="dateForm">
-                <label for="date">Choisie une date où tu serait disponible </label>
+                <label for="date">Choisis une date où tu serais disponible</label>
                 <input type="date" id="date" name="date" required>
-                <br><label for="time">A partir de quelle heure ? </label>
+                <br><label for="time">À partir de quelle heure ?</label>
                 <input type="time" id="time" name="time" required>
             </form>
             <button type="button" onclick="goToStep0()">Suivant</button>
@@ -307,7 +307,7 @@
                 <p><strong>Date : </strong><span id="selectedDate"></span></p>
                 <p><strong>Activité principale : </strong><span id="selectedMainActivities"></span></p>
                 <p><strong>Activité secondaire</strong> <em>(au cas où la principale ne serait plus disponible ou bien si tu veux en faire une deuxième)</em> : <span id="selectedSecondaryActivities"></span></p>
-                <p><strong>Restaurants <em>(dans l'ordre de ta sélection)</em> : </strong><span id="selectedRestaurants"></span></p>
+                <p><strong>Restaurants </strong><em>(dans l'ordre de ta sélection)</em> : <span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
                 <input type="hidden" name="time" id="hiddenTime">
                 <input type="hidden" name="restaurants" id="hiddenRestaurants">
@@ -318,7 +318,7 @@
 
         <section id="thankYou" class="hidden">
             <h2>Merci ma Lily ❤️</h2>
-            <p>On se voit le <span id="finalDate"></span></p>
+            <p>On se voit le <span id="selectedDate"></span></p>
             <div class="animation-container">
                 <img src="imgs/break-dance.mp4" class="animation">
             </div>

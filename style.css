@@ -150,7 +150,6 @@ footer {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 20px;
-    text-align: left;
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -220,7 +219,7 @@ footer {
     margin-top: 10px;
     font-size: 1em;
     color: #333;
-    text-align: center;
+    text-align: left;
     z-index: 1; /* S'assure que le texte reste sous l'overlay */
 }
 
