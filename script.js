@@ -184,60 +184,69 @@ function goToConfirmationSansResto() {
     document.getElementById('confirmation').classList.add('active');
 }
 
+
+//AFFICHER CONFIRMATION AVANT ENVOI
 function afficherConfirmation() {
     const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
     const dateElement = document.getElementById('selectedDate');
     const mainElement = document.getElementById('selectedMainActivities');
     const secondaryElement = document.getElementById('selectedSecondaryActivities');
     const restaurantElement = document.getElementById('selectedRestaurants');
 
-    document.getElementById('selectedDate').textContent = date;
-
-    // Afficher la date uniquement si l'élément existe
+    // Afficher la date
     if (dateElement) {
-        dateElement.textContent = date || "Aucune date sélectionnée";
+        dateElement.textContent = date ? `${date} à partir de ${time}` : "Aucune date sélectionnée";
+        document.getElementById('hiddenDate').value = date;
+        document.getElementById('hiddenTime').value = time;
     }
 
     // Activité principale
     if (mainElement) {
-        mainElement.textContent = selectedMainActivities.length > 0
-            ? selectedMainActivities.join(', ')
+        const cinemaOption = selectedCinemaOption ? ` (${selectedCinemaOption})` : '';
+        const mainActivitiesText = selectedMainActivities.length > 0
+            ? selectedMainActivities.map(activity => (activity === 'Cinéma' ? `Cinéma${cinemaOption}` : activity)).join(', ')
             : "Aucune activité principale sélectionnée";
+
+        mainElement.textContent = mainActivitiesText;
+        document.getElementById('hiddenActivities').value = mainActivitiesText;
     }
 
     // Activité secondaire
     if (secondaryElement) {
-        secondaryElement.textContent = selectedSecondaryActivities.length > 0
+        const secondaryActivitiesText = selectedSecondaryActivities.length > 0
             ? selectedSecondaryActivities.join(', ')
             : "Aucune activité secondaire sélectionnée";
+
+        secondaryElement.textContent = secondaryActivitiesText;
     }
 
     // Restaurants
     if (restaurantElement) {
-        restaurantElement.textContent = selectedRestaurants.length > 0
+        const restaurantList = selectedRestaurants && selectedRestaurants.length > 0
             ? selectedRestaurants.join(', ')
             : "Aucun restaurant sélectionné";
+
+        restaurantElement.textContent = restaurantList;
+        document.getElementById('hiddenRestaurants').value = restaurantList;
     }
 }
 
-/* SUBMIT FORMULAIRE */
+//SUBMIT FORMULAIRE MAIL
 async function submitForm() {
     const date = document.getElementById('hiddenDate').value;
     const time = document.getElementById('hiddenTime').value;
     const restaurants = document.getElementById('hiddenRestaurants').value;
-    const activities = document.getElementById('selectedActivities').textContent;
-
-    const cinemaOption = selectedCinemaOption ? `Cinéma (${selectedCinemaOption})` : 'Cinéma (aucune option sélectionnée)';
-
+    const activities = document.getElementById('hiddenActivities').value;
 
     if (!date || !time || !activities) {
-        alert('Des données sont manquantes. Rafraichit et complète toutes les étapes.');
+        alert('Des données sont manquantes. Veuillez vérifier que toutes les étapes ont été complétées.');
         return;
     }
 
     const formData = new FormData();
     formData.append('date', `${date} à partir de ${time}`);
-    formData.append('activities', activities.includes('Cinéma') ? `${activities}, ${cinemaOption}` : activities);
+    formData.append('activities', activities);
     formData.append('restaurants', restaurants);
     formData.append('_subject', 'Rencard avec Lily');
 
@@ -251,17 +260,19 @@ async function submitForm() {
         });
 
         if (response.ok) {
-            document.getElementById('finalDate').textContent = date;
-            document.getElementById('finalRestaurants').textContent = restaurants || 'Aucun restaurant sélectionné';
-            document.getElementById('finalActivities').textContent = activities.includes('Cinéma') ? `${activities}, ${cinemaOption}` : activities;
-            
+            // Mise à jour de la page pour afficher un message de remerciement
             document.getElementById('confirmation').classList.remove('active');
-            document.getElementById('thankYou').classList.add('active');
+            const thankYouSection = document.getElementById('thankYou');
+            if (thankYouSection) {
+                thankYouSection.classList.add('active');
+            } else {
+                alert('Votre demande a été envoyée avec succès. Merci !');
+            }
         } else {
-            alert('Échec de l\'envoi de votre soumission. Veuillez réessayer plus tard.');
+            alert('Échec de l\'envoi. Veuillez réessayer.');
         }
     } catch (error) {
-        console.error('Erreur lors de l\'envoi du formulaire:', error);
-        alert('Une erreur s\'est produite. Veuillez réessayer.');
+        console.error('Erreur lors de l\'envoi du formulaire :', error);
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
     }
 }

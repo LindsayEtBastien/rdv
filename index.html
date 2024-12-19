@@ -282,19 +282,19 @@
             <p>Tu peux choisir tes préférences avec l'ordre de ta sélection (max. 3 stp)</p>
             <div class="card-container" id="restaurantCards">
                 <div class="card" onclick="toggleSelection(this, 'Restaurant Italien')">
-                    <img src="imgs/italien.png" alt="Restaurant Italien">
+                    <img src="imgs/restaurants/italien.png" alt="Restaurant Italien">
                     <h3>Restaurant Italien</h3>
                 </div>
-                <div class="card" onclick="toggleSelection(this, 'Restaurant Japonnais')">
-                    <img src="imgs/japonnais.jpg" alt="Restaurant Japonnais">
-                    <h3>Restaurant Japonnais</h3>
+                <div class="card" onclick="toggleSelection(this, 'Restaurant Japonais')">
+                    <img src="imgs/restaurants/japonais" alt="Restaurant Japonais">
+                    <h3>Restaurant Japonais</h3>
                 </div>
                 <div class="card" onclick="toggleSelection(this, 'Restaurant Coréen')">
-                    <img src="imgs/coreen.jpg" alt="Restaurant Coréen">
+                    <img src="imgs/restaurants/coreen.jpg" alt="Restaurant Coréen">
                     <h3>Restaurant Coréen</h3>
                 </div>
                 <div class="card" onclick="toggleSelection(this, 'Burger')">
-                    <img src="imgs/burger.jpg" alt="Burger">
+                    <img src="imgs/restaurants/burger" alt="Burger">
                     <h3>Burger</h3>
                 </div>
             </div>
@@ -305,21 +305,23 @@
             <h2>Confirmation</h2>
             <form id="finalForm">
                 <p><strong>Date : </strong><span id="selectedDate"></span></p>
-                <p><strong>Activités principale : </strong><span id="selectedMainActivities"></span></p>
-                <p><strong>Activités secondaire</strong> (au cas où la principale ne serait pas disponible) : <span id="selectedSecondaryActivities"></span></p>
+                <p><strong>Activité principale : </strong><span id="selectedMainActivities"></span></p>
+                <p><strong>Activité secondaire</strong> (au cas où la principale ne serait plus disponible ou bien si tu veux en faire une deuxième) : <span id="selectedSecondaryActivities"></span></p>
                 <p><strong>Restaurants (dans l'ordre de ta sélection) : </strong><span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
                 <input type="hidden" name="time" id="hiddenTime">
                 <input type="hidden" name="restaurants" id="hiddenRestaurants">
-                <button type="button" onclick="submitForm()">Envoyer</button>
+                <input type="hidden" name="activities" id="hiddenActivities">
+                <button type="button" onclick="submitForm()">Envoyer à Bastien</button>
             </form>
         </section>        
 
         <section id="thankYou" class="hidden">
-            <h2>Merci!</h2>
+            <h2>Merci ma Lily ❤️</h2>
             <p>On se voit le <span id="finalDate"></span></p>
-            <p>L'activité sera : <span id="finalActivities"></span></p>
-            <p>Et nous iront manger dans : <span id="finalRestaurants"></span></p>
+            <div class="animation-container">
+                <img src="imgs/break-dance.mp4" class="animation">
+            </div>
         </section>
     </main>
 
