@@ -35,7 +35,9 @@
             <h2>Choix de l'activité principale</h2>
             <p>Le concept est simple, tu choisie.</p>
             <div class="card-container" id="mainActivityCards">
-                <div class="card">
+
+
+                <div class="card" onclick="selectCard(this, 'Cinéma')">
                     <img src="imgs/activites/cinema.jpg" alt="Cinéma">
                     <h3>Cinéma</h3>
                     <div class="options">
@@ -45,6 +47,8 @@
                         <button onclick="selectCinemaOption(this, 'Canap-2')">Canap à 2</button>
                     </div>
                 </div>
+
+
                 <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
                     <img src="imgs/activites/cine-mailles.jpg" alt="cine-mailles">
                     <h3>Ciné-mailles (si disponible)</h3>

@@ -55,20 +55,41 @@ function toggleActivity(card, activity, type) {
 
 //CARTES CINEMA
 let selectedCinemaOption = null;
-function selectCinemaOption(button, option) {
+
+function selectCard(card, activity) {
+    // Réinitialise toutes les cartes (désélectionne les autres)
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+    
+    // Réinitialise les options cinéma si la carte Cinéma est désélectionnée
+    if (activity !== 'Cinéma') {
+        resetCinemaOptions();
+    }
+
+    // Ajoute ou retire la sélection
+    if (!card.classList.contains('selected')) {
+        card.classList.add('selected');
+        selectedMainActivities = [activity]; // Une seule activité principale à la fois
+    } else {
+        card.classList.remove('selected');
+        selectedMainActivities = []; // Aucune sélection si l'utilisateur désélectionne
+    }
+}
+
+function selectCinemaOption(event, option) {
+    event.stopPropagation(); // Évite les conflits avec l'événement onclick de la carte
+    
     // Désélectionner tous les boutons dans la carte Cinéma
-    const buttons = button.parentElement.querySelectorAll('button');
+    const buttons = event.target.parentElement.querySelectorAll('button');
     buttons.forEach(btn => btn.classList.remove('selected'));
 
     // Sélectionner le bouton cliqué
-    button.classList.add('selected');
+    event.target.classList.add('selected');
 
     // Stocker l'option sélectionnée
     selectedCinemaOption = option;
 }
 
-
-// Fonction pour ajouter une activité personnalisée
+//CARTES INPUT
 function addCustomActivity(type) {
     const inputField = type === 'main' ? document.getElementById('customMainActivity') : document.getElementById('customSecondaryActivity');
     const activity = inputField.value.trim();
