@@ -312,21 +312,23 @@ async function submitForm() {
                 'Accept': 'application/json',
             },
         });
-
         if (response.ok) {
-            // Afficher un message de remerciement après l'envoi réussi
             document.getElementById('confirmation').classList.remove('active');
             const thankYouSection = document.getElementById('thankYou');
+            const thankYouVideo = document.getElementById('thankYouVideo'); // Récupère la vidéo
+        
             if (thankYouSection) {
                 thankYouSection.classList.add('active');
+        
+                // Lecture automatique de la vidéo
+                if (thankYouVideo) {
+                    thankYouVideo.muted = false; // Active le son
+                    thankYouVideo.play().catch(error => {
+                        console.error('Erreur lors de la lecture de la vidéo :', error);
+                    });
+                }
             } else {
                 alert('Votre demande a été envoyée avec succès. Merci !');
             }
-        } else {
-            alert('Échec de l\'envoi. Veuillez réessayer.');
         }
-    } catch (error) {
-        console.error('Erreur lors de l\'envoi du formulaire :', error);
-        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
-    }
 }
