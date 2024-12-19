@@ -168,7 +168,7 @@ footer {
     opacity: 0.5; /* Rendre les cartes désactivées un peu plus transparentes */
 }
 
-.card-overlay {
+.card .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -186,6 +186,7 @@ footer {
     z-index: 1;
     border-radius: 5px; 
 }
+
 
 
 .card img {
