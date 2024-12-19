@@ -312,17 +312,19 @@ async function submitForm() {
                 'Accept': 'application/json',
             },
         });
+
         if (response.ok) {
+            // Masquer la section confirmation et afficher la section "Merci"
             document.getElementById('confirmation').classList.remove('active');
             const thankYouSection = document.getElementById('thankYou');
-            const thankYouVideo = document.getElementById('thankYouVideo'); // Récupère la vidéo
-        
+            const thankYouVideo = document.getElementById('thankYouVideo'); // Récupérer la vidéo
+
             if (thankYouSection) {
                 thankYouSection.classList.add('active');
-        
-                // Lecture automatique de la vidéo
+
+                // Lecture automatique de la vidéo avec son
                 if (thankYouVideo) {
-                    thankYouVideo.muted = false; // Active le son
+                    thankYouVideo.muted = false; // Activer le son
                     thankYouVideo.play().catch(error => {
                         console.error('Erreur lors de la lecture de la vidéo :', error);
                     });
@@ -330,6 +332,11 @@ async function submitForm() {
             } else {
                 alert('Votre demande a été envoyée avec succès. Merci !');
             }
+        } else {
+            alert('Échec de l\'envoi. Veuillez réessayer.');
         }
+    } catch (error) {
+        console.error('Erreur lors de l\'envoi du formulaire :', error);
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
     }
 }
