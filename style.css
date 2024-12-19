@@ -233,36 +233,36 @@ footer {
 .card.selected {
     border: 3px solid #f44141;
     background-color: #ffe6e6;
+    transform: scale(1.05);
 }
 
 /*CARTES CINEMA*/
-.card .options {
+
+.card-cinema-options {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-.card .options button {
-    flex: 1;
-    margin: 0 5px;
-    padding: 5px 10px;
-    font-size: 0.9em;
+.card-cinema-options button {
     border: 1px solid #ccc;
-    background-color: #f8f8f8;
+    border-radius: 5px;
+    background: #f9f9f9;
+    padding: 8px 12px;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.card .options button:hover {
+.card-cinema-options button.selected {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.1);
+}
+
+.card-cinema-options button:hover {
     background-color: #e0e0e0;
 }
-
-.card .options button.selected {
-    background-color: #4CAF50; /* Couleur verte pour indiquer la sélection */
-    color: white;
-}
-
 
 /* RESPONSIVE DESIGN */
 

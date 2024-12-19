@@ -25,6 +25,7 @@ function goToStep0() {
 /*ACTIVITES*/
 let selectedMainActivities = [];
 let selectedSecondaryActivities = [];
+let selectedCinemaOption = null;
 
 // Fonction pour sélectionner/désélectionner des activités
 function toggleActivity(card, activity, type) {
@@ -33,9 +34,7 @@ function toggleActivity(card, activity, type) {
                                       : document.getElementById('secondaryActivityCards');
 
     // Désélectionner toutes les autres cartes de la même section
-    container.querySelectorAll('.card').forEach(c => {
-        c.classList.remove('selected');
-    });
+    container.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
 
     // Vider les tableaux des activités déjà sélectionnées dans la section
     if (type === 'main') {
@@ -48,37 +47,28 @@ function toggleActivity(card, activity, type) {
     card.classList.add('selected');
     if (type === 'main') {
         selectedMainActivities.push(activity);
+
+        // Si l'activité sélectionnée n'est pas "Cinéma", réinitialiser les options cinéma
+        if (activity !== 'Cinéma') {
+            resetCinemaOptions();
+        } 
     } else if (type === 'secondary') {
         selectedSecondaryActivities.push(activity);
     }
 }
 
-//CARTES CINEMA
-let selectedCinemaOption = null;
-
-function selectCard(card, activity) {
-    // Réinitialise toutes les cartes (désélectionne les autres)
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
-    
-    // Réinitialise les options cinéma si la carte Cinéma est désélectionnée
-    if (activity !== 'Cinéma') {
-        resetCinemaOptions();
-    }
-
-    // Ajoute ou retire la sélection
-    if (!card.classList.contains('selected')) {
-        card.classList.add('selected');
-        selectedMainActivities = [activity]; // Une seule activité principale à la fois
-    } else {
-        card.classList.remove('selected');
-        selectedMainActivities = []; // Aucune sélection si l'utilisateur désélectionne
-    }
-}
-
+// Fonction pour gérer les options cinéma
 function selectCinemaOption(event, button, option) {
-    event.stopPropagation(); // Évite les conflits avec l'événement onclick de la carte
+    event.stopPropagation(); // Empêche l'événement de se propager au conteneur parent
 
-    // Désélectionner tous les boutons dans la carte Cinéma
+    // Vérifier si la carte cinéma est bien sélectionnée
+    const cinemaCard = document.querySelector('.card-cinema');
+    if (!cinemaCard || !cinemaCard.classList.contains('selected')) {
+        alert('Veuillez d\'abord sélectionner la carte Cinéma.');
+        return;
+    }
+
+    // Désélectionner tous les boutons dans la carte cinéma
     const buttons = button.parentElement.querySelectorAll('button');
     buttons.forEach(btn => btn.classList.remove('selected'));
 
@@ -88,6 +78,14 @@ function selectCinemaOption(event, button, option) {
     // Stocker l'option sélectionnée
     selectedCinemaOption = option;
 }
+
+// Réinitialiser les options cinéma
+function resetCinemaOptions() {
+    const cinemaButtons = document.querySelectorAll('.card-cinema-options button');
+    cinemaButtons.forEach(button => button.classList.remove('selected'));
+    selectedCinemaOption = null;
+}
+
 
 //CARTES INPUT
 function addCustomActivity(type) {
