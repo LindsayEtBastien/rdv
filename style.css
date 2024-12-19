@@ -306,6 +306,31 @@ input[type="date"]:focus, input[type="time"]:focus {
     background-color: #e0e0e0;
 }
 
+#videoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+#videoSection h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+#backgroundVideo {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
 /* RESPONSIVE DESIGN */
 
 /* Tablette : 3 cartes par rangée */
