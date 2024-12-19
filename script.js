@@ -75,15 +75,15 @@ function selectCard(card, activity) {
     }
 }
 
-function selectCinemaOption(event, option) {
+function selectCinemaOption(event, button, option) {
     event.stopPropagation(); // Évite les conflits avec l'événement onclick de la carte
-    
+
     // Désélectionner tous les boutons dans la carte Cinéma
-    const buttons = event.target.parentElement.querySelectorAll('button');
+    const buttons = button.parentElement.querySelectorAll('button');
     buttons.forEach(btn => btn.classList.remove('selected'));
 
     // Sélectionner le bouton cliqué
-    event.target.classList.add('selected');
+    button.classList.add('selected');
 
     // Stocker l'option sélectionnée
     selectedCinemaOption = option;
