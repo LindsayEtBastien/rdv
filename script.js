@@ -100,6 +100,11 @@ function goToStep1_2() {
         alert('Veuillez sélectionner une option pour le cinéma.');
         return;
     }
+    // Retourner en haut de la page
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Défilement fluide
+    });
 
     document.getElementById('step1_1').classList.remove('active');
     document.getElementById('step1_2').classList.add('active');
@@ -115,7 +120,12 @@ function goToStep2() {
         alert('Veuillez sélectionner une option pour le cinéma.');
         return;
     }
-
+    // Retourner en haut de la page
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Défilement fluide
+    });
+    
     document.getElementById('step1_2').classList.remove('active');
     document.getElementById('manger').classList.add('active');
 }

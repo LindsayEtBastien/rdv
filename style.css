@@ -168,13 +168,13 @@ footer {
     opacity: 0.5; /* Rendre les cartes désactivées un peu plus transparentes */
 }
 
-.card .overlay {
+.card-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 0, 0, 0.8); /* Rouge avec un peu de transparence */
+    background: rgba(255, 0, 0, 0.8); 
     color: white;
     display: flex;
     justify-content: center;
@@ -182,10 +182,11 @@ footer {
     font-size: 1.2em;
     font-weight: bold;
     text-transform: uppercase;
-    pointer-events: none; /* Ne pas interagir avec le bandeau */
+    pointer-events: none; 
     z-index: 1;
-    border-radius: 5px; /* Ajout d'un arrondi sur les coins */
+    border-radius: 5px; 
 }
+
 
 .card img {
     width: 100%;
@@ -208,7 +209,7 @@ footer {
 }
 
 /*CARTES CINEMA*/
-.card.options {
+.card .options {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
@@ -226,11 +227,11 @@ footer {
     transition: background-color 0.3s ease;
 }
 
-.card.options button:hover {
+.card .options button:hover {
     background-color: #e0e0e0;
 }
 
-.card.options button.selected {
+.card .options button.selected {
     background-color: #4CAF50; /* Couleur verte pour indiquer la sélection */
     color: white;
 }
