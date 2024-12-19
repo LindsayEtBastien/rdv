@@ -88,8 +88,14 @@ function resetCinemaOptions() {
 
 
 //CARTES INPUT
-function addCustomActivity(type) {
-    const inputField = type === 'main' ? document.getElementById('customMainActivity') : document.getElementById('customSecondaryActivity');
+function addCustomActivity(type, inputId) {
+    // Récupère le champ d'entrée en fonction de l'ID spécifié
+    const inputField = document.getElementById(inputId);
+    if (!inputField) {
+        console.error(`Champ d'entrée introuvable pour l'ID: ${inputId}`);
+        return;
+    }
+
     const activity = inputField.value.trim();
 
     if (activity !== "") {
