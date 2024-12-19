@@ -88,11 +88,11 @@ function resetCinemaOptions() {
 
 
 //CARTES INPUT
-function addCustomActivity(type, inputId) {
-    // Récupère le champ d'entrée en fonction de l'ID spécifié
-    const inputField = document.getElementById(inputId);
+function addCustomActivity(button, type) {
+    // Trouve le champ d'entrée dans le même parent que le bouton
+    const inputField = button.parentElement.querySelector('input');
     if (!inputField) {
-        console.error(`Champ d'entrée introuvable pour l'ID: ${inputId}`);
+        console.error('Impossible de trouver le champ d\'entrée.');
         return;
     }
 

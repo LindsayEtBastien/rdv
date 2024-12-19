@@ -135,18 +135,18 @@
                     <img src="imgs/activites/activite-culturel.jpeg" alt="Autre-culturel">
                     <h3>J'ai une culture développée! Allons visiter ...</h3>
                     <div class="custom-activity">
-                        <input type="text" id="customMainActivity1" placeholder="écrire...">
+                        <input type="text" class="customMainActivity" placeholder="écrire...">
                     </div>
-                    <button type="button" onclick="addCustomActivity('main', 'customMainActivity1')">Envoyer</button>
+                    <button type="button" onclick="addCustomActivity(this, 'main')">Envoyer</button>
                 </div>
                 <div class="card">
                     <img src="imgs/activites/autre-activite.jpg" alt="Autre-activite">
                     <h3>Tes idées sont nulles, je veux faire ...</h3>
                     <div class="custom-activity">
-                        <input type="text" id="customMainActivity2" placeholder="écrire...">
+                        <input type="text" class="customMainActivity" placeholder="écrire...">
                     </div>
-                    <button type="button" onclick="addCustomActivity('main', 'customMainActivity2')">Envoyer</button>
-                </div>
+                    <button type="button" onclick="addCustomActivity(this, 'main')">Envoyer</button>
+                </div>                
                 <div class="card" onclick="toggleActivity(this, 'Rien', 'main')">
                     <img src="imgs/activites/rien.gif" alt="rien">
                     <h3>Rien, pas le temps</h3>
