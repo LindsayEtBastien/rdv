@@ -95,11 +95,11 @@ function addCustomActivity(type) {
     if (activity !== "") {
         if (type === 'main') {
             selectedMainActivities.push(activity);
-            alert(`Activité principale "${activity}" ajoutée`);
+            alert(`Activité principale "${activity}" ajoutée.`);
             goToStep1_2(); // Aller à l'étape suivante
         } else if (type === 'secondary') {
             selectedSecondaryActivities.push(activity);
-            alert(`Activité secondaire "${activity}" ajoutée`);
+            alert(`Activité secondaire "${activity}" ajoutée.`);
             goToStep2(); // Aller à l'étape suivante
         }
         inputField.value = ""; // Réinitialise l'input
