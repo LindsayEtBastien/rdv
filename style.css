@@ -168,7 +168,7 @@ footer {
 .card-special {
     position: relative; /* Important pour gérer les overlays */
     cursor: default; /* Pas d'effet de clic */
-    pointer-events: none; /* Désactive les interactions utilisateur */
+    pointer-events: auto; /* Autorise le survol */
 }
 
 .card-special:hover {
