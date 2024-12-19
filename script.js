@@ -96,7 +96,7 @@ function goToStep1_2() {
         alert('Veuillez sélectionner au moins une activité principale!');
         return;
     }
-    if (activities.includes('Cinéma') && !selectedCinemaOption) {
+    if (electedMainActivities.includes('Cinéma') && !selectedCinemaOption) {
         alert('Veuillez sélectionner une option pour le cinéma.');
         return;
     }
