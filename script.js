@@ -53,6 +53,21 @@ function toggleActivity(card, activity, type) {
     }
 }
 
+//CARTES CINEMA
+let selectedCinemaOption = null;
+function selectCinemaOption(button, option) {
+    // Désélectionner tous les boutons dans la carte Cinéma
+    const buttons = button.parentElement.querySelectorAll('button');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+
+    // Sélectionner le bouton cliqué
+    button.classList.add('selected');
+
+    // Stocker l'option sélectionnée
+    selectedCinemaOption = option;
+}
+
+
 // Fonction pour ajouter une activité personnalisée
 function addCustomActivity(type) {
     const inputField = type === 'main' ? document.getElementById('customMainActivity') : document.getElementById('customSecondaryActivity');

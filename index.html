@@ -35,9 +35,15 @@
             <h2>Choix de l'activité principale</h2>
             <p>Le concept est simple, tu choisie.</p>
             <div class="card-container" id="mainActivityCards">
-                <div class="card" onclick="toggleActivity(this, 'Cinéma', 'main')">
+                <div class="card">
                     <img src="imgs/activites/cinema.jpg" alt="Cinéma">
-                    <h3>Cinéma (pathé, mk2, 4DX, canapé à deux)</h3>
+                    <h3>Cinéma</h3>
+                    <div class="options">
+                        <button onclick="selectCinemaOption(this, '2D')">2D</button>
+                        <button onclick="selectCinemaOption(this, '3D')">3D</button>
+                        <button onclick="selectCinemaOption(this, '4DX')">4DX</button>
+                        <button onclick="selectCinemaOption(this, 'Canap-2')">Canap à 2</button>
+                    </div>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
                     <img src="imgs/activites/cine-mailles.jpg" alt="cine-mailles">
@@ -148,9 +154,15 @@
             <h2>Choix de l'activité secondaire</h2>
             <p>Au cas où l'activité principale ne serait plus disponible ou bien si tu veux en faire une deuxième</p>
             <div class="card-container" id="secondaryActivityCards">
-                <div class="card" onclick="toggleActivity(this, 'Cinéma', 'secondary')">
+                <div class="card">
                     <img src="imgs/activites/cinema.jpg" alt="Cinéma">
-                    <h3>Cinéma (pathé, mk2, 4DX, canapé à deux)</h3>
+                    <h3>Cinéma</h3>
+                    <div class="options">
+                        <button onclick="selectCinemaOption(this, '2D')">2D</button>
+                        <button onclick="selectCinemaOption(this, '3D')">3D</button>
+                        <button onclick="selectCinemaOption(this, '4DX')">4DX</button>
+                        <button onclick="selectCinemaOption(this, 'Canap-2')">Canap à 2</button>
+                    </div>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'secondary')">
                     <img src="imgs/activites/cine-mailles.jpg" alt="cine-mailles">
@@ -202,7 +214,7 @@
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'secondary')">
                     <img src="imgs/activites/activite-hors-paris.jpg" alt="Activites-hors-paris">
-                    <p>Activités ou visites en dehors de Paris</p>
+                    <p><i>Activités ou visites en dehors de Paris</i></p>
                     <h3>Fait moi voyager</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Opera', 'secondary')">
