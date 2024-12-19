@@ -254,17 +254,17 @@
                     <img src="imgs/activites/activite-culturel.jpeg" alt="Autre-culturel">
                     <h3>J'ai une culture dévelopée! Allons visiter ...</h3>
                         <div class="custom-activity">
-                            <input type="text" id="customSecondaryActivity1" placeholder="écrire...">
+                            <input type="text" id="customSecondaryActivity" placeholder="écrire...">
                         </div>
-                        <button type="button" onclick="addCustomActivity('secondary', 'customSecondaryActivity1')">Envoyer</button>
+                        <button type="button" onclick="addCustomActivity(this,'secondary')">Envoyer</button>
                 </div>
                 <div class="card">
                     <img src="imgs/activites/autre-activite.jpg" alt="Autre-activite">
                     <h3>Tes idées sont nulles, je veux ...</h3>
                         <div class="custom-activity">
-                            <input type="text" id="customSecondaryActivity2" placeholder="écrire...">
+                            <input type="text" id="customSecondaryActivity" placeholder="écrire...">
                         </div>
-                        <button type="button" onclick="addCustomActivity('secondary', 'customSecondaryActivity1')">Envoyer</button>
+                        <button type="button" onclick="addCustomActivity(this, 'secondary')">Envoyer</button>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Rien', 'secondary')">
                     <img src="imgs/activites/rien.gif" alt="rien">
