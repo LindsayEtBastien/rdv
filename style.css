@@ -166,6 +166,7 @@ footer {
 }
 
 .card-special {
+    position: relative; /* Important pour gérer les overlays */
     cursor: default; /* Pas d'effet de clic */
     pointer-events: none; /* Désactive les interactions utilisateur */
 }
@@ -193,11 +194,14 @@ footer {
     z-index: 2;
     pointer-events: none; /* Empêche tout clic */
     transition: opacity 0.3s ease;
-    opacity: 0; /* Cacher par défaut */
+    opacity: 0;
+    visibility: hidden; /* Ajout de visibility pour renforcer l'effet */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transition fluide */
 }
 
 .card-special:hover .overlay {
     opacity: 1; /* Montre l'overlay uniquement au survol */
+    visibility: visible; /* Apparition visible au survol */
 }
 
 .card-special h3 {
