@@ -190,6 +190,9 @@ async function submitForm() {
     const restaurants = document.getElementById('hiddenRestaurants').value;
     const activities = document.getElementById('selectedActivities').textContent;
 
+    const cinemaOption = selectedCinemaOption ? `Cinéma (${selectedCinemaOption})` : 'Cinéma (aucune option sélectionnée)';
+
+
     if (!date || !time || !activities) {
         alert('Des données sont manquantes. Rafraichit et complète toutes les étapes.');
         return;
@@ -197,7 +200,7 @@ async function submitForm() {
 
     const formData = new FormData();
     formData.append('date', `${date} à partir de ${time}`);
-    formData.append('activities', activities);
+    formData.append('activities', activities.includes('Cinéma') ? `${activities}, ${cinemaOption}` : activities);
     formData.append('restaurants', restaurants);
     formData.append('_subject', 'Rencard avec Lily');
 
@@ -213,7 +216,8 @@ async function submitForm() {
         if (response.ok) {
             document.getElementById('finalDate').textContent = date;
             document.getElementById('finalRestaurants').textContent = restaurants || 'Aucun restaurant sélectionné';
-
+            document.getElementById('finalActivities').textContent = activities.includes('Cinéma') ? `${activities}, ${cinemaOption}` : activities;
+            
             document.getElementById('confirmation').classList.remove('active');
             document.getElementById('thankYou').classList.add('active');
         } else {
