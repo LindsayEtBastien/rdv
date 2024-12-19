@@ -331,4 +331,5 @@ async function submitForm() {
                 alert('Votre demande a été envoyée avec succès. Merci !');
             }
         }
+    }
 }
