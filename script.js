@@ -166,6 +166,42 @@ function toggleSelection(card, restaurant) {
     }
 }
 
+// Fonction pour ajouter un restaurant personnalisé
+function addCustomRestaurant() {
+    const input = document.getElementById('customRestaurant');
+    const customRestaurant = input.value.trim(); // Récupérer et nettoyer la valeur entrée
+
+    if (!customRestaurant) {
+        alert('Veuillez écrire un nom de restaurant avant d\'envoyer.');
+        return;
+    }
+
+    // Ajouter le restaurant personnalisé à la liste des restaurants
+    selectedRestaurants.push(customRestaurant);
+
+    // Réinitialiser l'entrée utilisateur
+    input.value = '';
+
+    // Mettre à jour l'affichage des restaurants sélectionnés
+    updateSelectedRestaurants();
+}
+
+// Fonction pour mettre à jour l'affichage des restaurants sélectionnés
+function updateSelectedRestaurants() {
+    const restaurantElement = document.getElementById('selectedRestaurants');
+    if (restaurantElement) {
+        restaurantElement.textContent = selectedRestaurants.length > 0
+            ? selectedRestaurants.join(', ')
+            : "Aucun restaurant sélectionné";
+    }
+
+    // Mettre également à jour le champ caché pour l'envoi du formulaire
+    const hiddenRestaurants = document.getElementById('hiddenRestaurants');
+    if (hiddenRestaurants) {
+        hiddenRestaurants.value = selectedRestaurants.join(', ');
+    }
+}
+
 /* CONFIRMATION */
 function goToConfirmation() {
     if (selectedRestaurants.length === 0) {
