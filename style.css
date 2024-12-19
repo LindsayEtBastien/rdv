@@ -255,7 +255,7 @@ footer {
 }
 
 .card-cinema-options button.selected {
-    background-color: #007bff;
+    background-color: #38c849;
     color: white;
     transform: scale(1.1);
 }

@@ -35,8 +35,6 @@
             <h2>Choix de l'activité principale</h2>
             <p>Le concept est simple, tu choisie.</p>
             <div class="card-container" id="mainActivityCards">
-
-
                 <div class="card card-cinema" onclick="toggleActivity(this, 'Cinéma', 'main')">
                     <img src="imgs/activites/cinema.jpg" alt="Cinéma">
                     <h3>Cinéma</h3>
@@ -47,8 +45,6 @@
                         <button onclick="selectCinemaOption(event,this, 'Canap-2')">Canap à 2</button>
                     </div>
                 </div>
-
-
                 <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
                     <img src="imgs/activites/cine-mailles.jpg" alt="cine-mailles">
                     <h3>Ciné-mailles (si disponible)</h3>
@@ -158,14 +154,14 @@
             <h2>Choix de l'activité secondaire</h2>
             <p>Au cas où l'activité principale ne serait plus disponible ou bien si tu veux en faire une deuxième</p>
             <div class="card-container" id="secondaryActivityCards">
-                <div class="card">
+                <div class="card card-cinema" onclick="toggleActivity(this, 'Cinéma', 'main')">
                     <img src="imgs/activites/cinema.jpg" alt="Cinéma">
                     <h3>Cinéma</h3>
-                    <div class="options">
-                        <button onclick="selectCinemaOption(this, '2D')">2D</button>
-                        <button onclick="selectCinemaOption(this, '3D')">3D</button>
-                        <button onclick="selectCinemaOption(this, '4DX')">4DX</button>
-                        <button onclick="selectCinemaOption(this, 'Canap-2')">Canap à 2</button>
+                    <div class="card-cinema-options">
+                        <button onclick="selectCinemaOption(event,this, '2D')">2D</button>
+                        <button onclick="selectCinemaOption(event,this, '3D')">3D</button>
+                        <button onclick="selectCinemaOption(event,this, '4DX')">4DX</button>
+                        <button onclick="selectCinemaOption(event,this, 'Canap-2')">Canap à 2</button>
                     </div>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'secondary')">
@@ -308,10 +304,10 @@
         <section id="confirmation">
             <h2>Confirmation</h2>
             <form id="finalForm">
-                <p><strong>Date :</strong> <span id="selectedDate"></span></p>
-                <p><strong>Activités :</strong> <span id="selectedMainActivities"></span></p>
-                <p><strong>Activités :</strong> <span id="selectedSecondaryActivities"></span></p>
-                <p><strong>Restaurants (dans l'ordre de sélection):</strong> <span id="selectedRestaurants"></span></p>
+                <p><strong>Date : </strong><span id="selectedDate"></span></p>
+                <p><strong>Activités principale : </strong><span id="selectedMainActivities"></span></p>
+                <p><strong>Activités secondaire</strong> (au cas où la principale ne serait pas disponible) : <span id="selectedSecondaryActivities"></span></p>
+                <p><strong>Restaurants (dans l'ordre de ta sélection) : </strong><span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
                 <input type="hidden" name="time" id="hiddenTime">
                 <input type="hidden" name="restaurants" id="hiddenRestaurants">
