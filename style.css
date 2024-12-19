@@ -177,6 +177,36 @@ input[type="date"]:focus, input[type="time"]:focus {
     background-color: #d93737;
 }
 
+/*CUSTOM RESTAURANT*/
+.custom-restaurant {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacement entre l'input et le bouton */
+    margin-top: 10px;
+}
+
+.custom-restaurant input {
+    flex: 1; /* Permet à l'input de prendre tout l'espace disponible */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.custom-restaurant button {
+    background-color: #f44141;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.custom-restaurant button:hover {
+    background-color: #d93737;
+}
+
 /*Cartes*/
 /* Général */
 .card-container {
