@@ -184,6 +184,8 @@ function addCustomRestaurant() {
 
     // Mettre à jour l'affichage des restaurants sélectionnés
     updateSelectedRestaurants();
+
+    alert(`${customRestaurant}" a été ajouté à votre liste.`);
 }
 
 // Fonction pour mettre à jour l'affichage des restaurants sélectionnés
