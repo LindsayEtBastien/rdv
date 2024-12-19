@@ -237,10 +237,14 @@ async function submitForm() {
     const date = document.getElementById('hiddenDate').value;
     const time = document.getElementById('hiddenTime').value;
     const restaurants = document.getElementById('hiddenRestaurants').value;
+
+    // Gestion des activités principales et options cinéma
     const mainActivities = selectedMainActivities.map(activity => 
         activity === 'Cinéma' && selectedCinemaOption ? `Cinéma (${selectedCinemaOption})` : activity
-    ).join(', '); // Concaténer toutes les activités principales avec l'option cinéma
-    const secondaryActivities = selectedSecondaryActivities.join(', '); // Concaténer les activités secondaires
+    ).join(', '); // Concaténer les activités principales
+
+    // Gestion des activités secondaires
+    const secondaryActivities = selectedSecondaryActivities.join(', ');
 
     // Validation des données
     if (!date || !time || !mainActivities) {
@@ -248,16 +252,12 @@ async function submitForm() {
         return;
     }
 
-    // Combiner toutes les activités dans un seul champ
-    const allActivities = [
-        mainActivities,
-        secondaryActivities ? `Activités secondaires : ${secondaryActivities}` : null,
-    ].filter(Boolean).join(', '); // Supprime les valeurs nulles ou vides
-
+    // Formulaire avec des champs distincts
     const formData = new FormData();
     formData.append('date', `${date} à partir de ${time}`);
-    formData.append('activities', allActivities);
-    formData.append('restaurants', restaurants);
+    formData.append('main_activities', mainActivities || 'Aucune activité principale sélectionnée');
+    formData.append('secondary_activities', secondaryActivities || 'Aucune activité secondaire sélectionnée');
+    formData.append('restaurants', restaurants || 'Aucun restaurant sélectionné');
     formData.append('_subject', 'Rencard avec Lily');
 
     try {
@@ -286,4 +286,3 @@ async function submitForm() {
         alert('Une erreur est survenue. Veuillez réessayer plus tard.');
     }
 }
-
