@@ -42,7 +42,7 @@
                         <button onclick="selectCinemaOption(event,this, '2D')">2D</button>
                         <button onclick="selectCinemaOption(event,this, '3D')">3D</button>
                         <button onclick="selectCinemaOption(event,this, '4DX')">4DX</button>
-                        <button onclick="selectCinemaOption(event,this, 'Canap-2')">Canap à 2</button>
+                        <button onclick="selectCinemaOption(event,this, 'Canape à 2')">Canap à 2</button>
                     </div>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
@@ -95,7 +95,7 @@
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'main')">
                     <img src="imgs/activites/activite-hors-paris.jpg" alt="Activites-hors-paris">
-                    <p>Activités ou visites en dehors de Paris</p>
+                    <p><em>Activités ou visites en dehors de Paris</em></p>
                     <h3>Fait moi voyager</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Opera', 'main')">
@@ -214,7 +214,7 @@
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'secondary')">
                     <img src="imgs/activites/activite-hors-paris.jpg" alt="Activites-hors-paris">
-                    <p><i>Activités ou visites en dehors de Paris</i></p>
+                    <p><em>Activités ou visites en dehors de Paris</em></p>
                     <h3>Fait moi voyager</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Opera', 'secondary')">
@@ -306,8 +306,8 @@
             <form id="finalForm">
                 <p><strong>Date : </strong><span id="selectedDate"></span></p>
                 <p><strong>Activité principale : </strong><span id="selectedMainActivities"></span></p>
-                <p><strong>Activité secondaire</strong> (au cas où la principale ne serait plus disponible ou bien si tu veux en faire une deuxième) : <span id="selectedSecondaryActivities"></span></p>
-                <p><strong>Restaurants (dans l'ordre de ta sélection) : </strong><span id="selectedRestaurants"></span></p>
+                <p><strong>Activité secondaire</strong> <em>(au cas où la principale ne serait plus disponible ou bien si tu veux en faire une deuxième)</em> : <span id="selectedSecondaryActivities"></span></p>
+                <p><strong>Restaurants <em>(dans l'ordre de ta sélection)</em> : </strong><span id="selectedRestaurants"></span></p>
                 <input type="hidden" name="date" id="hiddenDate">
                 <input type="hidden" name="time" id="hiddenTime">
                 <input type="hidden" name="restaurants" id="hiddenRestaurants">
