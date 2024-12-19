@@ -96,19 +96,25 @@
                     <img src="imgs/activites/opera.jpg" alt="Opera">
                     <h3>OpérAAAAAAAAAAAAH</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'main')">
+                <!--<div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'main')">-->
+                <div class="card disabled">
+                    <div class="overlay">Période estivale</div>
                     <img src="imgs/activites/pique-nique-sceaux.jpg" alt="Pique-nique-sceaux">
                     <h3>Pique-nique à Sceaux</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'main')">
-                    <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe">
+                <!--<div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'main')">-->
+                <div class="card disabled">
+                    <div class="overlay">Période estivale</div>
+                    <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe-kayak">
                     <h3>Canoë-kayak (Ile-de-france)</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Randonnee', 'main')">
                     <img src="imgs/activites/randonnee.jpg" alt="randonnee">
                     <h3>Randonnée</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Photos', 'main')">
+                <!--<div class="card" onclick="toggleActivity(this, 'Photos', 'main')">-->
+                <div class="card disabled">
+                    <div class="overlay">Non Disponible</div>
                     <img src="imgs/activites/photos.gif" alt="Photos">
                     <h3>Photos pleeeeeease </h3>
                 </div>
@@ -146,7 +152,7 @@
                     <img src="imgs/activites/cinema.jpg" alt="Cinéma">
                     <h3>Cinéma (pathé, mk2, 4DX, canapé à deux)</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
+                <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'secondary')">
                     <img src="imgs/activites/cine-mailles.jpg" alt="cine-mailles">
                     <h3>Ciné-mailles (quand ce sera disponible)</h3>
                 </div>
@@ -158,7 +164,7 @@
                     <img src="imgs/activites/musee-richelieu-bibliotheque.jpg" alt="Musée-richelieu-bilbiothèque">
                     <h3>Musée richelieu + bibliothèque</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Ikea', 'main')">
+                <div class="card" onclick="toggleActivity(this, 'Ikea', 'secondary')">
                     <img src="imgs/activites/ikea.jpg" alt="Ikea">
                     <h3>Ikea date</h3>
                 </div>
@@ -170,7 +176,7 @@
                     <img src="imgs/activites/aquarium-paris.jpg" alt="Aquarium Paris">
                     <h3>Aquarium Paris</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Bookoff', 'main')">
+                <div class="card" onclick="toggleActivity(this, 'Bookoff', 'secondary')">
                     <img src="imgs/activites/bookoff.jpg" alt="Bookoff">
                     <h3>Bookoff</h3>
                 </div>
@@ -203,22 +209,24 @@
                     <img src="imgs/activites/opera.jpg" alt="Opera">
                     <h3>OpérAAAAAAAAAAAAH</h3>
                 </div>
-                <!--<div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'main')">
-                    -->
+                <!--<div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'secondary')">-->
                 <div class="card disabled">
                     <div class="overlay">Période estivale</div>
                     <img src="imgs/activites/pique-nique-sceaux.jpg" alt="Pique-nique-sceaux">
                     <h3>Pique-nique à Sceaux</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'secondary')">
-                    <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe">
+                <!--<div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'secondary')">-->
+                    <div class="overlay">Période estivale</div>
+                    <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe-kayak">
                     <h3>Canoë-kayak (Ile-de-france)</h3>
                 </div>
                 <div class="card" onclick="toggleActivity(this, 'Randonnee', 'secondary')">
                     <img src="imgs/activites/randonnee.jpg" alt="randonnee">
                     <h3>Randonnée</h3>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Photos', 'secondary')">
+                <!--<div class="card" onclick="toggleActivity(this, 'Photos', 'secondary')">-->
+                <div class="card disabled">
+                    <div class="overlay">Non Disponible</div>
                     <img src="imgs/activites/photos.gif" alt="Photos">
                     <h3>Photos pleeeeeease </h3>
                 </div>
@@ -229,7 +237,7 @@
                         <div class="custom-activity">
                             <input type="text" id="customMainActivity" placeholder="écrire...">
                         </div>
-                        <button type="button" onclick="addCustomActivity('main')">Envoyer</button>
+                        <button type="button" onclick="addCustomActivity('secondary')">Envoyer</button>
                 </div>
                 <div class="card">
                     <img src="imgs/activites/autre-activite.jpg" alt="Autre-activite">
@@ -237,9 +245,9 @@
                     <div class="custom-activity">
                         <input type="text" id="customMainActivity" placeholder="écrire...">
                     </div>
-                    <button type="button" onclick="addCustomActivity('main')">Envoyer</button>
+                    <button type="button" onclick="addCustomActivity('secondary')">Envoyer</button>
                 </div>
-                <div class="card" onclick="toggleActivity(this, 'Rien', 'main')">
+                <div class="card" onclick="toggleActivity(this, 'Rien', 'secondary')">
                     <img src="imgs/activites/rien.gif" alt="rien">
                     <h3>Rien, pas le temps</h3>
                 </div>
