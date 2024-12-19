@@ -146,7 +146,7 @@ footer {
 }
 
 .card {
-    position: relative; /* Assure le positionnement correct de l'overlay */
+    position: relative; /* Position relative pour le bon placement de l'overlay */
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 20px;
@@ -162,13 +162,14 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden; /* Empêche l'overlay de déborder */
 }
 
 .card.disabled {
     cursor: not-allowed;
     opacity: 0.6; /* Rendre les cartes désactivées plus transparentes */
     pointer-events: none; /* Désactiver les interactions utilisateur */
-    background-color: #f9f9f9; /* Optionnel : donner une couleur de fond différente */
+    position: relative; /* Important pour l'overlay */
 }
 
 .card.disabled .overlay {
@@ -181,22 +182,27 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 0, 0, 0.8);
+    background: rgba(255, 0, 0, 0.8); /* Couleur de fond rouge */
     color: white;
-    display: none; /* L'overlay est masqué par défaut */
+    display: none; /* L'overlay est caché par défaut */
     justify-content: center;
     align-items: center;
     font-size: 1.2em;
     font-weight: bold;
     text-transform: uppercase;
-    border-radius: 10px; /* Assure le bord arrondi de l'overlay */
-    z-index: 1;
-    pointer-events: none; /* Empêche tout clic sur l'overlay */
+    border-radius: 10px; /* Bord arrondi */
+    z-index: 2; /* S'assure que l'overlay est au-dessus */
+    pointer-events: none; /* Empêche les clics sur l'overlay */
+}
+
+.card.disabled h3 {
+    color: #666; /* Change la couleur du titre pour les cartes désactivées */
 }
 
 .card img {
     width: 100%;
     object-fit: cover; /* Garde le ratio et couvre bien la carte */
+    z-index: 0;
     border-radius: 10px 10px 10px 10px;
 }
 
@@ -206,6 +212,7 @@ footer {
     font-weight: 500;
     color: #333;
     text-align: center;
+    z-index: 1; /* S'assure que le texte reste sous l'overlay */
 }
 
 .card:hover {
