@@ -306,6 +306,7 @@ input[type="date"]:focus, input[type="time"]:focus {
     background-color: #e0e0e0;
 }
 
+/*VIDEO FIN*/
 #videoSection {
     display: flex;
     flex-direction: column;
