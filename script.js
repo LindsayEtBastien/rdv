@@ -96,6 +96,10 @@ function goToStep1_2() {
         alert('Veuillez sélectionner au moins une activité principale!');
         return;
     }
+    if (activities.includes('Cinéma') && !selectedCinemaOption) {
+        alert('Veuillez sélectionner une option pour le cinéma.');
+        return;
+    }
 
     document.getElementById('step1_1').classList.remove('active');
     document.getElementById('step1_2').classList.add('active');
@@ -105,6 +109,10 @@ function goToStep1_2() {
 function goToStep2() {
     if (selectedSecondaryActivities.length === 0) {
         alert('Veuillez sélectionner au moins une activité secondaire!');
+        return;
+    }
+    if (activities.includes('Cinéma') && !selectedCinemaOption) {
+        alert('Veuillez sélectionner une option pour le cinéma.');
         return;
     }
 
