@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily et Bastou</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="imgs/carapuce32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="imgs/carapuce16x16.png">
+</head>
+<body>
+    <header>
+        <h1>Lindsay et Bastien</h1>
+    </header>
+    <main>
+        <section id="welcome" class="active">
+            <div class="animation-container">
+            <img src="imgs/happening.gif" class="animation">
+            </div>
+            <button type="button" onclick="goToActivities()">Lets goooo</button>
+        </section>
+    
+        <section id="step0">
+            <h2>Choix de la date</h2>
+            <p>Impossible de sélectionner une date prolongée sur plusieurs jours...Peut être bientôt 😉</p>
+            <form id="dateForm">
+                <div class="form-group">
+                    <label for="date">Choisis une date où tu serais disponible</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">À partir de quelle heure ?</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+            </form>
+            <button type="button" onclick="goToStep0()">Suivant</button>
+        </section>
+
+        <!-- Choix d'activité principale -->
+        <section id="step1_1">
+            <h2>Choix de l'activité principale</h2>
+            <p>Le concept est simple, tu choisie.</p>
+            <div class="card-container" id="mainActivityCards">
+                <div class="card card-cinema card-cinema-main" onclick="toggleActivity(this, 'Cinéma', 'main')">
+                    <img src="imgs/activites/cinema.jpg" alt="Cinéma">
+                    <h3>Cinéma</h3>
+                    <div class="card-cinema-options">
+                        <button onclick="selectCinemaOption(event,this, '2D', 'main')">2D</button>
+                        <button onclick="selectCinemaOption(event,this, '3D', 'main')">3D</button>
+                        <button onclick="selectCinemaOption(event,this, '4DX', 'main')">4DX</button>
+                        <button onclick="selectCinemaOption(event,this, 'Canape à 2', 'main')">Canap à 2</button>
+                    </div>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'main')">
+                    <img src="imgs/activites/cine-mailles.jpg" alt="cine-mailles">
+                    <h3>Ciné-mailles (si disponible)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Parc jardin', 'main')">
+                    <img src="imgs/activites/parc-jardin.jpg" alt="Parc-jardin">
+                    <h3>Je vois la vie en vert, allons dans un parc ou un jardin</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Musée richelieu + bibliothèque', 'main')">
+                    <img src="imgs/activites/musee-richelieu-bibliotheque.jpg" alt="Musée-richelieu-bilbiothèque">
+                    <h3>Musée richelieu + bibliothèque</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Ikea', 'main')">
+                    <img src="imgs/activites/ikea.jpg" alt="Ikea">
+                    <h3>Ikea date</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Tour Montparnasse', 'main')">
+                    <img src="imgs/activites/tour-montparnasse.jpg" alt="Tour-montparnasse">
+                    <h3>Observatoire Tour Montparnasse</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Aquarium Paris', 'main')">
+                    <img src="imgs/activites/aquarium-paris.jpg" alt="Aquarium Paris">
+                    <h3>Aquarium Paris</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Bookoff', 'main')">
+                    <img src="imgs/activites/bookoff.jpg" alt="Bookoff">
+                    <h3>Bookoff</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Achats', 'main')">
+                    <img src="imgs/activites/achats.jpg" alt="Achats">
+                    <h3>Journée Achat/recyclerie (laine, bivouac, autres)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier crochet ensemble', 'main')">
+                    <img src="imgs/activites/atelier-crochet.gif" alt="Atelier-crochet">
+                    <h3>Atelier Crochet ensemble (chill dans un café par exemple)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier cuisine/patisserie', 'main')">
+                    <img src="imgs/activites/atelier-cuisine-patisserie.gif" alt="Atelier-cuisine-patisserie">
+                    <h3>Atelier Cuisine/Pâtisserie (à organisé dans un lieu)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Visite planetarium', 'main')">
+                    <img src="imgs/activites/planetarium.jpeg" alt="Visite-planetarium">
+                    <h3>Visite planétarium</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Theatre', 'main')">
+                    <img src="imgs/activites/theatre.jpg" alt="theatre">
+                    <h3>Pièce de théatre</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'main')">
+                    <img src="imgs/activites/activite-hors-paris.jpg" alt="Activites-hors-paris">
+                    <p><em>Activités ou visites en dehors de Paris</em></p>
+                    <h3>Fait moi voyager</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Opera', 'main')">
+                    <img src="imgs/activites/opera.jpg" alt="Opera">
+                    <h3>OpérAAAAAAAAAAAAH</h3>
+                </div>
+                <!--<div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'main')">-->
+                <div class="card card-special">
+                    <div class="overlay">Période estivale</div>
+                    <img src="imgs/activites/pique-nique-sceaux.jpg" alt="Pique-nique-sceaux">
+                    <h3>Pique-nique à Sceaux</h3>
+                </div>
+                <!--<div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'main')">-->
+                <div class="card card-special">
+                    <div class="overlay">Période estivale</div>
+                    <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe-kayak">
+                    <h3>Canoë-kayak (Ile-de-france)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Randonnee', 'main')">
+                    <img src="imgs/activites/randonnee.jpg" alt="randonnee">
+                    <h3>Randonnée</h3>
+                </div>
+                <!--<div class="card" onclick="toggleActivity(this, 'Photos', 'main')">-->
+                <div class="card card-special">
+                    <div class="overlay">Non Disponible pour le moment</div>
+                    <img src="imgs/activites/photos.gif" alt="Photos">
+                    <h3>Photos pleeeeeease</h3>
+                </div>
+                <!--Autres-->
+                <div class="card">
+                    <img src="imgs/activites/activite-culturel.jpeg" alt="Autre-culturel">
+                    <h3>J'ai une culture développée! Allons visiter ...</h3>
+                    <div class="custom-activity">
+                        <input type="text" class="customMainActivity" placeholder="écrire...">
+                    </div>
+                    <button type="button" onclick="addCustomActivity(this, 'main')">Envoyer</button>
+                </div>
+                <div class="card">
+                    <img src="imgs/activites/autre-activite.jpg" alt="Autre-activite">
+                    <h3>Tes idées sont nulles, je veux faire ...</h3>
+                    <div class="custom-activity">
+                        <input type="text" class="customMainActivity" placeholder="écrire...">
+                    </div>
+                    <button type="button" onclick="addCustomActivity(this, 'main')">Envoyer</button>
+                </div>                
+                <div class="card" onclick="toggleActivity(this, 'Rien', 'main')">
+                    <img src="imgs/activites/rien.gif" alt="rien">
+                    <h3>Rien, pas le temps</h3>
+                </div>
+            </div>
+            <button type="button" onclick="goToStep1_2()">Suivant</button>
+        </section>
+
+        <!-- Choix d'activité secondaire -->
+        <section id="step1_2">
+            <h2>Choix de l'activité secondaire</h2>
+            <p>Au cas où l'activité principale ne serait plus disponible ou bien si tu veux en faire une deuxième</p>
+            <div class="card-container" id="secondaryActivityCards">
+                <div class="card card-cinema card-cinema-secondary" onclick="toggleActivity(this, 'Cinéma', 'main')">
+                    <img src="imgs/activites/cinema.jpg" alt="Cinéma">
+                    <h3>Cinéma</h3>
+                    <div class="card-cinema-options">
+                        <button onclick="selectCinemaOption(event,this, '2D', 'secondary')">2D</button>
+                        <button onclick="selectCinemaOption(event,this, '3D', 'secondary')">3D</button>
+                        <button onclick="selectCinemaOption(event,this, '4DX', 'secondary')">4DX</button>
+                        <button onclick="selectCinemaOption(event,this, 'Canap-2', 'secondary')">Canap à 2</button>
+                    </div>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Cine-mailles', 'secondary')">
+                    <img src="imgs/activites/cine-mailles.jpg" alt="cine-mailles">
+                    <h3>Ciné-mailles (si disponible)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Parc jardin', 'secondary')">
+                    <img src="imgs/activites/parc-jardin.jpg" alt="Parc-jardin">
+                    <h3>Je vois la vie en vert, allons dans un parc ou un jardin</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Musée richelieu + bibliothèque', 'secondary')">
+                    <img src="imgs/activites/musee-richelieu-bibliotheque.jpg" alt="Musée-richelieu-bilbiothèque">
+                    <h3>Musée richelieu + bibliothèque</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Ikea', 'secondary')">
+                    <img src="imgs/activites/ikea.jpg" alt="Ikea">
+                    <h3>Ikea date</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Tour Montparnasse', 'secondary')">
+                    <img src="imgs/activites/tour-montparnasse.jpg" alt="Tour-montparnasse">
+                    <h3>Observatoire Tour Montparnasse</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Aquarium Paris', 'secondary')">
+                    <img src="imgs/activites/aquarium-paris.jpg" alt="Aquarium Paris">
+                    <h3>Aquarium Paris</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Bookoff', 'secondary')">
+                    <img src="imgs/activites/bookoff.jpg" alt="Bookoff">
+                    <h3>Bookoff</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Achats', 'secondary')">
+                    <img src="imgs/activites/achats.jpg" alt="Achats">
+                    <h3>Achats (laine, bivouac, autres)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier crochet ensemble', 'secondary')">
+                    <img src="imgs/activites/atelier-crochet.gif" alt="Atelier-crochet">
+                    <h3>Atelier Crochet ensemble (chill dans un café par exemple)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Atelier cuisine/patisserie', 'secondary')">
+                    <img src="imgs/activites/atelier-cuisine-patisserie.gif" alt="Atelier-cuisine-patisserie">
+                    <h3>Atelier Cuisine/Pâtisserie (à organisé dans un lieu)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Visite planetarium', 'secondary')">
+                    <img src="imgs/activites/planetarium.jpeg" alt="Visite-planetarium">
+                    <h3>Visite planétarium</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Theatre', 'secondary')">
+                    <img src="imgs/activites/theatre.jpg" alt="theatre">
+                    <h3>Pièce de théatre</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Activités hors paris', 'secondary')">
+                    <img src="imgs/activites/activite-hors-paris.jpg" alt="Activites-hors-paris">
+                    <p><em>Activités ou visites en dehors de Paris</em></p>
+                    <h3>Fait moi voyager</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Opera', 'secondary')">
+                    <img src="imgs/activites/opera.jpg" alt="Opera">
+                    <h3>OpérAAAAAAAAAAAAH</h3>
+                </div>
+                <!--<div class="card" onclick="toggleActivity(this, 'Pique-nique sceaux', 'secondary')">-->
+                <div class="card card-special">
+                    <div class="overlay">Période estivale</div>
+                    <img src="imgs/activites/pique-nique-sceaux.jpg" alt="Pique-nique-sceaux">
+                    <h3>Pique-nique à Sceaux</h3>
+                </div>
+                <!--<div class="card" onclick="toggleActivity(this, 'Canoe-kayak IDF', 'secondary')">-->
+                <div class="card card-special">
+                    <div class="overlay">Période estivale</div>
+                    <img src="imgs/activites/canoe-kayak.jpg" alt="Canoe-kayak">
+                    <h3>Canoë-kayak (Ile-de-france)</h3>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Randonnee', 'secondary')">
+                    <img src="imgs/activites/randonnee.jpg" alt="randonnee">
+                    <h3>Randonnée</h3>
+                </div>
+                <!--<div class="card" onclick="toggleActivity(this, 'Photos', 'secondary')">-->
+                <div class="card card-special">
+                    <div class="overlay">Non Disponible pour le moment</div>
+                    <img src="imgs/activites/photos.gif" alt="Photos">
+                    <h3>Photos pleeeeeease</h3>
+                </div>
+                <!--Autres-->
+                <div class="card">
+                    <img src="imgs/activites/activite-culturel.jpeg" alt="Autre-culturel">
+                    <h3>J'ai une culture dévelopée! Allons visiter ...</h3>
+                        <div class="custom-activity">
+                            <input type="text" id="customSecondaryActivity" placeholder="écrire...">
+                        </div>
+                        <button type="button" onclick="addCustomActivity(this,'secondary')">Envoyer</button>
+                </div>
+                <div class="card">
+                    <img src="imgs/activites/autre-activite.jpg" alt="Autre-activite">
+                    <h3>Tes idées sont nulles, je veux ...</h3>
+                        <div class="custom-activity">
+                            <input type="text" id="customSecondaryActivity" placeholder="écrire...">
+                        </div>
+                        <button type="button" onclick="addCustomActivity(this, 'secondary')">Envoyer</button>
+                </div>
+                <div class="card" onclick="toggleActivity(this, 'Rien', 'secondary')">
+                    <img src="imgs/activites/rien.gif" alt="rien">
+                    <h3>Rien, pas le temps</h3>
+                </div>
+            </div>
+            <button type="button" onclick="goToStep2()">Suivant</button>
+        </section>
+
+        <section id="manger">
+            <h2>On va manger ?</h2>
+            <div class="animation-container">
+                <img src="imgs/kirby.gif" class="animation_kirby">
+            </div>
+            <button type="button" onclick="goToRestaurant()">Ouii Miammm Miammm!! Petite vessie mais gros estomac 😏</button>
+            <button type="button" onclick="goToConfirmationSansResto()">Non... pas envie 😶</button>
+        </section>
+
+        <section id="step2">
+            <h2>Choix du restaurant</h2>
+            <p>Tu peux choisir tes préférences avec l'ordre de ta sélection (max. 3 stp)</p>
+            <div class="card-container" id="restaurantCards">
+                <div class="card" onclick="toggleSelection(this, 'Italien')">
+                    <img src="imgs/restaurants/italien.png" alt="Italien">
+                    <h3>Italien</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Japonais')">
+                    <img src="imgs/restaurants/japonais.png" alt="Japonais">
+                    <h3>Japonais</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Barbecue Coréen')">
+                    <img src="imgs/restaurants/barbecue-coreen.jpg" alt="Barbecue Coréen">
+                    <h3>Barbecue Coréen</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Burger')">
+                    <img src="imgs/restaurants/burger.jpg" alt="Burger">
+                    <h3>Burger</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Thaï')">
+                    <img src="imgs/restaurants/thailandais.jpg" alt="Thaï">
+                    <h3>Thaï</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Bouillon chartier')">
+                    <img src="imgs/restaurants/bouillon-chartier.jpg" alt="Bouillon chartier">
+                    <h3>Le Bouillon chartier </h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Fromage')">
+                    <img src="imgs/restaurants/fromage.jpg" alt="Fromage">
+                    <h3>Fromage (Raclette, Fondue, aligot)</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Steakhouse')">
+                    <img src="imgs/restaurants/steakhouse.png" alt="Steakhouse">
+                    <h3>Steakhouse</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Vegan')">
+                    <img src="imgs/restaurants/vegan.png" alt="Vegan">
+                    <h3>Vegan</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Libanais')">
+                    <img src="imgs/restaurants/libanais.jpg" alt="Libanais">
+                    <h3>Libanais</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Tapas')">
+                    <img src="imgs/restaurants/tapas.jpg" alt="Tapas">
+                    <h3>Tapas (hispanique)</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Mexicain')">
+                    <img src="imgs/restaurants/mexicain.jpg" alt="Mexicain">
+                    <h3>Mexicain</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Français - Crêperie bretonne')">
+                    <img src="imgs/restaurants/fr-crepe-bretonne.png" alt="Français - Crêperie bretonne">
+                    <h3>Français - Crêperie bretonne</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Français - Alsacien')">
+                    <img src="imgs/restaurants/fr-alsacien.png" alt="Français - Alsacien">
+                    <h3>Français - Alsacien</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Under The Sea')">
+                    <img src="imgs/restaurants/under-the-sea.jpg" alt="Under The Sea">
+                    <h3>Under the sea (pas ma pref mais je peux faire un effort)</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'indien')">
+                    <img src="imgs/restaurants/indien.jpg" alt="indien">
+                    <h3>Indien</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Marocain')">
+                    <img src="imgs/restaurants/marocain.jpg" alt="Marocain">
+                    <h3>Marocain</h3>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'cafe-brasserie-bistrot')">
+                    <img src="imgs/restaurants/cafe-brasserie-bistrot.jpg" alt="cafe-brasserie-bistrot">
+                    <h3>Café - brasserie - Bistrot</h3>
+                </div>
+                <div class="card">
+                    <img src="imgs/restaurants/fastfood.jpg" alt="Autre resto">
+                    <h3>Fastfood ou autre ?</h3>
+                    <div class="custom-restaurant">
+                        <input type="text" id="customRestaurant" placeholder="écrire...">
+                    </div>
+                    <button type="button" onclick="addCustomRestaurant()">Ajouter</button>
+                </div>
+                <div class="card" onclick="toggleSelection(this, 'Rien')">
+                    <img src="imgs/restaurants/rien.gif" alt="resto-rien">
+                    <h3>Finalement rien</h3>
+                </div>
+            </div>
+            <button type="button" onclick="goToComment()">Suivant</button>
+        </section>
+
+        <section id="commentSection">
+            <h2>Un commentaire ?</h2>
+            <p>Tu veux me faire parvenir un message ou me dire un mot sur la journée à venir ?</p>
+            <p>Tu peux aussi faire "Suivant" si tu n'a rien à dire.</p>
+            <textarea id="userComment" rows="4" cols="50" placeholder="Commente ..."></textarea>
+            <br><button type="button" onclick="afficherConfirmation()">Suivant</button>
+        </section>
+
+        <section id="confirmation">
+            <h2>Confirmation</h2>
+            <form id="finalForm">
+                <p><strong>Date : </strong><span id="selectedDate"></span></p>
+                <p><strong>Activité principale : </strong><span id="selectedMainActivities"></span></p>
+                <p><strong>Activité secondaire</strong> : <span id="selectedSecondaryActivities"></span></p>
+                <p><strong>Restaurants </strong><em>(dans l'ordre de ta sélection)</em> : <span id="selectedRestaurants"></span></p>
+                <input type="hidden" name="date" id="hiddenDate">
+                <input type="hidden" name="time" id="hiddenTime">
+                <input type="hidden" name="activities" id="hiddenActivities">
+                <input type="hidden" name="activities" id="hiddenSecondaryActivities">
+                <input type="hidden" name="restaurants" id="hiddenRestaurants">
+                <input type="hidden" name="comment" id="hiddenComment">
+                <button type="button" onclick="submitForm()">Envoyer à Bastien</button>
+            </form>
+        </section>        
+
+        <section id="thankYou" class="hidden">
+            <h2>Merci ma Lily ❤️</h2>
+            <p>À très vite!</p>
+            <div class="videoSection">
+                <video id="thankYouVideo" width="500" height="500" loop controls>
+                    <source src="videos/lily-break-dance.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la balise vidéo.
+                </video>            
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Fait avec ❤️</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

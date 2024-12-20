@@ -1,0 +1,482 @@
+* {
+    box-sizing: border-box; /* Assure que les marges et les bordures sont incluses dans la taille totale des éléments */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #fbeae7, #f77f7f);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assure que le body prend au moins la hauteur de la fenêtre */
+}
+
+header {
+    background-color: #f44141;
+    color: white;
+    padding: 30px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    width: 100%;
+    flex: 1; /* Permet à main de prendre l'espace disponible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    display: none;
+    padding: 40px; /* Augmenter le padding pour plus d'espace */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px; /* Augmenter la marge pour plus d'espace entre les sections */
+    width: 100%; /* Assure que la section prend toute la largeur disponible */
+}
+
+section.active {
+    display: block;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+.animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.animation {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.animation_kirby {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #f44141;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #d93737;
+}
+
+footer {
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    width: 100%;
+    text-align: center;
+    position: relative; /* Change to relative to allow it to be pushed down */
+    bottom: 0; /* Keep it at the bottom */
+    width: 100%; /* Full width */
+}
+
+/*FORMULAIRE*/
+/* Styles généraux pour le formulaire */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="date"], input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+input[type="date"]:focus, input[type="time"]:focus {
+    border-color: #f44141;
+    outline: none;
+}
+
+/*ADD TEXTE*/
+.custom-activity {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacement entre l'input et le bouton */
+    margin-top: 10px;
+}
+
+.custom-activity input {
+    flex: 1; /* Permet à l'input de prendre tout l'espace disponible */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.custom-activity button {
+    background-color: #f44141;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.custom-activity button:hover {
+    background-color: #d93737;
+}
+
+/*CUSTOM RESTAURANT*/
+.custom-restaurant {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacement entre l'input et le bouton */
+    margin-top: 10px;
+}
+
+.custom-restaurant input {
+    flex: 1; /* Permet à l'input de prendre tout l'espace disponible */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.custom-restaurant button {
+    background-color: #f44141;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.custom-restaurant button:hover {
+    background-color: #d93737;
+}
+
+/*Cartes*/
+/* Général */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px; /* Espace réduit entre les cartes */
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.card {
+    position: relative; /* Position relative pour gérer les overlays */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    flex: 1 1 calc(22% - 20px);
+    max-width: calc(22% - 20px);
+    box-sizing: border-box;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card-special {
+    position: relative; /* Important pour gérer les overlays */
+    cursor: default; /* Pas d'effet de clic */
+    pointer-events: auto; /* Autorise le survol */
+}
+
+.card-special:hover {
+    transform: none; /* Pas d'effet au survol */
+    border-color: #ccc; /* Conserve une bordure normale */
+}
+
+.card-special .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 125, 125, 0.8); /* Rouge translucide */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    z-index: 2;
+    pointer-events: none; /* Empêche tout clic */
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    visibility: hidden; /* Ajout de visibility pour renforcer l'effet */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transition fluide */
+}
+
+.card-special:hover .overlay {
+    opacity: 1; /* Montre l'overlay uniquement au survol */
+    visibility: visible; /* Apparition visible au survol */
+}
+
+.card-special h3 {
+    color: #666; /* Couleur plus terne pour indiquer l'indisponibilité */
+}
+
+
+.card img {
+    width: 100%;
+    object-fit: cover; /* Garde le ratio et couvre bien la carte */
+    z-index: 0;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #333;
+    text-align: left;
+    z-index: 1; /* S'assure que le texte reste sous l'overlay */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    border-color: #007bff;
+    background-color: #f9f9f9;
+}
+
+.card.selected {
+    border: 3px solid rgba(251, 82, 82, 0.8);
+    background-color: #ffe6e6;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(58, 153, 255, 0.5);
+}
+
+/*CARTES CINEMA*/
+
+.card-cinema-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.card-cinema-options button {
+    border: 1px solid #ff7373;
+    border-radius: 5px;
+    background: #df6a6a;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-cinema-options button.selected {
+    background-color: #7ec587;
+    color: #000000;
+    transform: scale(1.1);
+}
+
+.card-cinema-options button:hover {
+    background-color: #e0e0e0;
+}
+
+/*COMMENTAIRE*/
+.commentSection:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.commentSection h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.commentSection textarea {
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    resize: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.commentSection textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.commentSection button {
+    background-color: #FF4D4D;
+    color: #fff;
+    font-size: 1em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.commentSection button:hover {
+    background-color: #E63939;
+}
+
+.commentSection button:active {
+    background-color: #CC3333;
+}
+
+/*VIDEO FIN*/
+.videoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.videoSection h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.backgroundVideo {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* RESPONSIVE DESIGN */
+
+/* Tablette : 3 cartes par rangée */
+@media (max-width: 1024px) {
+    .card {
+        flex: 0 1 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
+    }
+    .card img {
+        width: 100%;
+        height: 130px; /* Images encore plus réduites */
+        object-fit: cover; /* Garde le ratio et couvre bien la carte */
+        border-radius: 10px 10px 10px 10px; /* Coins arrondis en haut */
+    }
+    .card h3 {
+        font-size: 0.9em; /* Réduction de la taille de la police */
+    }
+}
+
+/* Mobile : 2 cartes par rangée */
+@media (max-width: 768px) {
+    .card {
+        flex: 0 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+
+    .card img {
+        width: 100%;
+        object-fit: cover; /* Garde le ratio et couvre bien la carte */
+        border-radius: 7px 7px 7px 7px; /* Coins arrondis en haut */
+    }
+    .card h3 {
+        font-size: 0.8em; /* Taille encore plus petite */
+    }
+}
+
+/* Petits téléphones : Ajustements de l'espacement */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    main {
+        padding: 10px;
+    }
+    .card-container {
+        gap: 10px;
+    }
+    .card {
+        padding: 10px;
+    }
+    .card img {
+        width: 100%;
+        object-fit: cover; /* Garde le ratio et couvre bien la carte */
+        border-radius: 5px 5px 5px 5px; /* Coins arrondis en haut */
+    }
+    .card h3 {
+        font-size: 0.6em; /* Police plus petite pour les petits téléphones */
+    }
+}
